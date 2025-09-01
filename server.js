@@ -180,7 +180,7 @@ app.post("/register/verify-otp", async(req,res) => {
 
 });
 
-app.get("/",async(req,res) =>{
+app.get("/",isloggedin,async(req,res) =>{
     
     if(!req.session.userId){
         return res.redirect("/home");
