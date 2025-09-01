@@ -7,6 +7,7 @@ const path = require("path");
 const nodemailer = require("nodemailer");
 const { type } = require("os");
 const { use } = require("react");
+const { send } = require("process");
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
@@ -87,10 +88,23 @@ app.post("/login/basic" , async (req,res) => {
         return res.send("Invalid Password!!");
 
     req.session.userId = user._id;
-
+    res.redirect("/");
 });
 
+app.post("/login/advanced" , async (req,res) => {
+    const {email,password,} = req.body;
+    const user = await User.findOne({email});
+    if (!user) return res,send("User Not Found.");
 
+    if (user.role !== "legal_officer" && user.role !== "gov_official")
+        return res.send("Unauthorized login page!!");
+
+    if (!(await bcrypt.compare(password,user.password)))
+        return res.send("Invalid Password!");
+
+    req.session.userId = user._id;
+    res.redirect("/");
+});
 
 
 //reistrating form
@@ -167,9 +181,18 @@ app.post("/register/verify-otp", async(req,res) => {
 
 });
 
+app.get("/",async(req,res) =>{
+    const user = await User.findById(req.session.userId);
 
+    if (user.role === "user") return res.render("userDashboard",{user});
+    if (user.role === "serviceprovider") return res.render("serviceDashboard",{user});
+    if (user.role === "legal_officer") return res.render("legalDashboard",{user});
+    if (user.role === "gov_official") return res.render("govDashboard",{user}); 
+});
 
-
+app.get("/logout" , (req,res) => {
+    req.session.destroy(() => res.redirect("/home"));
+});
 
 app.listen(3000,() => {
     console.log("server listening on port 3000");
