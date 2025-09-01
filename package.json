@@ -1,0 +1,29 @@
+{
+  "name": "tirth-darshanam",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkashGTapre1808/Tirth-Darshanam.git"
+  },
+  "author": "blurbytebatallion",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AkashGTapre1808/Tirth-Darshanam/issues"
+  },
+  "homepage": "https://github.com/AkashGTapre1808/Tirth-Darshanam#readme",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "mongoose": "^8.18.0",
+    "nodemailer": "^7.0.6",
+    "path": "^0.12.7"
+  }
+}
