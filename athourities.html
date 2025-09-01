@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nav page</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        font-family: "Times New Roman", Times, serif;
+        font-weight: 800;
+      }
+      body {
+        background-color: antiquewhite;
+      }
+
+      header {
+        position: fixed;
+      }
+
+      .logo {
+        margin: 0px 80px 0px 30px;
+        background-color: aqua;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .navbar {
+        background-color: yellow;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        margin: 0px 0px 0px 0px;
+      }
+
+      ul {
+        list-style: none;
+        display: flex;
+        gap: 40px;
+        margin: 0px 0px 0px 700px;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+        /* font-weight: 800; */
+        /* font-family: 'Times New Roman', Times, serif; */
+      }
+
+      #log {
+        margin: 0px 0px 0px 70px;
+        background-color: aqua;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #mul_lang {
+        color: #100f0f;
+        height: 25px;
+        border-radius: 5px;
+        background-color: transparent;
+        border: 2px solid transparent;
+        outline: none;
+        font-size: medium;
+        font-weight: 700;
+        margin: 3px 0 0 28px;
+        cursor: pointer;
+      }
+
+      main {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #master-box {
+        display: flex;
+        height: 450px;
+        width: 700px;
+        border: 2px solid black;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 10px;
+        margin: 3% 0px 0px 0%;
+      }
+
+      .box-button {
+        border: 2px solid black;
+        height: 200px;
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+      }
+      .notifi {
+        margin: 11% 0px 0px 0%;
+        background-color: aqua;
+        height: 40px;
+        width: 80%;
+        /* text-align: center; */
+        border-radius: 10px;
+      }
+
+      .notifi p{
+        margin:10px ;
+      }
+
+      #box-drive {
+        display: flex;
+        height: 50%;
+        width: 90%px;
+        border: 2px solid black;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 10px;
+        margin: 4% 0px 4px 0%;
+      }
+
+      .inner {
+        border: 2px solid black;
+        height: 500px;
+        width: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+      }
+
+      #additional {
+        height: 90px;
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- header program -->
+
+    <header>
+      <div id="additional"></div>
+      <div class="navbar">
+        <div class="logo"><a href="#">logo</a><img src="" alt="" /></div>
+        <div class="attri">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Service</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Contact</a></li>
+            <!-- <li><a href="#"></a></li> -->
+          </ul>
+        </div>
+
+        <div class="lang">
+          <select name="lang" id="mul_lang">
+            <option selected="eng">ENGLISH</option>
+            <option value="hin">HINDI</option>
+            <option value="mar">MARATHI</option>
+            <option value="guj">GUJRATI</option>
+            <option value="sans">SANSKRIT</option>
+          </select>
+        </div>
+        <div id="log">
+          <a href="#"><p>log in</p></a>
+        </div>
+      </div>
+    </header>
+
+    <!-- main containant of page -->
+
+    <main>
+      <div class="notifi">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, nostrum! Ullam sint aspernatur maxime labore, ea laborum, modi molestiae facere ex quis hic est quidem 
+        </p>
+      </div>
+      <section id="#"></section>
+
+      <div id="master-box">
+        <div class="box-button">Box 1</div>
+        <div class="box-button">Box 2</div>
+        <div class="box-button">Box 3</div>
+        <div class="box-button">Box 4</div>
+      </div>
+
+      <div id="box-drive">
+        <div class="inner">info-1</div>
+        <div class="inner">info-2</div>
+      </div>
+    </main>
+
+    <!-- footer program -->
+
+    <footer></footer>
+  </body>
+</html>
