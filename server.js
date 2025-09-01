@@ -122,7 +122,7 @@ app.post("/register/verify-otp", async(req,res) => {
     if(record.otp)
 
 
-})
+});
 
 
 
