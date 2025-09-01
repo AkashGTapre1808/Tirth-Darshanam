@@ -1,0 +1,33 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  color: white;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #dbcbe0, #a8c5e7);
+}
+
+a {
+  text-decoration: none;
+  color: aliceblue;
+}
+.s_navbar {
+  background: transparent; /*linear-gradient(to right, #5c6bc0, #512da8)*/
+  height: 80px;
+  width: 1550px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 32px 0px;
+  position: fixed;
+  top: 0px;
+  gap: 20px;
+  z-index: 999;
+}
+img{
+    height: 20px;
+}
