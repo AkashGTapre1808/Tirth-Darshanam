@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const nodemailer = require("nodemailer");
 const { type } = require("os");
+const { use } = require("react");
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
@@ -67,6 +68,29 @@ app.get("/home",(req,res) => {
     res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
+//login form
+app.get("/login/:role" , (req,res) => {
+    const role = req.params.role;
+    res.render('${role}login');
+});
+
+//logging in
+app.post("/login/basic" , async (req,res) => {
+    const {email,password} = req.body;
+    const user = await User.findOne({email});
+    if(!user) return res.send("User Not Found.");
+
+    if(user.role !== "user" && user.role !== "serviceprovider")
+        return res.send("Unauthorized login page!");
+
+    if (!(await bcrypt.compare(password, user.password)))
+        return res.send("Invalid Password!!");
+
+    req.session.userId = user._id;
+
+});
+
+
 
 
 //reistrating form
@@ -81,11 +105,11 @@ app.post("/register/send-otp", async (req,res) => {
     const {username,email,password,} = req.body;
 
 
-    //double registration
+    //double registration prevention
     const existingUser = await User.findOne({email});
     if (existingUser) return res.status(400).send("User already exists!!");
 
-    const hashedpassword = await bcrypt.hash(password,10);
+    
     const otp = Math.floor(100000 + Math.random()*900000).toString();
 
     //temp save
@@ -94,7 +118,7 @@ app.post("/register/send-otp", async (req,res) => {
     otpstore[email]=
     {
         otp,
-        data:{ username,emai,password,role,  },
+        data:{ username,email,password,role,  },
         otpExpires:Date.now() + 2*60*1000  //2min
     };
 
@@ -119,8 +143,27 @@ app.post("/register/verify-otp", async(req,res) => {
     const record = otpstore[email];
 
     if(!record) return res.status(400).send("OTP expired. Try again");
-    if(record.otp)
+    if(record.otp !== otp) return res.status(400).send("Invalid OTP!");
+    if (Date.now() > record.otpExpires){
+        delete otpstore[email];
+        return res.status(400).send("OTP expired, Try again.");
+    }
+    const hashedpassword = await bcrypt.hash(record.data.password,10);
 
+    const newUser = new User({
+        username : record.data.username,
+        email : record.data.email,
+        password : hashedpassword,
+        role : record.data.role,
+
+    });
+
+    await newUser.save();
+
+    delete otpstore[email];
+
+
+    res.send("Registered Successfully!");
 
 });
 
