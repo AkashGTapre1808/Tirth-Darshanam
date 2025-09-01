@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const nodemailer = require("nodemailer");
 const { type } = require("os");
-const { use } = require("react");
 const { send } = require("process");
 
 const app = express();
@@ -144,7 +143,7 @@ app.post("/register/send-otp", async (req,res) => {
         from:"ourmail@gmail.com",
         to:email,
         subject: "Tirth-Darshanam OTP Verification Code",
-        text:'Hello ${username},\n\nYour OTP is:${otp}\nValid for 3 Minutes.',
+        text:'Hello ${username},\n\nYour OTP is:${otp}\nValid for 2 Minutes.',
 
     });
 
@@ -182,12 +181,33 @@ app.post("/register/verify-otp", async(req,res) => {
 });
 
 app.get("/",async(req,res) =>{
+    
+    if(!req.session.userId){
+        return res.redirect("/home");
+    }
+    
+    
+    
     const user = await User.findById(req.session.userId);
-
-    if (user.role === "user") return res.render("userDashboard",{user});
-    if (user.role === "serviceprovider") return res.render("serviceDashboard",{user});
-    if (user.role === "legal_officer") return res.render("legalDashboard",{user});
-    if (user.role === "gov_official") return res.render("govDashboard",{user}); 
+    
+    if (!user){
+        req.session.destroy();
+        return res.redirect("/home");
+    }
+    
+    
+    switch(user.role){
+        case "user":
+            return res.render("userDashboard",{user});
+        case "serviceprovider":
+            return res.render("serviceDashboard",{user});
+        case "legal_officer":
+            return res.render("legalDashboard",{user});
+        case "gov_official":
+            return res.render("govDashboard",{user});
+        default:
+            return res.redirect("/home");
+    }
 });
 
 app.get("/logout" , (req,res) => {
