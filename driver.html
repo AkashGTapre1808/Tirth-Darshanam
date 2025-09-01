@@ -5,99 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>log in page</title>
     <style>
-      body {
-        display: flex;
-        justify-content: center;
-        background-color: black;
+      * {
+        margin: 0px;
+        padding: 0px;
+        font-weight: 500;
+        font-size: medium;
+        font-family: "Times New Roman", Times, serif;
       }
+
       .form {
-        color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: red;
-        height: 500px;
-        width: 3000px;
+        height: 600px;
+        width: 300px;
       }
+
+      label,
+      button {
+        display: block;
+        margin: 10px 0px 5px 0px;
+      }
+      .container{
+        height:100vh;
+        display: flex;
+        justify-content: center;
+      }
+
+      input{
+        height: 20px;
+        width:300px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px solid transparent;
+        background-color: antiquewhite;
+        color: indigo;
+        font-weight: 550;
+      }
+
+      button{
+        height:40px;
+        width: 100px;
+        border-radius:10px;
+      }
+
     </style>
   </head>
   <body>
     <!-- it for only bus drivers and transporters login page -->
 
-    <div class="form">
-      <form action="action.php">
-        <label for="name">Owner name:</label>
-        <br />
-        <input type="text" placeholder="User name" required />
-        <br />
-        <label for="email">Email:</label><br />
-        <input
-          type="email"
-          inputmode="email"
-          placeholder="Enter your email"
-          required
-        />
-        <br />
-        <label for="password">Password:</label>
-        <br />
-        <input
-          type="password"
-          inputmode="verbatim"
-          placeholder="Enter password"
-          required
-        />
-        <br />
-        <label for="otp">OTP:</label>
-        <br />
-        <input
-          type="tel"
-          placeholder="Enter OTP"
-          required
-          inputmode="numeric"
-          maxlength="6"
-        />
-        <br />
+    <div class="container">
+      <div class="form">
+        <form action="action.php">
+          <label for="name">Owner name:</label>
+          <input type="text" placeholder="User name" required />
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            inputmode="email"
+            placeholder="Enter your email"
+            required
+          />
 
-        <label for="mobile_no">Mobile No. :</label>
-        <br />
-        <input
-          type="tel"
-          placeholder="Enter Mobile Number"
-          required
-          inputmode="numeric"
-          maxlength="10"
-        />
-        <br />
-        <label for="a_number">Aadhar Number:</label>
-        <br />
-        <input
-          type="tel"
-          placeholder="Enter Aadhar Number"
-          required
-          inputmode="numeric"
-          maxlength="12"
-        />
-
-        <br />
-        <label for="VNP">Vehical number:</label>
-        <br />
-        <input type="text" placeholder="eg.MH19 XXXX" required maxlength="8" />
-        <br />
-        <label for="image">Vehical image with number plate:</label><br />
-        <input type="file" required />
-        <br />
-        <label for="image"> vehical owner image:</label><br />
-        <input type="file" required />
-        <br />
-        <label for="image">Driving licence image:</label><br />
-        <input type="file" required />
-        <br />
-        <label for="otp">Vehical image with number plate:</label><br />
-        <input type="file" required />
-        <br />
-        <button>Sign Up</button>
-      </form>
+          <label for="otp">OTP:</label>
+          <input
+            type="tel"
+            placeholder="Enter OTP"
+            required
+            inputmode="numeric"
+            maxlength="6"
+          />
+          <label for="mobile_no">Mobile No. :</label>
+          <input
+            type="tel"
+            placeholder="Enter Mobile Number"
+            required
+            inputmode="numeric"
+            maxlength="10"
+          />
+          <label for="a_number">Aadhar Number:</label>
+          <input
+            type="tel"
+            placeholder="Enter Aadhar Number"
+            required
+            inputmode="numeric"
+            maxlength="12"
+          />
+          <label for="VNP">Vehicle number:</label>
+          <input
+            type="text"
+            placeholder="eg.MH19 XXXX"
+            required
+            maxlength="8"
+          />
+          <label for="image">Vehicle image with number plate:</label>
+          <input type="file" required />
+          <label for="image"> vehicle owner image:</label>
+          <input type="file" required />
+          <label for="image">Driving licence image:</label>
+          <input type="file" required />
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            inputmode="verbatim"
+            placeholder="Enter password"
+            required
+          />
+          <label for="password">Confirm Password:</label>
+          <input
+            type="password"
+            inputmode="verbatim"
+            placeholder="Enter password"
+            required
+          />
+          <button>Sign Up</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
