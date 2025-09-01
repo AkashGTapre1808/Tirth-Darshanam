@@ -34,9 +34,10 @@ mongoose.connect("mongodb://localhost:27017/tirthdarshanam")
 
 const userSchema = new mongoose.Schema({
     username:String,
-    email:{type:string,unique:true},
+    email:{type:String, unique:true},
     password:String,
-    otp:string,
+    role:String,
+    otp:String,
     otpExpires:Date,
 
 
@@ -69,11 +70,59 @@ app.get("/home",(req,res) => {
 
 
 //reistrating form
-app.get("/registration/:role",(req,res)=>{
+app.get("/register/:role",(req,res)=>{
     const role = req.params.role;
     res.render('${role}register');
 });
 
+
+////otp send
+app.post("/register/send-otp", async (req,res) => {
+    const {username,email,password,} = req.body;
+
+
+    //double registration
+    const existingUser = await User.findOne({email});
+    if (existingUser) return res.status(400).send("User already exists!!");
+
+    const hashedpassword = await bcrypt.hash(password,10);
+    const otp = Math.floor(100000 + Math.random()*900000).toString();
+
+    //temp save
+    let otpstore = {};
+
+    otpstore[email]=
+    {
+        otp,
+        data:{ username,emai,password,role,  },
+        otpExpires:Date.now() + 2*60*1000  //2min
+    };
+
+    
+    
+    
+    //now send otp
+    await mailer.sendMail({
+        from:"ourmail@gmail.com",
+        to:email,
+        subject: "Tirth-Darshanam OTP Verification Code",
+        text:'Hello ${username},\n\nYour OTP is:${otp}\nValid for 3 Minutes.',
+
+    });
+
+    res.send("OTP sent on your email..!");
+});
+
+//verify OTP
+app.post("/register/verify-otp", async(req,res) => {
+    const {email,otp} = req.body;
+    const record = otpstore[email];
+
+    if(!record) return res.status(400).send("OTP expired. Try again");
+    if(record.otp)
+
+
+})
 
 
 
