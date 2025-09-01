@@ -35,10 +35,12 @@ mongoose.connect("mongodb://localhost:27017/tirthdarshanam")
 
 const userSchema = new mongoose.Schema({
     username:String,
-    email:{type:String, unique:true},
-    password:String,
-    role:String,
-    otp:String,
+    email:{type:String, unique:true, required:true},
+    password:{type:String,unique:true,required:true},
+    role:{type:String,required:true},
+    phone:{type:String,
+        required: function(){return this.role !== "user" }},
+    otp:{type:String,required:true},
     otpExpires:Date,
 
 
@@ -115,7 +117,7 @@ app.get("/register/:role",(req,res)=>{
 
 ////otp send
 app.post("/register/send-otp", async (req,res) => {
-    const {username,email,password,} = req.body;
+    const {username,email,password,role,phone,  } = req.body;
 
 
     //double registration prevention
@@ -131,7 +133,7 @@ app.post("/register/send-otp", async (req,res) => {
     otpstore[email]=
     {
         otp,
-        data:{ username,email,password,role,  },
+        data:{ username,email,password,role,phone,  },
         otpExpires:Date.now() + 2*60*1000  //2min
     };
 
@@ -168,6 +170,7 @@ app.post("/register/verify-otp", async(req,res) => {
         email : record.data.email,
         password : hashedpassword,
         role : record.data.role,
+        phone : record.data.phone || null,
 
     });
 
