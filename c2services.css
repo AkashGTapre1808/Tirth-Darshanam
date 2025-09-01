@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#container{
+    height: 1000px;
+    width: auto;
+    background-color: aquamarine;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#booking_info {
+    width: 400px;
+    height: 400px;
+    background-color: #F6E2B8;
+}
