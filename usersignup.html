@@ -92,7 +92,13 @@
         font-weight:550;
         border-radius:7px ;
       }
+      #AS{
+        display: inline;
+      }
 
+      label{
+        display: block;
+      }
     </style>
   </head>
   <body>
@@ -100,27 +106,32 @@
     <div class="sign-box">
       <div class="container">
         <form action="action.php" class="user">
-          Name:<input type="text" placeholder="User name" required />
+          <label>Name:</label>
+          <input type="text" placeholder="User name" required />
 
-          Date of Birth:
+          <label>Date of Birth:</label>
           <input type="date" required>
 
-          Age:
+          <label id="AS">Sex:</label>
           <select id="AGD"></select required>
 
-          Sex:
+          <label id="AS">Sex:</label>
           <select name="sex" id="AGD" required>
             <option value="male">MALE</option>
             <option value="female">FEMALE</option>
             <option value="other">OTHER</option>
           </select>
-          <br>
-           Mobile No.:<input
+          
+          <label>Mobile No.:</label>
+          <input
             type="numerical"
             placeholder="mobile no."
             required
             maxlength="10"
           />
+
+          <label>Email:</label>
+          <input type="email" placeholder="Enter Email" required />
           <button class="otp_v">Send otp</button>
           OTP:<input
             type="numerical"
@@ -130,16 +141,16 @@
           />
           <button class="otp_v">Verify otp</button>
 
-          Email:<input type="email" placeholder="Enter Email" required />
-          <button class="otp_v">Send otp</button>
-          OTP:<input
+          <label>Alternate Mobile No.:</label>
+          <input
             type="numerical"
-            placeholder="Enter OTP"
+            placeholder="mobile no."
             required
-            maxlength="6"
+            maxlength="10"
           />
-          <button class="otp_v">Verify otp</button>
 
+          <label>Address:</label>
+          <input type="text" required placeholder="address">
           <button class="sign-up">sign up</button>
         </form>
       </div>

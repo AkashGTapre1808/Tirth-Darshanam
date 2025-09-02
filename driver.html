@@ -23,15 +23,15 @@
         display: block;
         margin: 10px 0px 5px 0px;
       }
-      .container{
-        height:100vh;
+      .container {
+        height: 100vh;
         display: flex;
         justify-content: center;
       }
 
-      input{
+      input {
         height: 20px;
-        width:300px;
+        width: 300px;
         padding: 10px;
         border-radius: 10px;
         border: 2px solid transparent;
@@ -40,12 +40,23 @@
         font-weight: 550;
       }
 
-      button{
-        height:40px;
-        width: 100px;
-        border-radius:10px;
+      .vry {
+        height: 30px;
+        width: 80px;
+        padding: 5px;
       }
 
+      button {
+        height: 40px;
+        width: 100px;
+        border-radius: 10px;
+      }
+
+      #info {
+        color: red;
+        font-size: 17px;
+        font-weight: 700;
+      }
     </style>
   </head>
   <body>
@@ -54,6 +65,7 @@
     <div class="container">
       <div class="form">
         <form action="action.php">
+          <label id="info">Personal Deatails</label>
           <label for="name">Owner name:</label>
           <input type="text" placeholder="User name" required />
           <label for="email">Email:</label>
@@ -72,6 +84,7 @@
             inputmode="numeric"
             maxlength="6"
           />
+          <button class="vry">verify otp</button>
           <label for="mobile_no">Mobile No. :</label>
           <input
             type="tel"
@@ -80,6 +93,18 @@
             inputmode="numeric"
             maxlength="10"
           />
+
+          <label for="mobile_no"> Alternate Mobile No. :</label>
+          <input
+            type="tel"
+            placeholder="Enter Mobile Number"
+            inputmode="numeric"
+            maxlength="10"
+          />
+
+          <label for="a_number">Date of Birth:</label>
+          <input type="date" required />
+
           <label for="a_number">Aadhar Number:</label>
           <input
             type="tel"
@@ -88,6 +113,13 @@
             inputmode="numeric"
             maxlength="12"
           />
+
+          <label id="info">Vehical Deatails</label>
+
+          <label for="name">Vehical type:</label>
+          <!-- jk -->
+          <input type="text" placeholder="Vehicle type" required />
+
           <label for="VNP">Vehicle number:</label>
           <input
             type="text"
@@ -95,6 +127,27 @@
             required
             maxlength="8"
           />
+
+          <label for="VNP">Vehicle Registration number:</label>
+          <input
+            type="text"
+            placeholder="eg.MHXXXXXXXX"
+            required
+            maxlength="10"
+          />
+
+          <label for="a_number">Seating capacity:</label>
+          <input
+            type="tel"
+            placeholder="Enter Seating capacity"
+            required
+            inputmode="numeric"
+            maxlength="2"
+          />
+
+          <label for="a_number">model and year:</label>
+          <input type="text" placeholder="Enter Seating capacity" required />
+
           <label for="image">Vehicle image with number plate:</label>
           <input type="file" required />
           <label for="image"> vehicle owner image:</label>
