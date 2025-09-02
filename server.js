@@ -16,6 +16,22 @@ app.use(express.static("public"));
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 
+
+//img
+const storage = multer.memoryStorage();
+const upload = multer({
+    storage, 
+    limits: {fileSize: 2*1024*1024},//max 2mb
+    fileFilter : (req,file,cb) => {
+        const allowed=["image/jpeg","image/png"];
+        if(!allowed.includes(file.mimetype)){
+            cb(new Error("Only JPEG and PNG images are allowed!"));
+        } else {
+            cb(null,true);
+        }
+    }
+});
+
 //middleware
 
 app.use(
@@ -45,8 +61,7 @@ const userSchema = new mongoose.Schema({
     
     phone:{type:String, required: function(){return this.role !== "user" }},
     
-    imageid :{data:{type: Buffer, required: function() {return this.role !== "user"; }},
-    contentType: String, required: function() {return this.role !== "user"; }},
+    imageid :{data:{type: Buffer,contentType: String }, required: function() {return this.role !== "user"; }},
     
     otp:{type:String,required:true},
     
@@ -170,7 +185,7 @@ app.post("/register/send-otp", async (req,res) => {
 });
 
 //verify OTP
-app.post("/register/verify-otp", async(req,res) => {
+app.post("/register/verify-otp",upload.single("imageid"), async(req,res) => {
     const {email,otp} = req.body;
     const record = otpstore[email];
 
@@ -191,7 +206,7 @@ app.post("/register/verify-otp", async(req,res) => {
 
     };
 
-    if (record.data.role !== "user" && req.file) {
+    if (record.data.role !== "user" ) {
         if(!req.file) return res.status(400).send("Image is required!!");
 
         newUserdata.imageid = {
