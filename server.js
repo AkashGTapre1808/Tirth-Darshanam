@@ -36,12 +36,20 @@ mongoose.connect("mongodb://localhost:27017/tirthdarshanam")
 
 const userSchema = new mongoose.Schema({
     username:String,
+    
     email:{type:String, unique:true, required:true},
+    
     password:{type:String,required:true},
+    
     role:{type:String,required:true},
-    phone:{type:String,
-        required: function(){return this.role !== "user" }},
+    
+    phone:{type:String, required: function(){return this.role !== "user" }},
+    
+    imageid :{data:{type: Buffer, required: function() {return this.role !== "user"; }},
+    contentType: String, required: function() {return this.role !== "user"; }},
+    
     otp:{type:String,required:true},
+    
     otpExpires:Date,
 
 
@@ -142,7 +150,7 @@ app.post("/register/send-otp", async (req,res) => {
     otpstore[email]=
     {
         otp,
-        data:{ username,email,password,role,phone,  },
+        data:{ username,email,password,role,phone,      },
         otpExpires:Date.now() + 2*60*1000  //2min
     };
 
@@ -182,6 +190,19 @@ app.post("/register/verify-otp", async(req,res) => {
         phone : record.data.phone || null,
 
     };
+
+    if (record.data.role !== "user" && req.file) {
+        if(!req.file) return res.status(400).send("Image is required!!");
+
+        newUserdata.imageid = {
+            data: req.file.buffer,
+            contentType: req.file.mimetype,
+        };
+    }
+
+
+
+
 
     newUserdata = removeNull(newUserdata);
 
