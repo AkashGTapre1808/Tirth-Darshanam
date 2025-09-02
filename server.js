@@ -165,14 +165,18 @@ app.post("/register/verify-otp", async(req,res) => {
     }
     const hashedpassword = await bcrypt.hash(record.data.password,10);
 
-    const newUser = new User({
+    let newUserdata ={
         username : record.data.username,
         email : record.data.email,
         password : hashedpassword,
         role : record.data.role,
         phone : record.data.phone || null,
 
-    });
+    };
+
+    newUserdata = removeNull(newUserdata);
+
+    const newUser = new User (newUserdata);
 
     await newUser.save();
 
