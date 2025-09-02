@@ -207,12 +207,11 @@ app.post("/register/verify-otp",upload.single("imageid"), async(req,res) => {
     };
 
     if (record.data.role !== "user" ) {
-        if(!req.file) return res.status(400).send("Image is required!!");
-
-        newUserdata.imageid = {
+        if(req.file){
+            newUserdata.imageid = {
             data: req.file.buffer,
             contentType: req.file.mimetype,
-        };
+        };} else{return res.status(400).send("Image is required!!");}
     }
 
     newUserdata = removeNull(newUserdata);
