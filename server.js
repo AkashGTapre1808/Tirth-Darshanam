@@ -7,6 +7,7 @@ const path = require("path");
 const nodemailer = require("nodemailer");
 const { type } = require("os");
 const { send } = require("process");
+const multer = require("multer");
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
