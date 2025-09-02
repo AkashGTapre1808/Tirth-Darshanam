@@ -36,7 +36,7 @@ mongoose.connect("mongodb://localhost:27017/tirthdarshanam")
 const userSchema = new mongoose.Schema({
     username:String,
     email:{type:String, unique:true, required:true},
-    password:{type:String,unique:true,required:true},
+    password:{type:String,required:true},
     role:{type:String,required:true},
     phone:{type:String,
         required: function(){return this.role !== "user" }},
@@ -60,11 +60,17 @@ const mailer = nodemailer.createTransport({
 
 //middle check
 
-function isloggedin(req,res,nest){
+function isloggedin(req,res,next){
     if (!req.session.userId) return res.redirect("/home");
     next();
 }
 
+
+function removeNull(obj){
+    return Object.fromEntries(
+        Object.entries(obj).filter(([__,v]) => v != null)
+    );
+}
 //home
 app.get("/home",(req,res) => {
     res.sendFile(path.join(__dirname, 'public', 'home.html'));
@@ -73,7 +79,7 @@ app.get("/home",(req,res) => {
 //login form
 app.get("/login/:role" , (req,res) => {
     const role = req.params.role;
-    res.render('${role}login');
+    res.render(`${role}login`);
 });
 
 //logging in
@@ -95,7 +101,7 @@ app.post("/login/basic" , async (req,res) => {
 app.post("/login/advanced" , async (req,res) => {
     const {email,password,} = req.body;
     const user = await User.findOne({email});
-    if (!user) return res,send("User Not Found.");
+    if (!user) return res.send("User Not Found.");
 
     if (user.role !== "legal_officer" && user.role !== "gov_official")
         return res.send("Unauthorized login page!!");
@@ -111,8 +117,10 @@ app.post("/login/advanced" , async (req,res) => {
 //reistrating form
 app.get("/register/:role",(req,res)=>{
     const role = req.params.role;
-    res.render('${role}register');
+    res.render(`${role}register`);
 });
+
+let otpstore = {};
 
 
 ////otp send
@@ -128,7 +136,7 @@ app.post("/register/send-otp", async (req,res) => {
     const otp = Math.floor(100000 + Math.random()*900000).toString();
 
     //temp save
-    let otpstore = {};
+   
 
     otpstore[email]=
     {
@@ -145,7 +153,7 @@ app.post("/register/send-otp", async (req,res) => {
         from:"ourmail@gmail.com",
         to:email,
         subject: "Tirth-Darshanam OTP Verification Code",
-        text:'Hello ${username},\n\nYour OTP is:${otp}\nValid for 2 Minutes.',
+        text:`Hello ${username},\n\nYour OTP is:${otp}\nValid for 2 Minutes.`,
 
     });
 
@@ -188,13 +196,7 @@ app.post("/register/verify-otp", async(req,res) => {
 });
 
 app.get("/",isloggedin,async(req,res) =>{
-    
-    if(!req.session.userId){
-        return res.redirect("/home");
-    }
-    
-    
-    
+     
     const user = await User.findById(req.session.userId);
     
     if (!user){
