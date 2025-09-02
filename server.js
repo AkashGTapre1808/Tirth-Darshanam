@@ -200,10 +200,6 @@ app.post("/register/verify-otp", async(req,res) => {
         };
     }
 
-
-
-
-
     newUserdata = removeNull(newUserdata);
 
     const newUser = new User (newUserdata);
