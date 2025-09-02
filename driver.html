@@ -57,6 +57,18 @@
         font-size: 17px;
         font-weight: 700;
       }
+      #tag {
+        display: inline;
+      }
+
+      select {
+        height: 20px;
+        width: 80px;
+        border-radius: 5px;
+        margin: 2px 0px 0px 10px;
+        border: none;
+        color: indigo;
+      }
     </style>
   </head>
   <body>
@@ -105,6 +117,13 @@
           <label for="a_number">Date of Birth:</label>
           <input type="date" required />
 
+          <label id="tag">Sex:</label>
+          <select required>
+            <option value="male">MALE</option>
+            <option value="female">FEMALE</option>
+            <option value="other">OTHER</option>
+          </select>
+
           <label for="a_number">Aadhar Number:</label>
           <input
             type="tel"
@@ -114,11 +133,14 @@
             maxlength="12"
           />
 
-          <label id="info">Vehical Deatails</label>
+          <label id="info">Vehicle Deatails</label>
 
-          <label for="name">Vehical type:</label>
-          <!-- jk -->
-          <input type="text" placeholder="Vehicle type" required />
+          <label id="tag">Vehicle type:</label>
+          <select>
+            <option>option1</option>
+            <option>option2</option>
+            <option>option3</option>
+          </select>
 
           <label for="VNP">Vehicle number:</label>
           <input
