@@ -177,7 +177,7 @@ app.post("/login/advanced/verify-otp" , async (req,res) => {
     req.session.userId = user._id;
     delete otpstore[username];
 
-    res.send("Login successful!");
+    res.send("Login successful !");
     res.redirect("/");
 });
 

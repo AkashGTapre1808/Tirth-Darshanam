@@ -40,7 +40,7 @@ verifybtn.addEventListener("click", async() => {
     const msg = await res.text();
     alert(msg);
 
-    if(msg.includes("suuccesful")){
+    if(msg.includes("successful")){
         window.location.href = "/";
     }
 
