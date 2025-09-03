@@ -17,10 +17,10 @@ function getBotResponse(input) {
     return "Hello, How can I help you?";
   }
     elseif (input.includes("how are you")){
-      return "i'm doing great ,What about You?"
+      return "i'm doing great ,What about You?";
     }
     elseif (input.includes("bye"){
-      return "bye! Have a goog day"
+      return "bye! Have a goog day";
     }
     else{
       return "Sorry, I don't Understand That. you Can ask any other question"
