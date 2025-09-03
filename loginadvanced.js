@@ -6,7 +6,9 @@ const verifybtn = document.getElementById("verifyotp");
 
 let currentUsername = "";
 
-loginbtn.addEventListener("click", async() => {
+loginbtn.addEventListener("click", async(e) => {
+    e.preventDefault();
+    
     const formdata = new FormData(form);
     const body = Object.fromEntries(formdata);
 
@@ -27,7 +29,8 @@ loginbtn.addEventListener("click", async() => {
 
 
 
-verifybtn.addEventListener("click", async() => {
+verifybtn.addEventListener("click", async(e) => {
+    e.preventDefault();
 
     const otp = document.getElementById("otpinput").value;
 

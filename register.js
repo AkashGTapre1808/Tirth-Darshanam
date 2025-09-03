@@ -7,7 +7,8 @@ const verifybtn = document.getElementById("verifyotp");
 
 let currentrole = form.dataset.role;
 
-sendotpbtn.addEventListener("click", async () => {
+sendotpbtn.addEventListener("click", async (e) => {
+    e.preventDefault();
 
     const fkpass = form.fkpass.value;
     const password = form.password.value;
@@ -48,7 +49,8 @@ sendotpbtn.addEventListener("click", async () => {
 
 ///otp verify
 
-verifybtn.addEventListener("click", async () => {
+verifybtn.addEventListener("click", async (e) => {
+    e.preventDefault();
     const otp = document.getElementById("otpinput").value;
     const email = form.email.value;
     if(currentrole !== "user"){
