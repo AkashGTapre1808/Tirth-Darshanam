@@ -51,7 +51,7 @@ mongoose.connect("mongodb://localhost:27017/tirthdarshanam")
 //user schema
 
 const userSchema = new mongoose.Schema({
-    username:String,
+    username:{type:String},
     
     email:{type:String, unique:true, required:true},
     
@@ -126,7 +126,7 @@ app.post("/login/basic" , async (req,res) => {
 ////lohin advanced
 //login adv, send-otp
 app.post("/login/advanced" , async (req,res) => {
-    const {username,password,} = req.body;
+    const {username,password} = req.body;
     const user = await User.findOne({username});
     if (!user) return res.send("User Not Found.");
 
@@ -160,6 +160,8 @@ app.post("/login/advanced" , async (req,res) => {
 app.post("/login/advanced/verify-otp" , async (req,res) => {
     const {username,otp} = req.body;
 
+    const user = await User.findOne({ username });
+
     const record = otpstore[username];
     if(!record) return res.status(400).send("OTP expired, Try Again..");
 
@@ -169,8 +171,7 @@ app.post("/login/advanced/verify-otp" , async (req,res) => {
     }
 
     if(record.otp !== otp ) return res.status(400).send("Invalid OTP!");
-    
-    const user = await User.findOne({username});
+
     if(!user) return res.status(400).send("User Not Found!");
 
     req.session.userId = user._id;
@@ -195,7 +196,7 @@ let forgotpassStore = {};
 
 ////otp send
 app.post("/register/send-otp", async (req,res) => {
-    const {username,email,password,role,phone,  } = req.body;
+    const {username,email,password,role,phone,subRole,        } = req.body;
 
 
     //double registration prevention
@@ -211,7 +212,7 @@ app.post("/register/send-otp", async (req,res) => {
     otpstore[email]=
     {
         otp,
-        data:{ username,email,password,role,phone,      },
+        data:{ username,email,password,role,phone,subRole,           },
         otpExpires:Date.now() + 2*60*1000  //2min
     };
 
@@ -249,6 +250,11 @@ app.post("/register/verify-otp",upload.single("imageid"), async(req,res) => {
         password : hashedpassword,
         role : record.data.role,
         phone : record.data.phone || null,
+        subRole : record.data.subRole || null,
+
+
+
+
 
     };
 
