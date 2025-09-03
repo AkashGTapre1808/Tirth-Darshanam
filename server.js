@@ -49,6 +49,11 @@ mongoose.connect("mongodb://localhost:27017/tirthdarshanam")
 .catch((err) => console.error(err));
 
 //user schema
+const imageSchema = new mongoose.Schema({
+  data: { type: Buffer, required: true },
+  contentType: { type: String, required: true }
+});
+
 
 const userSchema = new mongoose.Schema({
     username:{type:String},
@@ -63,7 +68,7 @@ const userSchema = new mongoose.Schema({
     
     phone:{type:String, required: function(){return this.role !== "user" }},
     
-    imageid :{data:{type: Buffer,contentType: String }, required: function() {return this.role !== "user"; }},
+    imageid :{type:imageSchema, required: function() {return this.role !== "user"; }},
     
     otp:{type:String,required:true},
     
