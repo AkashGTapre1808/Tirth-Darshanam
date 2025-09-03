@@ -11,6 +11,26 @@ body {
   background: linear-gradient(to right, #dbcbe0, #a8c5e7);
 }
 
+#login-box{
+  width: 80%;
+  height: 20%;
+  margin: 15% 0px 0px 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:40px;
+}
+
+.box{
+  height: 80px;
+  width: 250px;
+  border: 2px solid rgb(8, 4, 247);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+
 a {
   text-decoration: none;
   color: aliceblue;
@@ -123,20 +143,12 @@ select option {
 
 .slider {
   display: flex;
-  transition: transform 0.5s ease-in-out;
 }
 
 .slide {
   min-width: 100%;
   height: 100vh;
   box-sizing: border-box;
-}
-
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 .nav {
@@ -157,12 +169,11 @@ select option {
 }
 
 .slide h1 {
-  margin-top: 300px;
-  margin-left: 50px;
+  margin: 50px 0px 0px 50px;
 }
 
 .slide p {
-  margin: 50px 120px 0 50px;
+  margin: 25px 120px 0 50px;
   font-weight: 400;
   font-family: "Times New Roman", Times, serif;
   font-size: large;
