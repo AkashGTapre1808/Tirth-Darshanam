@@ -58,6 +58,8 @@ const userSchema = new mongoose.Schema({
     password:{type:String,required:true},
     
     role:{type:String,required:true},
+
+    subRole:{type:String,required: function(){return this.role === "legal_officer";}},
     
     phone:{type:String, required: function(){return this.role !== "user" }},
     
@@ -121,10 +123,11 @@ app.post("/login/basic" , async (req,res) => {
     req.session.userId = user._id;
     res.redirect("/");
 });
-
+////lohin advanced
+//login adv, send-otp
 app.post("/login/advanced" , async (req,res) => {
-    const {email,password,} = req.body;
-    const user = await User.findOne({email});
+    const {username,password,} = req.body;
+    const user = await User.findOne({username});
     if (!user) return res.send("User Not Found.");
 
     if (user.role !== "legal_officer" && user.role !== "gov_official")
@@ -133,9 +136,51 @@ app.post("/login/advanced" , async (req,res) => {
     if (!(await bcrypt.compare(password,user.password)))
         return res.send("Invalid Password!");
 
+    const otp = Math.floor(100000 + Math.random()*900000).toString();
+
+    otpstore[username] = {
+        otp,
+        otpExpires: Date.now() + 2 *60 *1000 //2min
+        };
+
+    await mailer.sendMail({
+        from:"ourmail@gmail.com",
+        to:user.email,
+        subject: "Tirth-Darshanam Login OTP Code",
+        text:`Hello ${username},\n\nYour Login OTP is:${otp}\nValid for 2 Minutes.`,
+
+    });
+
+    res.send("OTP has been sent to  your email!");
+    
+});
+
+/////login advanced verify otp
+
+app.post("/login/advanced/verify-otp" , async (req,res) => {
+    const {username,otp} = req.body;
+
+    const record = otpstore[username];
+    if(!record) return res.status(400).send("OTP expired, Try Again..");
+
+    if(Date.now() > record.otpExpires){
+        delete otpstore[username];
+        return res.status(400).send("OTP expired, Try Again..");
+    }
+
+    if(record.otp !== otp ) return res.status(400).send("Invalid OTP!");
+    
+    const user = await User.findOne({username});
+    if(!user) return res.status(400).send("User Not Found!");
+
     req.session.userId = user._id;
+    delete otpstore[username];
+
+    res.send("Login successful!");
     res.redirect("/");
 });
+
+
 
 
 //reistrating form
@@ -145,6 +190,7 @@ app.get("/register/:role",(req,res)=>{
 });
 
 let otpstore = {};
+let forgotpassStore = {};
 
 
 ////otp send
@@ -249,6 +295,52 @@ app.get("/",isloggedin,async(req,res) =>{
         default:
             return res.redirect("/home");
     }
+});
+
+
+///forgot pass 
+app.get("/forgotpass", (req,res) => {
+    res.render("forgotpassword");
+});
+
+app.post("/forgotpass/send-otp", async (req,res) => {
+    const {username} = req.body;
+    const user = await User.findOne({username});
+    if(!user) return res.status(400).send("Username not found!");
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    forgotpassStore[username] = {
+        otp,
+        otpExpires: Date.now() + 2 * 60 *1000,  //2min
+        email:user.email
+    };
+
+    await mailer.sendMail({
+        from:"our@gmai.com",
+        to:user.email,
+        subject: "Password Reset OTP",
+        text: `Hello ${username},\n\nYour OTP is:${otp}\nValid for 2 minutes.`
+    });
+    res.send("OTP Sent to your registered email!");
+});
+
+app.post("/forgotpass/verify-otp", async (req,res) => {
+    const {username,otp,password} = req.body;
+    const record = forgotpassStore[username];
+
+    if(!record) return res.status(400).send("OTP expired, Try Again.");
+    if(record.otp !== otp) return res.status(400).send("Invalid OTP");
+    if(Date.now() > record.otpExpires){
+        delete forgotpassStore[username];
+        return res.status(400).send("OTP Expired, Try Again.");
+    }
+
+    const hashedpassword = await bcrypt.hash(password,10);
+    await User.findOneAndUpdate({username},{password : hashedpassword});
+    delete forgotpassStore[username];
+
+    res.send("Password reset successfully!");
+
 });
 
 app.get("/logout" , (req,res) => {

@@ -16,13 +16,20 @@ sendotpbtn.addEventListener("click", async () => {
         return;
     }
 
+    let body,options;
+
     if (currentrole !== "user"){
         body = new FormData(form);
         body.append("role",currentrole);
-        Options = {method: "POST", body};
+        if (currentrole === "legal_officer") {
+            const subrole = form.subrole.value;
+            body.append("subRole",subrole);
+        
+        }
+        options = {method: "POST", body};
     } else {
         const formdata = new FormData(form);
-        bosy = Object.fromEntries(formdata);
+        body = Object.fromEntries(formdata);
         body.role = currentrole;
         options = {
             method: "POST",
@@ -42,7 +49,7 @@ sendotpbtn.addEventListener("click", async () => {
 ///otp verify
 
 verifybtn.addEventListener("click", async () => {
-    const otp = document.getElementById("otpinput");
+    const otp = document.getElementById("otpinput").value;
     const email = form.email.value;
     if(currentrole !== "user"){
         body = new FormData(form);
@@ -57,7 +64,7 @@ verifybtn.addEventListener("click", async () => {
         };
     }
 
-    const res = await fetch("/register/verify-otp");
+    const res = await fetch("/register/verify-otp", options);
     const msg = await res.text();
     alert(msg);
 
@@ -74,7 +81,7 @@ verifybtn.addEventListener("click", async () => {
 
 const image = document.getElementById("imageid");
 image.addEventListener("change", () => {
-    const file = image.isDefaultNamespace[0];
+    const file = image.files[0];
     if(file && file.size > 2 * 1024 * 1024){
         alert("File is too large! Maximum 2MB is allowed.");
         image.value = ""; ///destroy file
