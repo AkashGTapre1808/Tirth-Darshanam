@@ -1,0 +1,83 @@
+const bodyParser = require("body-parser");
+
+const form = document.getElementById("registerform");
+const sendotpbtn = document.getElementById("sendotp");
+const otpsection = document.getElementById("otpsection");
+const verifybtn = document.getElementById("verifyotp");
+
+let currentrole = form.dataset.role;
+
+sendotpbtn.addEventListener("click", async () => {
+
+    const fkpass = form.fkpass.value;
+    const password = form.password.value;
+    if(fkpass !== password ){
+        alert("Password do not match!");
+        return;
+    }
+
+    if (currentrole !== "user"){
+        body = new FormData(form);
+        body.append("role",currentrole);
+        Options = {method: "POST", body};
+    } else {
+        const formdata = new FormData(form);
+        bosy = Object.fromEntries(formdata);
+        body.role = currentrole;
+        options = {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(body)
+        };
+    }
+    const res = await fetch("/register/send-otp",options);
+    const msg = await res.text();
+    alert(msg);
+    if (res.ok) otpsection.style.display = "block";
+
+});
+
+
+
+///otp verify
+
+verifybtn.addEventListener("click", async () => {
+    const otp = document.getElementById("otpinput");
+    const email = form.email.value;
+    if(currentrole !== "user"){
+        body = new FormData(form);
+        body.append("otp",otp);
+        options = {method: "POST" , body};
+    }else{
+        body = {email,otp};
+        options = {
+            method: "POST",
+            headers:{"Content-Type": "application/json"},
+            body: JSON.stringify(body)
+        };
+    }
+
+    const res = await fetch("/register/verify-otp");
+    const msg = await res.text();
+    alert(msg);
+
+    if(msg.includes("Registered")) {
+        if(currentrole === "user"){window.location.href = "/login/user";}
+        if(currentrole === "serviceprovider"){window.location.href="/login/serviceprovider";}
+        if(currentrole === "legal_officer"){window.location.href= "/login/legal_officer";}
+        if(currentrole === "gov_official"){window.location.href="/login/gov_official";}
+    }
+
+});
+
+
+
+const image = document.getElementById("imageid");
+image.addEventListener("change", () => {
+    const file = image.isDefaultNamespace[0];
+    if(file && file.size > 2 * 1024 * 1024){
+        alert("File is too large! Maximum 2MB is allowed.");
+        image.value = ""; ///destroy file
+
+    }
+});
