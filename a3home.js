@@ -1,15 +1,7 @@
-let currentIndex = 0;
+const chatbot_btn = document.getElementById("chatbot-btn");
+const message = document.getElementById("message");
 
-function moveSlide(direction) {
-  const slider = document.getElementById("slider");
-  const slides = document.querySelectorAll(".slide");
-  const totalSlides = slides.length;
-
-  currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-  slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-}
-
-// Auto slide every 5 seconds
-setInterval(() => {
-  moveSlide(1);
-}, 5000);
+chatbot_btn.addEventListener("click", () => {
+  chatbot_btn.classList.toggle("sld");
+  message.classList.toggle("show");
+});

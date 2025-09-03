@@ -110,7 +110,7 @@ select option {
 }
 
 .slider-container {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   max-width: 500vh;
@@ -150,16 +150,6 @@ select option {
   padding: 0 15px;
   cursor: pointer;
   z-index: 999;
-}
-
-.prev {
-  left: 3px;
-  background-color: transparent;
-}
-
-.next {
-  right: 3px;
-  background-color: transparent;
 }
 
 .nav:hover {
@@ -203,79 +193,93 @@ select option {
   border: solid 2px white;
 }
 
-#chatbot {
+#chatbot-btn {
   height: 50px;
   width: 50px;
   font-size: 40px;
-  /* border: 2px solid rgb(6, 237, 245); */
   border-radius: 50%;
   z-index: 999;
-  position:absolute;
+  position:fixed;
   margin: 90vh 0 0 95%;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: transform 1s ease;
 }
 
-#chatbot i {
+#chatbot-btn i {
   color: #100f0f;
 }
 
-#chatbot:active {
+#chatbot-btn:active {
   opacity: 60%;
 }
 
-.message{
+.sld {
+  transform: translateX(-480px);
+}
+
+.message {
+  bottom:-600px; /* start hidden below */
   position:fixed;
   background-color: #f3f0f0;
   height: 550px;
   width: 450px;
-display: inline;
-margin:80vh 0px 0px 140vh;
-bottom: 1.5vh;
-border-radius: 20px;
-box-shadow: 5px 4px 3px rgb(96, 94, 94);
+  margin: 80vh 0px 0px 140vh;
+  border-radius: 20px;
+  box-shadow: 5px 4px 3px rgb(96, 94, 94);
+  opacity: 0;
+  transition: all 1s ease;
 }
 
-.chatbot{
+.show {
+  bottom: 20px; /* moves upward */
+  opacity: 1;
+}
+
+.chatbot {
   background-color: #333;
   width: 300px;
   height: 50px;
   border-radius: 40px;
   border-top-left-radius: 0px;
   margin: 20px 0px 0px 20px;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 5px 4px 3px rgb(96, 94, 94);
 }
 
-.user-chat{
+.user-chat {
   background-color: #868585;
   width: 300px;
   height: 50px;
   border-radius: 40px;
   border-top-right-radius: 0px;
   margin: 20px 0px 0px 130px;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 5px 4px 3px rgb(96, 94, 94);
 }
 
-#search{
+#search {
   width: 300px;
   height: 40px;
-  border-radius:50px;
+  border-radius: 50px;
   padding: 10px;
   margin: 360px 0px 0px 20px;
-  border:none;
+  outline: none;
+  border: none;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 550;
   box-shadow: 1px 1px 2px 3px rgb(180, 178, 178);
   color: #101010;
 }
 
-#enter{
-  height:40px;
+#enter {
+  height: 40px;
   width: 40px;
   border-radius: 50%;
   background-color: #333;
@@ -284,4 +288,3 @@ box-shadow: 5px 4px 3px rgb(96, 94, 94);
   padding: 2px;
   box-shadow: 1px 1px 2px 3px rgb(180, 178, 178);
 }
-
