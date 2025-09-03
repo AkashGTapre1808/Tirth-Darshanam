@@ -210,7 +210,7 @@ select option {
   /* border: 2px solid rgb(6, 237, 245); */
   border-radius: 50%;
   z-index: 999;
-  position: absolute;
+  position:absolute;
   margin: 90vh 0 0 95%;
   display: flex;
   align-items: center;
@@ -223,4 +223,13 @@ select option {
 
 #chatbot:active {
   opacity: 60%;
+}
+
+.message{
+  position:fixed;
+  background-color: #100f0f;
+  height: 500px;
+  width: 450px;
+display: inline;
+margin:80vh 0px 500vh 140vh;
 }
