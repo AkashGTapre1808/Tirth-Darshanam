@@ -211,7 +211,7 @@ let forgotpassStore = {};
 
 ////otp send
 app.post("/register/send-otp", async (req,res) => {
-    const {username,email,password,role,phone,subRole,manrole,aadhar,          } = req.body;
+    const {username,email,password,role,phone,subRole,manrole,aadhar,dob,gender,address,          } = req.body;
 
 
     //double registration prevention
@@ -227,7 +227,7 @@ app.post("/register/send-otp", async (req,res) => {
     otpstore[email]=
     {
         otp,
-        data:{ username,email,password,role,phone,subRole,manrole,aadhar,            },
+        data:{ username,email,password,role,phone,subRole,manrole,aadhar,dob,gender,address,            },
         otpExpires:Date.now() + 2*60*1000  //2min
     };
 
@@ -275,8 +275,11 @@ app.post("/register/complete", upload.single("imageid"), async(req,res) => {
         email : record.data.email,
         password : hashedpassword,
         role : record.data.role,
+        dob : record.data.dob,
+        gender : record.data.gender,
         phone : record.data.phone,
         aadhar : record.data.aadhar || null,
+        address : record.data.address || null,
         subRole : record.data.subRole || null,
         manrole : record.data.manrole || null,
 

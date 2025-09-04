@@ -1,5 +1,3 @@
-const bodyParser = require("body-parser");
-
 const form = document.getElementById("registerform");
 const sendotpbtn = document.getElementById("sendotp");
 const otpsection = document.getElementById("otpsection");
