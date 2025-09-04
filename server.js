@@ -59,6 +59,14 @@ const userSchema = new mongoose.Schema({
     username:{type:String},
     
     email:{type:String, unique:true, required:true},
+
+    dob : {type:String},
+
+    gender : {type:String},
+
+    address : {type:String},
+
+
     
     password:{type:String,required:true},
     
@@ -237,7 +245,7 @@ app.post("/register/send-otp", async (req,res) => {
 });
 
 //verify OTP
-app.post("/register/verify-otp",upload.single("imageid"), async(req,res) => {
+app.post("/register/verify-otp", async(req,res) => {
     const {email,otp} = req.body;
     const record = otpstore[email];
 
@@ -247,6 +255,17 @@ app.post("/register/verify-otp",upload.single("imageid"), async(req,res) => {
         delete otpstore[email];
         return res.status(400).send("OTP expired, Try again.");
     }
+
+    res.send("OTP Verified! Fill the required fields and press sign-up!");
+});
+
+app.post("/register/complete", upload.single("imageid"), async(req,res) => {
+    
+    const {email} = req.body;
+    const record = otpstore[email];
+    
+    
+    
     const hashedpassword = await bcrypt.hash(record.data.password,10);
 
     let newUserdata ={
