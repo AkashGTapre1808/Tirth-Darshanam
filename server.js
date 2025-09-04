@@ -334,7 +334,7 @@ app.get("/",isloggedin,async(req,res) =>{
 
 ///forgot pass 
 app.get("/forgotpass", (req,res) => {
-    res.render("forgotpassword");
+    res.render("forgotpass");
 });
 
 app.post("/forgotpass/send-otp", async (req,res) => {
