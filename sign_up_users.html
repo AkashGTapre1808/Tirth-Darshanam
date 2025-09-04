@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>user log in page</title>
+    <style>
+    *{
+
+      font-family: 'Times New Roman', Times, serif;
+    }
+      body {
+        display: flex;
+        justify-content: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-size:16px;
+        font-weight: 600;
+      }
+      .container {
+        margin: 200px 0px 0px 0px;
+        height: 500px;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      button {
+        margin: 11px 0px 0px 0px;
+        height: 30px;
+        width: 70px;
+        border-radius: 10px;
+        font-family: "Times New Roman", Times, serif;
+        font-weight: 600;
+        border: 2px solid rgb(144, 144, 5);
+        background-color: rgb(238, 253, 224);
+        cursor: pointer;
+      }
+
+      .user {
+        margin: 0px 0px 0px 15px;
+      }
+
+      .otp_v {
+        display: block;
+        margin: 5px 0px 5px 0px;
+        height: 25px;
+        width: 75px;
+        font-size: 13px;
+      }
+
+      input {
+        display: block;
+        height: 30px;
+        width: 300px;
+        margin: 10px 0px 5px 0px;
+        border-radius: 10px;
+        padding: 5px;
+        font-family: "Times New Roman", Times, serif;
+        font-size: medium;
+        border: 2px solid transparent;
+        background-color:rgb(232, 189, 147);
+        cursor: pointer;
+      }
+
+      .sign-box{
+        height: 700px;
+        width: 500px;
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+        border-radius: 50px;
+      }
+      .sign-up{
+        margin: 10px 0px 0px 110px;
+        height: 40px;
+        width: 100px;
+        font-size: 17px;
+      }
+      #AGD{
+        display: inline-block;
+        margin: 5px 0px 10px 0px;
+        height: 25px;
+        width: 75px;
+        font-size: 13px;
+        border: 2px solid rgb(144, 144, 5);
+        background-color: rgb(238, 253, 224);
+        cursor: pointer;
+        outline: none;
+        font-weight:550;
+        border-radius:7px ;
+      }
+      #AS{
+        display: inline;
+      }
+
+      label{
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- only for user/Pilgrims sign up page  -->
+    <div class="sign-box">
+      <div class="container">
+        <form action="action.php" class="user">
+          <label>Name:</label>
+          <input type="text" placeholder="User name" required />
+
+          <label>Date of Birth:</label>
+          <input type="date" required>
+
+          <label id="AS">Age:</label>
+          <select id="AGD"></select required>
+
+          <label id="AS">Sex:</label>
+          <select name="sex" id="AGD" required>
+            <option value="male">MALE</option>
+            <option value="female">FEMALE</option>
+            <option value="other">OTHER</option>
+          </select>
+          
+          <label>Mobile No.:</label>
+          <input
+            type="numerical"
+            placeholder="mobile no."
+            required
+            maxlength="10"
+          />
+
+          <label>Email:</label>
+          <input type="email" placeholder="Enter Email" required />
+          <button class="otp_v">Send otp</button>
+          OTP:<input
+            type="numerical"
+            placeholder="Enter OTP"
+            required
+            maxlength="6"
+          />
+          <button class="otp_v">Verify otp</button>
+
+          <label>Alternate Mobile No.:</label>
+          <input
+            type="numerical"
+            placeholder="mobile no."
+            required
+            maxlength="10"
+          />
+
+          <label>Address:</label>
+          <input type="text" required placeholder="address">
+
+          <label for="password">Create Password:</label>
+          <input
+            type="password"
+            inputmode="verbatim"
+            placeholder="Enter password"
+            required
+          />
+          <label for="password">Confirm Password:</label>
+          <input
+            type="password"
+            inputmode="verbatim"
+            placeholder="Enter password"
+            required
+          />
+          
+          <button class="sign-up">sign up</button>
+        </form>
+      </div>
+    </div>
+
+<script>
+  
+  // these is part of code for age in form A= age ,G=gender,and D=display
+
+  const dropdown = document.getElementById("AGD");
+  for (let i = 1; i <= 100; i++) {
+    const option = document.createElement("option");
+    option.value = i;
+    option.text = i;
+    dropdown.appendChild(option);
+  }
+</script>
+  </body>
+</html>
