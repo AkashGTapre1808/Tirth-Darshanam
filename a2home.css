@@ -8,7 +8,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #dbcbe0, #a8c5e7);
+  background-color:aquamarine;
 }
 
 #login-box{
@@ -37,8 +37,9 @@ a {
 }
 
 .navbar {
-  background: transparent; /*linear-gradient(to right, #5c6bc0, #512da8)*/
+  background:aquamarine; /*linear-gradient(to right, #5c6bc0, #512da8)*/
   height: 80px;
+  width: 1530px;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transport & Slider</title>
+    <link rel="stylesheet" href="a2home.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <style>
+
+.val{
+  font-weight: 800;
+  font-size: larger;
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.map-container{
+  border: 2px solid black;
+        position:absolute;
+        height: 500px;
+        width: 800px;
+        border-radius: 50px;
+        top: 20%;
+        right:5%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+}
+
+.data{
+        border: 2px solid black;
+        position:absolute;
+        height: 500px;
+        width: 500px;
+        border-radius: 50px;
+        top: 20%;
+        left:5%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .graph{
+        position:relative;
+        width: 400px;
+        height: 35px;
+        border: 2px solid black;
+        margin: 25px;
+        border-radius: 5px;
+      }
+
+
+      #wid{
+        background-color: blue;
+        height: 31.8px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .bk-color-1{
+
+        width: 330px;
+      }
+
+      .bk-color-2{
+        width: 150px;
+      }
+
+      .bk-color-3{
+        width: 100px;
+      }
+
+      .bk-color-4{
+        width: 250px;
+      }
+
+      .bk-color-5{
+        width: 300px;
+      }
+
+      .crowd{
+        border: 2px solid black;
+        position:absolute;
+        height: 600px;
+        width: 500px;
+        border-radius: 50px;
+        top:100%;
+        left:5%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+
+  </style>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+      <div id="logo">
+        <p>logo</p>
+        <img src="" alt="" />
+      </div>
+      <div id="section">
+        <ul>
+          <li>
+            <div>
+              Home
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Announcements
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Service
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              About
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Contact
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Help
+              <div class="bar"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <select name="lang" id="mul_lang">
+        <option selected="eng">ENGLISH</option>
+        <option value="hin">HINDI</option>
+        <option value="mar">MARATHI</option>
+        <option value="guj">GUJATI</option>
+        <option value="sans">SANSKRIT</option>
+      </select>
+
+      <a class="account" href="#">
+        <i class="fa-solid fa-circle-user"></i>
+        <p>log in</p>
+        
+      </a>
+    </div>
+     
+    <div class="data">
+            <label class="val">Region Wise Crowd Density</label>
+            
+            <div class="graph">
+              <div id="wid" class="bk-color-1" ><span>Ghat No.1</span></div>
+            </div>
+
+            <div class="graph">
+              <div id="wid"  class="bk-color-2" ><span>Ghat No.2</span></div>
+            </div>
+
+            <div class="graph">
+              <div id="wid"  class="bk-color-3" ><span>Ghat No.3</span></div>
+            </div>
+
+            <div class="graph">
+              <div id="wid" class="bk-color-4" ><span>Ghat No.4</span></div>
+            </div>
+
+            <div class="graph">
+              <div id="wid"  class="bk-color-5" ><span>Ghat No.5</span></div>
+            </div>
+
+          </div>
+
+          <div class="map-container">Density Map</div>
+
+          <div class="crowd"></div>
+          
+        
+
+    <div id="chatbot-btn" class="chatbot-btn">
+      <i class="fas fa-robot"></i>
+    </div>
+
+    
+    <div class="message" id="message">
+      <div class="chatbot"><p>Lorem ipsum dolor sit amet.</p></div>
+      <div class="user-chat"><p>Lorem ipsum dolor sit amet.</p></div>
+      <div class="input"></div>
+      <input type="text" id="search" placeholder="Ask freely, I am with you on this journey...">
+      <button id="enter">^</button>
+      <button id="enter">+</button>
+    </div>
+
+    <!-- javascipt program -->
+      
+    <script src="a3home.js"></script>
+ 
+  </body>
+</html>

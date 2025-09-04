@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Service Provider Interface</title>
   </head>
+  <link rel="stylesheet" href="a2home.css">
   <style>
     * {
       margin: 0px;
@@ -13,66 +14,8 @@
       font-weight: 800;
     }
 
-    .logo {
-      margin: 0px 80px 0px 30px;
-      background-color: aqua;
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .navbar {
-      background-color: yellow;
-      height: 60px;
-      width: 500vh;
-      display: flex;
-      align-items: center;
-      margin: 0px 0px 0px 0px;
-      position: fixed;
-    }
-
-    ul {
-      list-style: none;
-      display: flex;
-      gap: 40px;
-      margin: 0px 0px 0px 700px;
-    }
-
-    a {
-      text-decoration: none;
-      color: indigo;
-      /* font-weight: 800; */
-      /* font-family: 'Times New Roman', Times, serif; */
-    }
-
-    #log {
-      margin: 0px 0px 0px 70px;
-      background-color: aqua;
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #mul_lang {
-      color: #100f0f;
-      height: 25px;
-      border-radius: 5px;
-      background-color: transparent;
-      border: 2px solid transparent;
-      outline: none;
-      font-size: medium;
-      font-weight: 700;
-      margin: 3px 0 0 28px;
-      cursor: pointer;
-    }
-
     .main {
-      background-color: red;
+      background-color:aquamarine;
       height: 100vh;
       display: flex;
       justify-content: center;
@@ -89,13 +32,13 @@
       justify-content: center;
       align-items: center;
       margin: 50px 0px 0px 0px;
-      /* padding: 20px; */
+      background-color: beige;
     }
 
     input {
-      background-color: antiquewhite;
+      background-color: rgb(250, 238, 108);
       color: indigo;
-      height: 20px;
+      height:40px;
       width: 300px;
       border: 2px solid transparent;
       border-radius: 10px;
@@ -108,6 +51,7 @@
     }
 
     #submit {
+      color: black;
       display: block;
       height: 40px;
       width: 100px;
@@ -119,33 +63,74 @@
     .notlogin {
       display: inline;
       margin: 40px 30px 0px 5px;
+      color: blue;
+    }
+
+    label{
+      color: black;
     }
   </style>
   <body>
+     <!-- Navbar -->
     <div class="navbar">
-      <div class="logo"><a href="#">logo</a><img src="" alt="" /></div>
-      <div class="attri">
+      <div id="logo">
+        <p>logo</p>
+        <img src="" alt="" />
+      </div>
+      <div id="section">
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Service</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Help</a></li>
-          <li><a href="#">Contact</a></li>
-          <!-- <li><a href="#"></a></li> -->
+          <li>
+            <div>
+              Home
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Announcements
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Service
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              About
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Contact
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Help
+              <div class="bar"></div>
+            </div>
+          </li>
         </ul>
       </div>
-      <div class="lang">
-        <select name="lang" id="mul_lang">
-          <option selected="eng">ENGLISH</option>
-          <option value="hin">HINDI</option>
-          <option value="mar">MARATHI</option>
-          <option value="guj">GUJRATI</option>
-          <option value="sans">SANSKRIT</option>
-        </select>
-      </div>
-      <div id="log">
-        <a href="#"><p>log in</p></a>
-      </div>
+
+      <select name="lang" id="mul_lang">
+        <option selected="eng">ENGLISH</option>
+        <option value="hin">HINDI</option>
+        <option value="mar">MARATHI</option>
+        <option value="guj">GUJATI</option>
+        <option value="sans">SANSKRIT</option>
+      </select>
+
+      <a class="account" href="#">
+        <i class="fa-solid fa-circle-user"></i>
+        <p>log in</p>
+        
+      </a>
     </div>
 
     <!--action to send it to admin to be added later-->
