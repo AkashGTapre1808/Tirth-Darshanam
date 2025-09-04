@@ -5,9 +5,11 @@ const verifybtn = document.getElementById("otp_v");
 const signupbtn = document.getElementById("signup");
 
 let currentrole = form.dataset.role;
+console.log("register.js loaded"); // checks if the JS file is being loaded
 
 sendotpbtn.addEventListener("click", async (e) => {
     e.preventDefault();
+     document.getElementById("otpinput");
 
     const fkpass = form.fkpass.value;
     const password = form.password.value;
@@ -83,6 +85,8 @@ verifybtn.addEventListener("click", async (e) => {
 
 signupbtn.addEventListener("click", async (e) =>{
     e.preventDefault();
+    const email = form.email.value;
+    const otp = document.getElementById("otpinput").value;
 
     let body,options;
 
@@ -108,7 +112,7 @@ signupbtn.addEventListener("click", async (e) =>{
         if (currentrole === "management"){window.location.href = "/login/management";}
      }
 });
-
+if(currentrole !== "user"){
 const image = document.getElementById("imageid");
 image.addEventListener("change", () => {
     const file = image.files[0];
@@ -118,3 +122,4 @@ image.addEventListener("change", () => {
 
     }
 });
+}

@@ -79,31 +79,35 @@
       <div class="form">
         <form id="registerform" data-role="serviceprovider">
           <label id="info">Personal Deatails</label>
-          <label for="name">Owner name:</label>
-          <input type="text" placeholder="User name" required />
+          <label for="name" >Owner name:</label>
+          <input type="text" name="username" placeholder="User name" required />
           <label for="email">Email:</label>
           <input
             type="email"
+            name="email"
             inputmode="email"
             placeholder="Enter your email"
             required
           />
 
-          <button class="vry" id="sendotp">send otp</button>
+          <button class="vry" id="sendotp" type="button">send otp</button>
           <div id="otpsection">
-          <label for="otp">OTP:</label>
+          <label for="otp" >OTP:</label>
           <input
             type="tel"
             placeholder="Enter OTP"
+            name="otp" 
+            id="otpinput"
             required
             inputmode="numeric"
             maxlength="6"
           />
-          <button class="vry" id="otp_v">verify otp</button>
+          <button type="button" class="vry" id="otp_v">verify otp</button>
           </div>
-          <label for="mobile_no">Mobile No. :</label>
+          <label for="mobile_no" >Mobile No. :</label>
           <input
             type="tel"
+            name="phone"
             placeholder="Enter Mobile Number"
             required
             inputmode="numeric"
@@ -118,19 +122,20 @@
             maxlength="10"
           />
 
-          <label for="a_number">Date of Birth:</label>
-          <input type="date" required />
+          <label for="a_number" >Date of Birth:</label>
+          <input type="date" name="dob" required />
 
-          <label id="tag">Sex:</label>
-          <select required>
+          <label id="tag" >Sex:</label>
+          <select required name="gender">
             <option value="male">MALE</option>
             <option value="female">FEMALE</option>
             <option value="other">OTHER</option>
           </select>
 
-          <label for="a_number">Aadhar Number:</label>
+          <label for="a_number" >Aadhar Number:</label>
           <input
             type="tel"
+            name="aadhar"
             placeholder="Enter Aadhar Number"
             required
             inputmode="numeric"
@@ -146,18 +151,20 @@
             <option>option3</option>
           </select>
 
-          <label for="VNP">Vehicle number:</label>
+          <label for="VNP" >Vehicle number:</label>
           <input
             type="text"
             placeholder="eg.MH19 XXXX"
+            name="vehnum" 
             required
             maxlength="8"
           />
 
-          <label for="VNP">Vehicle Registration number:</label>
+          <label for="VNP" >Vehicle Registration number:</label>
           <input
             type="text"
             placeholder="eg.MHXXXXXXXX"
+            name="vehregnum"
             required
             maxlength="10"
           />
@@ -178,19 +185,21 @@
           <input type="file" required />
           <label for="image"> vehicle owner image:</label>
           <input type="file" required />
-          <label for="image">Driving licence image:</label>
-          <input type="file" required />
-          <label for="password">Create Password:</label>
+          <label for="image" >Driving licence image:</label>
+          <input type="file" name="imageid"  required />
+          <label for="password" >Create Password:</label>
           <input
             type="password"
+            name="fkpass"
             inputmode="verbatim"
             placeholder="Enter password"
             required
           />
-          <label for="password">Confirm Password:</label>
+          <label for="password" >Confirm Password:</label>
           <input
             type="password"
             inputmode="verbatim"
+            name="password"
             placeholder="Enter password"
             required
           />
@@ -198,6 +207,6 @@
         </form>
       </div>
     </div>
-    <script src="register.js"></script>
+    <script src="/js/register.js"></script>
   </body>
 </html>

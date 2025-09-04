@@ -8,6 +8,7 @@ const nodemailer = require("nodemailer");
 const { type } = require("os");
 const { send } = require("process");
 const multer = require("multer");
+const fs = require("fs");
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
@@ -79,6 +80,12 @@ const userSchema = new mongoose.Schema({
     phone:{type:String, required: true},
     
     imageid :{type:imageSchema, required: function() {return this.role !== "user"; }},
+
+    vehnum : {type:String,required:function(){return this.role === "serviceprovider"}},
+
+    vehregnum : {type:String,required:function(){return this.role === "serviceprovider"}},
+
+    age: {type:String},
     
     otp:{type:String,required:true},
     
@@ -94,9 +101,10 @@ const User = mongoose.model("User",userSchema);
 const mailer = nodemailer.createTransport({
     service:"gmail",
     auth: {
-        user:"ouremail@gmail.com", //ourgmail
-        pass:"app password",  //ourgmailpassword
-    },
+        user:"yogeshsuryagm@gmail.com", //ourgmail
+        pass:"kbhw artx aqea hxaq",  //ourgmailpassword
+    }
+    
 });
 
 //middle check
@@ -159,7 +167,7 @@ app.post("/login/advanced" , async (req,res) => {
         };
 
     await mailer.sendMail({
-        from:"ourmail@gmail.com",
+        from:"yogeshsuryagm@gmail.com",
         to:user.email,
         subject: "Tirth-Darshanam Login OTP Code",
         text:`Hello ${username},\n\nYour Login OTP is:${otp}\nValid for 2 Minutes.`,
@@ -200,10 +208,21 @@ app.post("/login/advanced/verify-otp" , async (req,res) => {
 
 
 //reistrating form
-app.get("/register/:role",(req,res)=>{
-    const role = req.params.role;
-    res.render(`${role}register`);
+//app.get("/register/:role", (req,res)=>{
+    //const role = req.params.role;
+  // res.render(`${role}register`);
+//});
+
+
+app.get("/register/user", (req, res) => {
+    res.render(`userregister`);
 });
+
+app.get("/register/serviceprovider", (req, res) => {
+    res.render(`serviceproviderregister`);
+});
+
+
 
 let otpstore = {};
 let forgotpassStore = {};
@@ -211,7 +230,7 @@ let forgotpassStore = {};
 
 ////otp send
 app.post("/register/send-otp", async (req,res) => {
-    const {username,email,password,role,phone,subRole,manrole,aadhar,dob,gender,address,          } = req.body;
+    const {username,email,password,role,phone,subRole,manrole,aadhar,dob,gender,address,vehnum,vehregnum,age          } = req.body;
 
 
     //double registration prevention
@@ -227,7 +246,7 @@ app.post("/register/send-otp", async (req,res) => {
     otpstore[email]=
     {
         otp,
-        data:{ username,email,password,role,phone,subRole,manrole,aadhar,dob,gender,address,            },
+        data:{ username,email,password,role,phone,subRole,manrole,aadhar,dob,gender,address,vehnum,vehregnum,age          },
         otpExpires:Date.now() + 2*60*1000  //2min
     };
 
@@ -235,16 +254,23 @@ app.post("/register/send-otp", async (req,res) => {
     
     
     //now send otp
-    await mailer.sendMail({
-        from:"ourmail@gmail.com",
-        to:email,
-        subject: "Tirth-Darshanam OTP Verification Code",
-        text:`Hello ${username},\n\nYour OTP is:${otp}\nValid for 2 Minutes.`,
+    try{
+        await mailer.sendMail({
+            from:"yogeshsuryagm@gmail.com",
+            to:email,
+            subject: "Tirth-Darshanam OTP Verification Code",
+            text:`Hello ${username},\n\nYour OTP is:${otp}\nValid for 2 Minutes.`,
 
-    });
+        });
+        console.log("otp sent");
+    }catch(err){
+        console.error("error is",err);
+        return res.status(500).send("Failed to send OTP email",err);
+    }
+
 
     res.send("OTP sent on your email..!");
-});
+    });
 
 //verify OTP
 app.post("/register/verify-otp", async(req,res) => {
@@ -254,7 +280,7 @@ app.post("/register/verify-otp", async(req,res) => {
     if(!record) return res.status(400).send("OTP expired. Try again");
     if(record.otp !== otp) return res.status(400).send("Invalid OTP!");
     if (Date.now() > record.otpExpires){
-        delete otpstore[email];
+       delete otpstore[email];
         return res.status(400).send("OTP expired, Try again.");
     }
 
@@ -282,6 +308,9 @@ app.post("/register/complete", upload.single("imageid"), async(req,res) => {
         address : record.data.address || null,
         subRole : record.data.subRole || null,
         manrole : record.data.manrole || null,
+        vehnum : record.data.vehnum || null,
+        vehregnum : record.data.vehregnum || null,
+        age : record.data.age || null
 
 
     };
@@ -384,3 +413,4 @@ app.get("/logout" , (req,res) => {
 app.listen(3000,() => {
     console.log("server listening on port 3000");
 });
+

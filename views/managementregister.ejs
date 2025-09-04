@@ -81,9 +81,9 @@
       <div class="form">
         <form id="registerform" data-role="management">
           <label id="info">Personal Deatails</label>
-          <label for="name">Name:</label>
+          <label for="name" name="username">Name:</label>
           <input type="text" placeholder="Enter name" required />
-          <label for="email">Official Email:</label>
+          <label for="email" name="email">Official Email:</label>
           <input
             type="email"
             inputmode="email"
@@ -93,7 +93,7 @@
 
           <button class="vry" id="sendotp">send otp</button>
           <div id="otpsection">
-          <label for="otp">OTP:</label>
+          <label for="otp" name="otp" id="otpinput">OTP:</label>
           <input
             type="tel"
             placeholder="Enter OTP"
@@ -103,7 +103,7 @@
           />
           <button class="vry" id="otp_v">verify otp</button>
           </div>
-          <label for="mobile_no">Official Mobile No. :</label>
+          <label for="mobile_no" name="phone">Official Mobile No. :</label>
           <input
             type="tel"
             placeholder="Official Mobile Number"
@@ -120,17 +120,17 @@
             maxlength="10"
           />
 
-          <label for="a_number">Date of Birth:</label>
+          <label for="a_number" name="dob">Date of Birth:</label>
           <input type="date" required />
 
-          <label id="tag">Sex:</label>
+          <label id="tag" name="gender">Sex:</label>
           <select required>
             <option value="male">MALE</option>
             <option value="female">FEMALE</option>
             <option value="other">OTHER</option>
           </select>
 
-          <label for="a_number">Aadhar Number:</label>
+          <label for="a_number" name="aadhar">Aadhar Number:</label>
           <input
             type="tel"
             placeholder="Enter Aadhar Number"
@@ -141,7 +141,7 @@
 
           <label id="info">Professional Deatails</label>
 
-          <label id="tag">Monitering Role:</label>
+          <label id="tag" name="manrole">Monitering Role:</label>
           <select>
             <option>Tactic & Protocol</option>
             <option>Execusion</option>
@@ -155,7 +155,7 @@
             <option>Night Shitf</option>
           </select>
 
-          <label for="image">Team Id:</label>
+          <label for="image" name="imageid">Team Id:</label>
           <input type="file" required />
          
           <label id="tag" for="VNP">Assement Zone:</label>
@@ -170,14 +170,14 @@
             <option>Ghat no. 4</option>
           </select>
 
-          <label for="password">Create Password:</label>
+          <label for="password" name="fkpass">Create Password:</label>
           <input
             type="password"
             inputmode="verbatim"
             placeholder="Enter password"
             required
           />
-          <label for="password">Confirm Password:</label>
+          <label for="password" name="password">Confirm Password:</label>
           <input
             type="password"
             inputmode="verbatim"
