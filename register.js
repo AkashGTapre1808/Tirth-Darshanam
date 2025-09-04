@@ -23,10 +23,14 @@ sendotpbtn.addEventListener("click", async (e) => {
     if (currentrole !== "user"){
         body = new FormData(form);
         body.append("role",currentrole);
-        if (currentrole === "legal_officer") {
+        if (currentrole === "legal_officer"){
             const subrole = form.subrole.value;
             body.append("subRole",subrole);
         
+        }
+        if(currentrole === "management"){
+            const manrole= form.manrole.value;
+            body.append("manrole",manrole);
         }
         options = {method: "POST", body};
     } else {
@@ -103,7 +107,7 @@ signupbtn.addEventListener("click", async (e) =>{
         if (currentrole === "user"){window.location.href = "/login/user";}
         if (currentrole === "serviceprovider"){window.location.href = "/login/serviceprovider";}
         if (currentrole === "legal_officer"){window.location.href = "/login/legal_officer";}
-        if (currentrole === "gov_official"){window.location.href = "/login/gov_official";}
+        if (currentrole === "management"){window.location.href = "/login/management";}
      }
 });
 

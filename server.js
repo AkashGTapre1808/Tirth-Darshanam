@@ -73,8 +73,10 @@ const userSchema = new mongoose.Schema({
     role:{type:String,required:true},
 
     subRole:{type:String,required: function(){return this.role === "legal_officer";}},
+
+    manrole : {type:String,required: function(){return this.role === "management";}},
     
-    phone:{type:String, required: function(){return this.role !== "user" }},
+    phone:{type:String, required: true},
     
     imageid :{type:imageSchema, required: function() {return this.role !== "user"; }},
     
@@ -143,7 +145,7 @@ app.post("/login/advanced" , async (req,res) => {
     const user = await User.findOne({username});
     if (!user) return res.send("User Not Found.");
 
-    if (user.role !== "legal_officer" && user.role !== "gov_official")
+    if (user.role !== "legal_officer" && user.role !== "management")
         return res.send("Unauthorized login page!!");
 
     if (!(await bcrypt.compare(password,user.password)))
@@ -209,7 +211,7 @@ let forgotpassStore = {};
 
 ////otp send
 app.post("/register/send-otp", async (req,res) => {
-    const {username,email,password,role,phone,subRole,        } = req.body;
+    const {username,email,password,role,phone,subRole,manrole,         } = req.body;
 
 
     //double registration prevention
@@ -225,7 +227,7 @@ app.post("/register/send-otp", async (req,res) => {
     otpstore[email]=
     {
         otp,
-        data:{ username,email,password,role,phone,subRole,           },
+        data:{ username,email,password,role,phone,subRole,manrole,           },
         otpExpires:Date.now() + 2*60*1000  //2min
     };
 
@@ -264,7 +266,7 @@ app.post("/register/complete", upload.single("imageid"), async(req,res) => {
     const {email} = req.body;
     const record = otpstore[email];
     
-    
+    if (!record) return res.status(400).send("OTP Verification required!");
     
     const hashedpassword = await bcrypt.hash(record.data.password,10);
 
@@ -273,8 +275,9 @@ app.post("/register/complete", upload.single("imageid"), async(req,res) => {
         email : record.data.email,
         password : hashedpassword,
         role : record.data.role,
-        phone : record.data.phone || null,
+        phone : record.data.phone,
         subRole : record.data.subRole || null,
+        manrole : record.data.manrole || null,
 
 
 
@@ -320,8 +323,8 @@ app.get("/",isloggedin,async(req,res) =>{
             return res.render("serviceDashboard",{user});
         case "legal_officer":
             return res.render("legalDashboard",{user});
-        case "gov_official":
-            return res.render("govDashboard",{user});
+        case "management":
+            return res.render("managementDashboard",{user});
         default:
             return res.redirect("/home");
     }
