@@ -66,7 +66,7 @@ const userSchema = new mongoose.Schema({
 
     address : {type:String},
 
-
+    aadhar : {type:String, required : function() {return this.role !== "user";}},
     
     password:{type:String,required:true},
     
@@ -211,7 +211,7 @@ let forgotpassStore = {};
 
 ////otp send
 app.post("/register/send-otp", async (req,res) => {
-    const {username,email,password,role,phone,subRole,manrole,         } = req.body;
+    const {username,email,password,role,phone,subRole,manrole,aadhar,          } = req.body;
 
 
     //double registration prevention
@@ -227,7 +227,7 @@ app.post("/register/send-otp", async (req,res) => {
     otpstore[email]=
     {
         otp,
-        data:{ username,email,password,role,phone,subRole,manrole,           },
+        data:{ username,email,password,role,phone,subRole,manrole,aadhar,            },
         otpExpires:Date.now() + 2*60*1000  //2min
     };
 
@@ -276,11 +276,9 @@ app.post("/register/complete", upload.single("imageid"), async(req,res) => {
         password : hashedpassword,
         role : record.data.role,
         phone : record.data.phone,
+        aadhar : record.data.aadhar || null,
         subRole : record.data.subRole || null,
         manrole : record.data.manrole || null,
-
-
-
 
 
     };
