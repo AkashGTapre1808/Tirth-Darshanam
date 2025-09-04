@@ -1,5 +1,5 @@
 const form = document.getElementById("forgotpassform");
-const sendotpbtn = document.getElementById("sendotp");
+const sendotpbtn = document.getElementById("submit");
 const otpsection = document.getElementById("otpsection");
 const verifybtn = document.getElementById("verifyotp");
 

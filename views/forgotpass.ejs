@@ -12,9 +12,10 @@
     <div>
       <p>Choose Method to Reset Password</p>
       <!--action to send it to admin to be added later-->
-      <form action="" method="">
+      <form id="forgotpassform">
         <label for="Username">User Name:</label>
         <input type="text" placeholder="Enter your User name" required />
+        <div id="otpsection">
         <input
           id="otp"
           type="numerical"
@@ -22,10 +23,12 @@
           maxlength="6"
           placeholder="Enter OTP"
         />
-
-        <button id="vry-otp">Verify OTP</button>
-        <button id="submit">Send Email</button>
+        </div>
+        <button id="submit">Send on Email</button>
+        <button id="verifyotp">Verify OTP</button>
+        
       </form>
     </div>
+    <script src="forgotpass.js"></script>
   </body>
 </html>
