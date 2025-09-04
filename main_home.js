@@ -41,7 +41,7 @@ let prompt = document.querySelector("#search");
           let botreplay = crtchatbox(html,"chatbot");
           chatcnt.appendChild(botreplay);
           chatcnt.scrollTo({top:chatcnt.scrollHeight,behavior:"smooth"});
-        },1000);
+        },2000);
       }
 
 
