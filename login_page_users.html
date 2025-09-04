@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Service Provider Interface</title>
   </head>
-  <link rel="stylesheet" href="a2home.css" />
+  <link rel="stylesheet" href="main_home.css">
   <style>
     * {
       margin: 0px;
@@ -15,7 +15,7 @@
     }
 
     .main {
-      background-color: aquamarine;
+      background-color:aquamarine;
       height: 100vh;
       display: flex;
       justify-content: center;
@@ -38,7 +38,7 @@
     input {
       background-color: rgb(250, 238, 108);
       color: indigo;
-      height: 40px;
+      height:40px;
       width: 300px;
       border: 2px solid transparent;
       border-radius: 10px;
@@ -55,7 +55,7 @@
       display: block;
       height: 40px;
       width: 100px;
-      margin: 5px 0px 10px 100px;
+      margin:5px 0px 10px 100px;
       border-radius: 10px;
       cursor: pointer;
     }
@@ -66,30 +66,12 @@
       color: blue;
     }
 
-    label {
+    label{
       color: black;
-    }
-
-    #otp{
-        width: 170px;
-
-    }
-
-
-    #vry-otp {
-      display: block;
-      height: 30px;
-      width: 80px;
-      margin: 5px 0px 10px 10px;
-      border-radius: 10px;
-      cursor: pointer;
-      display: inline;
-      color: black;
-      
     }
   </style>
   <body>
-    <!-- Navbar -->
+     <!-- Navbar -->
     <div class="navbar">
       <div id="logo">
         <p>logo</p>
@@ -147,6 +129,7 @@
       <a class="account" href="#">
         <i class="fa-solid fa-circle-user"></i>
         <p>log in</p>
+        
       </a>
     </div>
 
@@ -159,21 +142,10 @@
             <input type="text" placeholder="Enter your User name" required />
             <label for="Password">Password:</label>
             <input type="text" placeholder="Enter Password" required />
-            <label for="Password">OTP:</label>
-            <input
-              id="otp"
-              type="numerical"
-              required
-              maxlength="6"
-              placeholder="Enter OTP"
-            />
-
-            <button id="vry-otp">Verify OTP</button>
             <button id="submit">Log in</button>
             <a href="forgotpass.html" class="notlogin">Forgot Password ?</a>
-            <a href="mang_taem.html" target="_parent" class="notlogin"
-              >Register Yourself</a
-            >
+            <a href="sign_up_users.html" target="_parent" class="notlogin"
+              >Register Yourself</a> 
             <!-- go to register page -->
           </form>
         </div>
