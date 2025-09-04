@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Service Provider Interface</title>
+  </head>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      font-family: "Times New Roman", Times, serif;
+      font-weight: 800;
+    }
+    button{
+        border: 2px solid transparent;
+        outline: none;
+    }
+
+    button:hover{
+        background-color: #100f0f;
+        color: white;
+    }
+
+    button:active{
+        opacity: 60%;
+    }
+    .logo {
+      margin: 0px 80px 0px 30px;
+      background-color: aqua;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .navbar {
+      background-color: yellow;
+      height: 60px;
+      width: 500vh;
+      display: flex;
+      align-items: center;
+      margin: 0px 0px 0px 0px;
+      position: fixed;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+      margin: 0px 0px 0px 700px;
+    }
+
+    a {
+      text-decoration: none;
+      color: indigo;
+      /* font-weight: 800; */
+      /* font-family: 'Times New Roman', Times, serif; */
+    }
+
+    #log {
+      margin: 0px 0px 0px 70px;
+      background-color: aqua;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #mul_lang {
+      color: #100f0f;
+      height: 25px;
+      border-radius: 5px;
+      background-color: transparent;
+      border: 2px solid transparent;
+      outline: none;
+      font-size: medium;
+      font-weight: 700;
+      margin: 3px 0 0 28px;
+      cursor: pointer;
+    }
+
+    .main {
+      background-color: red;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0px 0px 0px 0px;
+    }
+
+    .form_container {
+      border: 2px solid black;
+      border-radius: 20px;
+      height: 350px;
+      width: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 50px 0px 0px 0px;
+      /* padding: 20px; */
+    }
+
+    input {
+      background-color: #faebd7;
+      color: indigo;
+      height: 20px;
+      width: 300px;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 5px 0px 10px 0px;
+      cursor: pointer;
+    }
+    #form {
+      margin: 35px;
+    }
+
+    #submit {
+      display: block;
+      height: 40px;
+      width: 100px;
+      margin: 5px 0px 10px 100px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #otp{
+        width: 170px;
+
+    }
+
+
+    #vry-otp {
+      display: block;
+      height: 30px;
+      width: 80px;
+      margin: 5px 0px 10px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline;
+      
+    }
+
+    .notlogin {
+      display: inline;
+      margin: 40px 30px 0px 5px;
+    }
+  </style>
+  <body>
+    <div class="navbar">
+      <div class="logo"><a href="#">logo</a><img src="" alt="" /></div>
+      <div class="attri">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Service</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Contact</a></li>
+          <!-- <li><a href="#"></a></li> -->
+        </ul>
+      </div>
+      <div class="lang">
+        <select name="lang" id="mul_lang">
+          <option selected="eng">ENGLISH</option>
+          <option value="hin">HINDI</option>
+          <option value="mar">MARATHI</option>
+          <option value="guj">GUJRATI</option>
+          <option value="sans">SANSKRIT</option>
+        </select>
+      </div>
+      <div id="log">
+        <a href="#"><p>log in</p></a>
+      </div>
+    </div>
+
+    <!--action to send it to admin to be added later-->
+    <div class="main">
+      <div class="form_container">
+        <div id="form">
+          <form action="" method="" id="signin">
+            <label for="Username">User Name:</label>
+            <input type="text" placeholder="Enter your User name" required />
+            <label for="Password">Password:</label>
+            <input type="text" placeholder="Enter Password" required />
+
+            <label for="Password">OTP:</label>
+            <input id="otp" type="numerical" required maxlength="6" placeholder="Enter OTP"
+            />
+
+            <button id="vry-otp">Verify OTP</button>
+            <button id="submit">Log in</button>
+
+            <a href="forgotpass.html" class="notlogin">Forgot Password ?</a>
+
+            <a href="mang_taem.html" target="_parent" class="notlogin"
+              >Register Yourself</a
+            >
+            <!-- go to register page -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
