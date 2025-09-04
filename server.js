@@ -114,7 +114,7 @@ function removeNull(obj){
 }
 //home
 app.get("/home",(req,res) => {
-    res.sendFile(path.join(__dirname, 'public', 'home.html'));
+    res.sendFile(path.join(__dirname, 'public', 'main_home.html'));
 });
 
 //login form

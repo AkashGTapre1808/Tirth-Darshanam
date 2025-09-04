@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>log in page</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        font-weight: 500;
+        font-size: medium;
+        font-family: "Times New Roman", Times, serif;
+      }
+
+      .form {
+        height: 600px;
+        width: 300px;
+      }
+
+      label,
+      button {
+        display: block;
+        margin: 10px 0px 5px 0px;
+      }
+      .container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+      }
+
+      input {
+        height: 20px;
+        width: 300px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px solid transparent;
+        background-color: antiquewhite;
+        color: indigo;
+        font-weight: 550;
+      }
+
+      .vry {
+        height: 30px;
+        width: 80px;
+        padding: 5px;
+      }
+
+      button {
+        height: 40px;
+        width: 100px;
+        border-radius: 10px;
+      }
+
+      #info {
+        color: red;
+        font-size: 17px;
+        font-weight: 700;
+      }
+      #tag {
+        display: inline;
+      }
+
+      select {
+        height: 20px;
+        width: 80px;
+        border-radius: 5px;
+        margin: 2px 0px 0px 10px;
+        border: none;
+        color: indigo;
+        font-weight: 550;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- it for only bus drivers and transporters login page -->
+
+    <div class="container">
+      <div class="form">
+        <form id="registerform" data-role="serviceprovider">
+          <label id="info">Personal Deatails</label>
+          <label for="name">Owner name:</label>
+          <input type="text" placeholder="User name" required />
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            inputmode="email"
+            placeholder="Enter your email"
+            required
+          />
+
+          <button class="vry" id="sendotp">send otp</button>
+          <div id="otpsection">
+          <label for="otp">OTP:</label>
+          <input
+            type="tel"
+            placeholder="Enter OTP"
+            required
+            inputmode="numeric"
+            maxlength="6"
+          />
+          <button class="vry" id="otp_v">verify otp</button>
+          </div>
+          <label for="mobile_no">Mobile No. :</label>
+          <input
+            type="tel"
+            placeholder="Enter Mobile Number"
+            required
+            inputmode="numeric"
+            maxlength="10"
+          />
+
+          <label for="mobile_no"> Alternate Mobile No. :</label>
+          <input
+            type="tel"
+            placeholder="Enter Mobile Number"
+            inputmode="numeric"
+            maxlength="10"
+          />
+
+          <label for="a_number">Date of Birth:</label>
+          <input type="date" required />
+
+          <label id="tag">Sex:</label>
+          <select required>
+            <option value="male">MALE</option>
+            <option value="female">FEMALE</option>
+            <option value="other">OTHER</option>
+          </select>
+
+          <label for="a_number">Aadhar Number:</label>
+          <input
+            type="tel"
+            placeholder="Enter Aadhar Number"
+            required
+            inputmode="numeric"
+            maxlength="12"
+          />
+
+          <label id="info">Vehicle Deatails</label>
+
+          <label id="tag">Vehicle type:</label>
+          <select>
+            <option>option1</option>
+            <option>option2</option>
+            <option>option3</option>
+          </select>
+
+          <label for="VNP">Vehicle number:</label>
+          <input
+            type="text"
+            placeholder="eg.MH19 XXXX"
+            required
+            maxlength="8"
+          />
+
+          <label for="VNP">Vehicle Registration number:</label>
+          <input
+            type="text"
+            placeholder="eg.MHXXXXXXXX"
+            required
+            maxlength="10"
+          />
+
+          <label for="a_number">Seating capacity:</label>
+          <input
+            type="tel"
+            placeholder="Enter Seating capacity"
+            required
+            inputmode="numeric"
+            maxlength="2"
+          />
+
+          <label for="a_number">model and year:</label>
+          <input type="text" placeholder="Ente model and year " required />
+
+          <label for="image">Vehicle image with number plate:</label>
+          <input type="file" required />
+          <label for="image"> vehicle owner image:</label>
+          <input type="file" required />
+          <label for="image">Driving licence image:</label>
+          <input type="file" required />
+          <label for="password">Create Password:</label>
+          <input
+            type="password"
+            inputmode="verbatim"
+            placeholder="Enter password"
+            required
+          />
+          <label for="password">Confirm Password:</label>
+          <input
+            type="password"
+            inputmode="verbatim"
+            placeholder="Enter password"
+            required
+          />
+          <button id="signup">Sign Up</button>
+        </form>
+      </div>
+    </div>
+    <script src="register.js"></script>
+  </body>
+</html>

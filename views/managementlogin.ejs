@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Service Provider Interface</title>
+  </head>
+  <link rel="stylesheet" href="/main_home.css">
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      font-family: "Times New Roman", Times, serif;
+      font-weight: 800;
+    }
+
+    .main {
+      background-color: aquamarine;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0px 0px 0px 0px;
+    }
+
+    .form_container {
+      border: 2px solid black;
+      border-radius: 20px;
+      height: 350px;
+      width: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 50px 0px 0px 0px;
+      background-color: beige;
+    }
+
+    input {
+      background-color: rgb(250, 238, 108);
+      color: indigo;
+      height: 40px;
+      width: 300px;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 5px 0px 10px 0px;
+      cursor: pointer;
+    }
+    #form {
+      margin: 35px;
+    }
+
+    #submit {
+      color: black;
+      display: block;
+      height: 40px;
+      width: 100px;
+      margin: 5px 0px 10px 100px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .notlogin {
+      display: inline;
+      margin: 40px 30px 0px 5px;
+      color: blue;
+    }
+
+    label {
+      color: black;
+    }
+
+    #otp{
+        width: 170px;
+
+    }
+
+
+    #vry-otp {
+      display: block;
+      height: 30px;
+      width: 80px;
+      margin: 5px 0px 10px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline;
+      color: black;
+      
+    }
+  </style>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+      <div id="logo">
+        <p>logo</p>
+        <img src="" alt="" />
+      </div>
+      <div id="section">
+        <ul>
+          <li>
+            <div>
+              Home
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Announcements
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Service
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              About
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Contact
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Help
+              <div class="bar"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <select name="lang" id="mul_lang">
+        <option selected="eng">ENGLISH</option>
+        <option value="hin">HINDI</option>
+        <option value="mar">MARATHI</option>
+        <option value="guj">GUJATI</option>
+        <option value="sans">SANSKRIT</option>
+      </select>
+
+      <a class="account" href="#">
+        <i class="fa-solid fa-circle-user"></i>
+        <p>log in</p>
+      </a>
+    </div>
+
+    <!--action to send it to admin to be added later-->
+    <div class="main">
+      <div class="form_container">
+        <div id="form">
+          <form  id="signin">
+            <label for="Username">User Name:</label>
+            <input type="text" placeholder="Enter your User name" required />
+            <label for="Password">Password:</label>
+            <input type="text" placeholder="Enter Password" required />
+            <div id="otpsection">
+            <label for="Password">OTP:</label>
+            <input
+              id="otp"
+              type="numerical"
+              required
+              maxlength="6"
+              placeholder="Enter OTP"
+            />
+
+            <button id="vry-otp">Verify OTP</button>
+            </div>
+            <button id="submit">Log in</button>
+            <a href="/forgotpass" class="notlogin">Forgot Password ?</a>
+            <a href="/register/management" target="_parent" class="notlogin"
+              >Register Yourself</a
+            >
+            <!-- go to register page -->
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="loginadvanced.js"></script>
+  </body>
+</html>

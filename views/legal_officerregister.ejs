@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>log in page</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        font-weight: 500;
+        font-size: medium;
+        font-family: "Times New Roman", Times, serif;
+      }
+
+      .form {
+        height: 600px;
+        width: 300px;
+      }
+
+      label,
+      button {
+        display: block;
+        margin: 10px 0px 5px 0px;
+      }
+      .container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+      }
+
+      input {
+        height: 20px;
+        width: 300px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px solid transparent;
+        background-color: antiquewhite;
+        color: indigo;
+        font-weight: 550;
+      }
+
+      .vry {
+        height: 30px;
+        width: 80px;
+        padding: 5px;
+      }
+
+      button {
+        height: 40px;
+        width: 100px;
+        border-radius: 10px;
+      }
+
+      #info {
+        color: red;
+        font-size: 17px;
+        font-weight: 700;
+      }
+      #tag {
+        display:inline;
+        color: blue;
+        margin: 10px;
+      }
+
+      select {
+        height: 20px;
+        width: 80px;
+        border-radius: 5px;
+        margin: 2px 0px 0px 10px;
+        border: none;
+        color: indigo;
+        font-weight: 550;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- it for only bus drivers and transporters login page -->
+
+    <div class="container">
+      <div class="form">
+        <form id="registerform" data-role="legal_officer">
+          <label id="info">Personal Deatails</label>
+          <label for="name">Name of Officer:</label>
+          <input type="text" placeholder="officer name" required />
+          <label for="email">Official Email:</label>
+          <input
+            type="email"
+            inputmode="email"
+            placeholder="Enter your Official email"
+            required
+          />
+
+          <button class="vry" id="sendotp">send otp</button>
+          <div id="otpsection">
+          <label for="otp">OTP:</label>
+          <input
+            type="tel"
+            placeholder="Enter OTP"
+            required
+            inputmode="numeric"
+            maxlength="6"
+          />
+          <button class="vry" id="otp_v">verify otp</button>
+          </div>
+          <label for="mobile_no">Official Mobile No. :</label>
+          <input
+            type="tel"
+            placeholder="Official Mobile Number"
+            required
+            inputmode="numeric"
+            maxlength="10"
+          />
+
+          <label for="mobile_no"> Alternate Mobile No. :</label>
+          <input
+            type="tel"
+            placeholder="Enter Mobile Number"
+            inputmode="numeric"
+            maxlength="10"
+          />
+
+          <label for="a_number">Date of Birth:</label>
+          <input type="date" required />
+
+          <label id="tag">Sex:</label>
+          <select required>
+            <option value="male">MALE</option>
+            <option value="female">FEMALE</option>
+            <option value="other">OTHER</option>
+          </select>
+
+          <label for="a_number">Aadhar Number:</label>
+          <input
+            type="tel"
+            placeholder="Enter Aadhar Number"
+            required
+            inputmode="numeric"
+            maxlength="12"
+          />
+
+          <label id="info">Professional Deatails</label>
+
+          <label id="tag">Monitering Role:</label>
+          <select>
+            <option>Tactic & Protocol</option>
+            <option>Execusion</option>
+            <option>Supervision</option>
+          </select>
+          <br>
+          <label id="tag" for="VNP">Duty time:</label>
+          <select>
+            <option>Morning Shift</option>
+            <option>Evening Shift</option>
+            <option>Night Shitf</option>
+          </select>
+
+          <label for="image">Servise Id:</label>
+          <input type="file" required />
+         
+          <label id="tag" for="VNP">Department:</label>
+          <select>
+            <option>Police</option>
+            <option>Traffic Police</option>
+            <option>Disaster management</option>
+            <option>R.T.O</option>
+            <option>Reserved Forces</option>
+          </select>
+
+          <label for="password">Create Password:</label>
+          <input
+            type="password"
+            inputmode="verbatim"
+            placeholder="Enter password"
+            required
+          />
+          <label for="password">Confirm Password:</label>
+          <input
+            type="password"
+            inputmode="verbatim"
+            placeholder="Enter password"
+            required
+          />
+          <button id="signup">Sign Up</button>
+        </form>
+      </div>
+    </div>
+    <script src="register.js"></script>
+  </body>
+</html>
