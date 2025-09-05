@@ -304,3 +304,44 @@ select option {
 #enter:active{
   opacity: 60%;
 }
+
+/* added css */
+.booking{
+  background-color: aliceblue;
+  height: 200px;
+  width: 300px;
+  color:#100f0f;
+  margin: 130px 50px 50px 20px;
+  border-radius: 50px;
+  justify-content: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  font-weight:bolder;
+}
+.Ticket{
+  color: #100f0f;
+  margin: 20px;
+  height: 30px;
+}
+#book{
+  margin: 10px 0px 0px 90px;
+  height: 30px;
+  width: 70px;
+}
+#ale{
+  display: flex;
+  flex-direction: row;
+  margin: 120px ;
+  height: 25px;
+}
+#alerts{
+  width: 50px;
+  background-color:coral;
+  align-items: center;
+  padding: 5px;
+}
+
+#info{
+  background-color:yellow;
+}
