@@ -67,27 +67,27 @@ const userSchema = new mongoose.Schema({
 
     address : {type:String},
 
-    aadhar : {type:String, required : function() {return this.role !== "user";}},
+    aadhar : {type:String},
     
     password:{type:String,required:true},
     
     role:{type:String,required:true},
 
-    subRole:{type:String,required: function(){return this.role === "legal_officer";}},
+    subRole:{type:String},
 
-    manrole : {type:String,required: function(){return this.role === "management";}},
+    manrole : {type:String},
     
     phone:{type:String, required: true},
     
-    imageid :{type:imageSchema, required: function() {return this.role !== "user"; }},
+    imageid :{type:imageSchema},
 
-    vehnum : {type:String,required:function(){return this.role === "serviceprovider"}},
+    vehnum : {type:String},
 
-    vehregnum : {type:String,required:function(){return this.role === "serviceprovider"}},
+    vehregnum : {type:String},
 
     age: {type:String},
     
-    otp:{type:String,required:true},
+    otp:{type:String,required:false},
     
     otpExpires:Date,
 
@@ -102,7 +102,7 @@ const mailer = nodemailer.createTransport({
     service:"gmail",
     auth: {
         user:"yogeshsuryagm@gmail.com", //ourgmail
-        pass:"kbhw artx aqea hxaq",  //ourgmailpassword
+        pass:"asiq csdb gjhs ocre",  //ourgmailpassword
     }
     
 });
@@ -132,20 +132,37 @@ app.get("/login/:role" , (req,res) => {
 });
 
 //logging in
-app.post("/login/basic" , async (req,res) => {
-    const {email,password} = req.body;
-    const user = await User.findOne({email});
-    if(!user) return res.send("User Not Found.");
+app.post("/login/basic", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
 
-    if(user.role !== "user" && user.role !== "serviceprovider")
-        return res.send("Unauthorized login page!");
+        console.log("Login attempt email:", email);
 
-    if (!(await bcrypt.compare(password, user.password)))
-        return res.send("Invalid Password!!");
+        if (!user) {
+            console.log("User not found");
+            return res.send("User Not Found.");
+        }
 
-    req.session.userId = user._id;
-    res.redirect("/");
+        console.log("Password entered:", password);
+        console.log("Password in DB:", user.password);
+
+        if (user.role !== "user" && user.role !== "serviceprovider") {
+            return res.send("Unauthorized login page!");
+        }
+
+        if (password !== user.password) {
+            return res.send("Invalid Password!!");
+        }
+
+        req.session.userId = user._id;
+        res.redirect("/");
+    } catch (err) {
+        console.error("Login error:", err);
+        res.status(500).send("Server error during login.");
+    }
 });
+
 ////lohin advanced
 //login adv, send-otp
 app.post("/login/advanced" , async (req,res) => {
@@ -156,7 +173,7 @@ app.post("/login/advanced" , async (req,res) => {
     if (user.role !== "legal_officer" && user.role !== "management")
         return res.send("Unauthorized login page!!");
 
-    if (!(await bcrypt.compare(password,user.password)))
+    if ( password !== finalPassword)
         return res.send("Invalid Password!");
 
     const otp = Math.floor(100000 + Math.random()*900000).toString();
@@ -167,7 +184,7 @@ app.post("/login/advanced" , async (req,res) => {
         };
 
     await mailer.sendMail({
-        from:"yogeshsuryagm@gmail.com",
+        from:"Tirth Darshanam",
         to:user.email,
         subject: "Tirth-Darshanam Login OTP Code",
         text:`Hello ${username},\n\nYour Login OTP is:${otp}\nValid for 2 Minutes.`,
@@ -222,119 +239,135 @@ app.get("/register/serviceprovider", (req, res) => {
     res.render(`serviceproviderregister`);
 });
 
+app.get("/register/legal_officer", (req, res) => {
+    res.render(`legal_officerregister`);
+});
+
+app.get("/register/management", (req, res) => {
+    res.render(`managementregister`);
+});
 
 
-let otpstore = {};
-let forgotpassStore = {};
 
 
-////otp send
-app.post("/register/send-otp", async (req,res) => {
-    const {username,email,password,role,phone,subRole,manrole,aadhar,dob,gender,address,vehnum,vehregnum,age          } = req.body;
+// ----------------- Registration Routes -----------------
+const otpStore = {}; // temporary OTP storage
 
+// Send OTP
+app.post("/register/send-otp", upload.none(), async (req, res) => {
+    try {
+        const { username, email, password, role, phone, dob, gender, manrole } = req.body;
+        if (!email || !password || !role) return res.status(400).send("Required fields missing!");
 
-    //double registration prevention
-    const existingUser = await User.findOne({email});
-    if (existingUser) return res.status(400).send("User already exists!!");
+        // Check if user exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) return res.status(400).send("User already exists!");
 
-    
-    const otp = Math.floor(100000 + Math.random()*900000).toString();
+        // Generate OTP
+        const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    //temp save
-   
+        // Save OTP with data
+        otpStore[email] = {
+            otp,
+            data: { username, email, password, role, phone, dob, gender, manrole },
+            otpExpires: Date.now() + 2 * 60 * 1000, // 2 minutes
+            verified: false
+        };
 
-    otpstore[email]=
-    {
-        otp,
-        data:{ username,email,password,role,phone,subRole,manrole,aadhar,dob,gender,address,vehnum,vehregnum,age          },
-        otpExpires:Date.now() + 2*60*1000  //2min
-    };
-
-    
-    
-    
-    //now send otp
-    try{
+        // Send OTP via email
         await mailer.sendMail({
-            from:"yogeshsuryagm@gmail.com",
-            to:email,
-            subject: "Tirth-Darshanam OTP Verification Code",
-            text:`Hello ${username},\n\nYour OTP is:${otp}\nValid for 2 Minutes.`,
-
+            from: "Tirth Darshanam",
+            to: email,
+            subject: "OTP Verification Code",
+            text: `Hello ${username},\nYour OTP is: ${otp}\nValid for 2 minutes.`
         });
-        console.log("otp sent");
-    }catch(err){
-        console.error("error is",err);
-        return res.status(500).send("Failed to send OTP email",err);
+
+        console.log("OTP sent for", email, ":", otp);
+        res.send("OTP sent on your email!");
+    } catch (err) {
+        console.error("Send OTP error:", err);
+        res.status(500).send("Failed to send OTP");
     }
-
-
-    res.send("OTP sent on your email..!");
-    });
-
-//verify OTP
-app.post("/register/verify-otp", async(req,res) => {
-    const {email,otp} = req.body;
-    const record = otpstore[email];
-
-    if(!record) return res.status(400).send("OTP expired. Try again");
-    if(record.otp !== otp) return res.status(400).send("Invalid OTP!");
-    if (Date.now() > record.otpExpires){
-       delete otpstore[email];
-        return res.status(400).send("OTP expired, Try again.");
-    }
-
-    res.send("OTP Verified! Fill the required fields and press sign-up!");
 });
 
-app.post("/register/complete", upload.single("imageid"), async(req,res) => {
-    
-    const {email} = req.body;
-    const record = otpstore[email];
-    
-    if (!record) return res.status(400).send("OTP Verification required!");
-    
-    const hashedpassword = await bcrypt.hash(record.data.password,10);
+// Verify OTP
+app.post("/register/verify-otp", upload.none(), (req, res) => {
+    try {
+        const { email, otp } = req.body;
+        const record = otpStore[email];
 
-    let newUserdata ={
-        username : record.data.username,
-        email : record.data.email,
-        password : hashedpassword,
-        role : record.data.role,
-        dob : record.data.dob,
-        gender : record.data.gender,
-        phone : record.data.phone,
-        aadhar : record.data.aadhar || null,
-        address : record.data.address || null,
-        subRole : record.data.subRole || null,
-        manrole : record.data.manrole || null,
-        vehnum : record.data.vehnum || null,
-        vehregnum : record.data.vehregnum || null,
-        age : record.data.age || null
+        if (!record) return res.status(400).send("OTP expired or not found");
+        if (Date.now() > record.otpExpires) {
+            delete otpStore[email];
+            return res.status(400).send("OTP expired. Try again.");
+        }
+        if (record.otp !== otp) return res.status(400).send("Invalid OTP!");
 
-
-    };
-
-    if (record.data.role !== "user" ) {
-        if(req.file){
-            newUserdata.imageid = {
-            data: req.file.buffer,
-            contentType: req.file.mimetype,
-        };} else{return res.status(400).send("Image is required!!");}
+        // Mark verified
+        record.verified = true;
+        res.send("OTP Verified! Now complete registration.");
+    } catch (err) {
+        console.error("Verify OTP error:", err);
+        res.status(500).send("OTP verification failed");
     }
-
-    newUserdata = removeNull(newUserdata);
-
-    const newUser = new User (newUserdata);
-
-    await newUser.save();
-
-    delete otpstore[email];
-
-
-    res.send("Registered Successfully!");
-
 });
+
+// Complete Registration
+app.post("/register/complete", async (req, res) => {
+    try {
+        const { email } = req.body;
+        if (!email) return res.status(400).send("Email is required!");
+
+        const record = otpStore[email];
+        if (!record || !record.verified) return res.status(400).send("OTP verification required!");
+
+        const data = record.data;
+
+        // Build user object
+        const newUserData = {
+            username: data.username,
+            email: data.email,
+            password: data.password,
+            role: data.role,
+            phone: data.phone,
+            dob: data.dob,
+            gender: data.gender,
+        };
+
+        // Role fields
+        if (data.role === "management") newUserData.manrole = data.manrole;
+        if (data.role === "serviceprovider") {
+            newUserData.vehnum = data.vehnum;
+            newUserData.vehregnum = data.vehregnum;
+            newUserData.aadhar = data.aadhar;
+        }
+
+        // Image required for management or serviceprovider
+       // if (data.role !== "user") {
+           
+          //  newUserData.imageid = {
+           //     data: req.file.buffer,
+      //          contentType: req.file.mimetype
+      //      };
+       // }
+
+        // Save user
+        const newUser = new User(newUserData);
+        await newUser.save();
+
+        // Remove OTP record
+        delete otpStore[email];
+
+        res.send("Registered Successfully!");
+    } catch (err) {
+        console.error("Registration error:", err);
+        res.status(500).send("Registration failed: " + err.message);
+    }
+});
+
+
+
+
 
 app.get("/",isloggedin,async(req,res) =>{
      
@@ -367,43 +400,52 @@ app.get("/forgotpass", (req,res) => {
 });
 
 app.post("/forgotpass/send-otp", async (req,res) => {
-    const {username} = req.body;
-    const user = await User.findOne({username});
+    const {email} = req.body;
+    const user = await User.findOne({email});
     if(!user) return res.status(400).send("Username not found!");
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    forgotpassStore[username] = {
+    forgotpassStore[email] = {
         otp,
         otpExpires: Date.now() + 2 * 60 *1000,  //2min
         email:user.email
     };
 
     await mailer.sendMail({
-        from:"our@gmai.com",
+        from:"Tirth Darshanam",
         to:user.email,
         subject: "Password Reset OTP",
-        text: `Hello ${username},\n\nYour OTP is:${otp}\nValid for 2 minutes.`
+        text: `Hello \n\nYour OTP is:${otp}\nValid for 2 minutes.`
     });
     res.send("OTP Sent to your registered email!");
 });
 
 app.post("/forgotpass/verify-otp", async (req,res) => {
-    const {username,otp,password} = req.body;
-    const record = forgotpassStore[username];
+    const {email,otp,password} = req.body;
+    const record = forgotpassStore[email];
 
     if(!record) return res.status(400).send("OTP expired, Try Again.");
     if(record.otp !== otp) return res.status(400).send("Invalid OTP");
     if(Date.now() > record.otpExpires){
-        delete forgotpassStore[username];
+        delete forgotpassStore[email];
         return res.status(400).send("OTP Expired, Try Again.");
     }
+    res.send("OTP Verified!");
 
-    const hashedpassword = await bcrypt.hash(password,10);
-    await User.findOneAndUpdate({username},{password : hashedpassword});
-    delete forgotpassStore[username];
+});
 
-    res.send("Password reset successfully!");
+app.post("/forgotpass/reset-pass", async(req,res) => {
+    const {email,password} = req.body;
+    const record = forgotpassStore[email];
 
+    if(!record) return res.status(400).send("OTP verification required!");
+    
+    await User.findOneAndUpdate({email},{password : hashedpassword});
+    delete forgotpassStore[email];
+
+    res.send("Password Reset successfully!");
+
+    
 });
 
 app.get("/logout" , (req,res) => {

@@ -77,7 +77,7 @@
 
     <div class="container">
       <div class="form">
-        <form id="registerform" data-role="serviceprovider">
+        <form id="registerform" data-role="serviceprovider" enctype="multipart/form-data">
           <label id="info">Personal Deatails</label>
           <label for="name" >Owner name:</label>
           <input type="text" name="username" placeholder="User name" required />
@@ -182,11 +182,11 @@
           <input type="text" placeholder="Ente model and year " required />
 
           <label for="image">Vehicle image with number plate:</label>
-          <input type="file" required />
+          <input type="file" />
           <label for="image"> vehicle owner image:</label>
-          <input type="file" required />
+          <input type="file" />
           <label for="image" >Driving licence image:</label>
-          <input type="file" name="imageid"  required />
+          <input type="file" name="imageid" id="imageid"  required />
           <label for="password" >Create Password:</label>
           <input
             type="password"
@@ -207,6 +207,6 @@
         </form>
       </div>
     </div>
-    <script src="/js/register.js"></script>
+    <script src="/js/serviceproviderregister.js"></script>
   </body>
 </html>

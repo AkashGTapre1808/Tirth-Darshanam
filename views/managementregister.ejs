@@ -79,35 +79,39 @@
 
     <div class="container">
       <div class="form">
-        <form id="registerform" data-role="management">
+        <form id="registerform" data-role="management" enctype="multipart/form-data">
           <label id="info">Personal Deatails</label>
-          <label for="name" name="username">Name:</label>
-          <input type="text" placeholder="Enter name" required />
-          <label for="email" name="email">Official Email:</label>
+          <label for="name" >Name:</label>
+          <input type="text" placeholder="Enter name" name="username" required />
+          <label for="email">Official Email:</label>
           <input
             type="email"
             inputmode="email"
+             name="email"
             placeholder="Enter your Official email"
             required
           />
 
           <button class="vry" id="sendotp">send otp</button>
           <div id="otpsection">
-          <label for="otp" name="otp" id="otpinput">OTP:</label>
+          <label for="otp" >OTP:</label>
           <input
             type="tel"
             placeholder="Enter OTP"
+            name="otp" 
+            id="otpinput"
             required
             inputmode="numeric"
             maxlength="6"
           />
           <button class="vry" id="otp_v">verify otp</button>
           </div>
-          <label for="mobile_no" name="phone">Official Mobile No. :</label>
+          <label for="mobile_no">Official Mobile No. :</label>
           <input
             type="tel"
             placeholder="Official Mobile Number"
             required
+             name="phone"
             inputmode="numeric"
             maxlength="10"
           />
@@ -120,19 +124,20 @@
             maxlength="10"
           />
 
-          <label for="a_number" name="dob">Date of Birth:</label>
-          <input type="date" required />
+          <label for="a_number" >Date of Birth:</label>
+          <input type="date" name="dob" required />
 
-          <label id="tag" name="gender">Sex:</label>
-          <select required>
+          <label id="tag" >Sex:</label>
+          <select required name="gender">
             <option value="male">MALE</option>
             <option value="female">FEMALE</option>
             <option value="other">OTHER</option>
           </select>
 
-          <label for="a_number" name="aadhar">Aadhar Number:</label>
+          <label for="a_number" ">Aadhar Number:</label>
           <input
             type="tel"
+            name="aadhar
             placeholder="Enter Aadhar Number"
             required
             inputmode="numeric"
@@ -141,7 +146,8 @@
 
           <label id="info">Professional Deatails</label>
 
-          <label id="tag" name="manrole">Monitering Role:</label>
+          <label id="tag" >Monitering Role:</label>
+          <input name="manrole">
           <select>
             <option>Tactic & Protocol</option>
             <option>Execusion</option>
@@ -155,8 +161,8 @@
             <option>Night Shitf</option>
           </select>
 
-          <label for="image" name="imageid">Team Id:</label>
-          <input type="file" required />
+          <label for="image" >Team Id:</label>
+          <input type="file" name="imageid" required />
          
           <label id="tag" for="VNP">Assement Zone:</label>
           <select>
@@ -170,16 +176,18 @@
             <option>Ghat no. 4</option>
           </select>
 
-          <label for="password" name="fkpass">Create Password:</label>
+          <label for="password">Create Password:</label>
           <input
             type="password"
             inputmode="verbatim"
+             name="fkpass"
             placeholder="Enter password"
             required
           />
-          <label for="password" name="password">Confirm Password:</label>
+          <label for="password" >Confirm Password:</label>
           <input
             type="password"
+            name="password"
             inputmode="verbatim"
             placeholder="Enter password"
             required
@@ -188,6 +196,6 @@
         </form>
       </div>
     </div>
-    <script src="register.js"></script>
+    <script src="/js/managementregister.js"></script>
   </body>
 </html>

@@ -13,22 +13,30 @@
       <p>Choose Method to Reset Password</p>
       <!--action to send it to admin to be added later-->
       <form id="forgotpassform">
-        <label for="Username">User Name:</label>
-        <input type="text" placeholder="Enter your User name" required />
-        <div id="otpsection">
+        <label for="Email">Email:</label>
+        <input type="text" placeholder="Enter your Email" name="email" required />
+        <button type="button" id="sendotp">Send otp</button>
+        <div id="otpsection" style="display: none;">
+        <label>OTP:</label>
         <input
           id="otp"
           type="numerical"
           required
           maxlength="6"
           placeholder="Enter OTP"
+          name="otp"
         />
-        </div>
-        <button id="submit">Send on Email</button>
         <button id="verifyotp">Verify OTP</button>
-        
+        </div>
+        <div id="newpass-section" style="display: none;">
+        <label>New Password:</label>
+        <input type="password" id="newpassword" required />
+        <label>Confirm Password:</label>
+        <input type="password" id="confirmpass" required />
+        <button id="resetpassword">Reset password</button>
+        </div>
       </form>
     </div>
-    <script src="forgotpass.js"></script>
+    <script src="/js/forgotpass.js"></script>
   </body>
 </html>
