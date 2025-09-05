@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User home</title>
+    <link rel="stylesheet" href="a2home.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <style>
+      .alerts{
+        display: flex;
+        flex-direction: row;
+        margin: 120px 10px 10px 10px;
+        height: 20px;
+      }
+      #seralerts{
+        background-color: bisque;
+        width: 100px;
+      }
+      #serinfo{
+        background-color: cadetblue;
+        width: 1500px;
+      }
+      #businfo{
+        display: flex;
+        flex-direction: column;
+        margin:20px 20px 20px 20px;
+        background-color: lightpink;
+        width: 20%;
+        justify-content: center;
+        align-items: center;
+        height:200px;
+        border-radius: 50px;
+        align-self:flex-start;
+      }
+      #mbusinfo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 40px 10px 20px 10px;
+        justify-content: space-evenly;
+      }
+      #sermap{
+        width: 30%;
+        margin: 10px 10px 10px 20px;
+        background-color: lightpink;
+        height: 450px;
+        align-items: center;
+        border-radius: 50px;
+        padding: 20px;
+      }
+      #parkinginfo{
+        display: flex;
+        flex-direction: column;
+        margin:20px 20px 20px 20px;
+        background-color: lightpink;
+        width: 20%;
+        justify-content: center;
+        align-items: center;
+        height:200px;
+        border-radius: 50px;
+        position: relative;
+        align-self: last baseline;
+      }
+      #askhelp{
+        height: 20px;
+        width: 100px;
+        display: flex;
+        position: absolute;
+        left: 1300px;
+        top: 150px;
+        background-color: brown;
+        border-radius: 5px;
+        padding: 2px 0px 2px 13px;
+      }
+      #he{
+        align-self:flex-start;
+        margin: 0px 0px 30px 90px;
+
+      }
+      #stops{
+        background-color: bisque;
+        position: absolute;
+        left: 100px;
+        border-radius: 30px;
+        padding: 20px 20px 20px 20px;
+        bottom: 100px;
+        width: 300px;
+        height: 200px;
+      }
+      .Location{
+        width: 125px;
+
+      }
+        
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+      <div id="logo">
+        <p>logo</p>
+        <img src="" alt="" />
+      </div>
+      <div id="section">
+        <ul>
+          <li>
+            <div>
+              Home
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Announcements
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Service
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              About
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Contact
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Help
+              <div class="bar"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <select name="lang" id="mul_lang">
+        <option selected="eng">ENGLISH</option>
+        <option value="hin">HINDI</option>
+        <option value="mar">MARATHI</option>
+        <option value="guj">GUJATI</option>
+        <option value="sans">SANSKRIT</option>
+      </select>
+
+      <a class="account" href="#">
+        <i class="fa-solid fa-circle-user"></i>
+        <p>log in</p>
+        </a>
+    </div>
+
+
+    <div id="chatbot-btn" class="chatbot-btn">    
+      <i class="fas fa-robot"></i>
+    </div>
+
+    <div class="message" id="message">
+      <div class="chatbot"><p>Lorem ipsum dolor sit amet.</p></div>
+      <div class="user-chat"><p>Lorem ipsum dolor sit amet.</p></div>    
+      <div class="input"></div>
+      <input
+        type="text"
+        id="search"
+        placeholder="Ask freely, I am with you on this journey..."
+      />
+      <button id="enter">^</button>
+      <button id="enter">+</button>
+    </div>
+    <main>
+        <div class="alerts">
+            <div id="seralerts">
+              alerts
+            </div>
+            <div id="serinfo">
+              Show alerts here
+            </div>
+        </div>
+        <div id="mbusinfo">
+          <div id="businfo" >
+          <div id="shedule" class="busscheinf">
+            <form action="">
+              <label for="busshestart">Select Start time</label>
+              <input type="time"><br>
+              <label for="bussheend">Select End time</label>
+              <input type="time"><br>
+              Show Remaining Seats
+            </form>
+          </div>
+        </div>
+        <div id="sermap">
+          Navigate Map
+        </div>
+        <div id="parkinginfo" class="parkinginfo">
+          <div id="he">Park Your Vehicle</div>
+          <div id="options">
+            <label for="">Get Parking Spot at</label>
+            <select name="parking" id="parking">
+              <option value="parking1">Parking no 1</option>
+              <option value="parking2">Parking no 2</option>
+              <option value="parking3">Parking no 3</option>
+              <option value="parking4">Parking no 4</option>
+            </select>
+          </div><br>
+          <button>Get parking number</button><br>
+          <p>Show Parking number here</p>
+        </div>
+        <div id="stops">
+          <div>
+            <label for="">Route Information</label>
+            <form action="">
+              Boarding Location<input type=" text" placeholder="Starting" class="Location"><br>
+              Intermidiate Stops<input type="text" placeholder="Enter" class="Location"><br>
+              <label for="">Select Destination</label>
+              <select name="" id="endpos" aria-placeholder="select">
+                <option value="">parking1</option>
+                <option value="">parking2</option>
+                <option value="">parking3</option>
+                <option value="">parking4</option>
+                <option value="">Bustand</option>
+                <option value="">Railway satation</option>
+              </select>
+              <button>submit</button>
+            </form>
+          </div>
+        </div>
+        <div>
+          <button id="askhelp">Ask for Help</button>
+        </div>
+        </div>
+    </main>
+
+
+    <!-- javascipt program -->
+
+    <script src="a3home.js"></script>
+</body>
+</html>

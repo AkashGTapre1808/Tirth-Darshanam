@@ -306,7 +306,7 @@ select option {
 }
 
 /* added css */
-.booking{
+/* .booking{
   background-color: aliceblue;
   height: 200px;
   width: 300px;
@@ -344,4 +344,15 @@ select option {
 
 #info{
   background-color:yellow;
+  width: 1500px;
 }
+#navmap{
+  display:flex;
+  flex-direction: row;
+  background-color: sienna;
+  height: 400px;
+  width: 400px;
+  border-radius: 50px;
+  padding: 20px;
+  justify-content: centre;
+} */
