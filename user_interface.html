@@ -12,13 +12,12 @@
   </head>
   <style>
     label{
-
         color: black;
     }
 
     .navigation{
 
-        /* border: 2px solid black; */
+        border: 2px solid black;
         height: 150px;
         width: 300px;
     }
@@ -55,18 +54,18 @@
       border: 2px solid black;
       position: absolute;
       height: 500px;
-      width: 800px;
-      border-radius: 50px;
+      width: 870px;
+      border-radius: 20px;
       top: 30%;
-      right: 5%;
+      right: 1%;
       display: flex;
       justify-content: center;
       flex-direction: column;
       align-items: center;
     }
 
-    #navigation-cnt{
-        margin: 14.8% 0px 0px 1%;
+    #navigation-cnt,#main-cnt{
+        margin: 14.8% 0px 0px 19.2%;
         border: 2px solid black;
         height: 26vh;
         width: 45vh;
@@ -77,6 +76,50 @@
     }
     #park{
      width: 180px;
+    }
+
+    #data-cnt{
+
+      margin: 1% 0px 0px 1%;
+      border: 2px solid black;
+      height: 39vh;
+      width: 40%;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+
+    }
+
+    .data-box{
+      border: 2px solid black;
+      border-radius: 10px;
+      height: 250px;
+      width: 570px;
+      padding: 20px;
+      position:absolute;
+    }
+
+    #main-cnt{
+      margin: 0px 0px 0px 15px;
+      position:absolute;
+      width: 17%;
+      flex-direction: column;
+    }
+
+    .boxes{
+      border: 2px solid black;
+      border-radius: 5px;
+      margin: 3px;
+      height:45px;
+      width: 230px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    span{
+      color: black;
+      font-family: 'Times New Roman', Times, serif;
     }
 
   </style>
@@ -136,11 +179,20 @@
         <option value="sans">SANSKRIT</option>
       </select>
 
-      < class="account" href="#">
+      <div class="account" href="#">
         <i class="fa-solid fa-circle-user"></i>
         <p>log in</p>
-      </>
     </div>
+    </div>
+    
+    <!-- option for choice mode of travelling -->
+
+  <div class="container" id="main-cnt">
+    <span style="font-weight: 700;">MODE OF TRAVELLIN</span>
+    <div class="boxes" data-target="boxA"><span>Public Transport</span></div>
+    <div class="boxes" data-target="boxB"><span>Private Transport</span></div>
+    <div class="boxes" data-target="boxC"><span>Self Drive</span></div>
+  </div>
 
     <!-- main containt -->
 
@@ -175,11 +227,14 @@
     </div>
     </div>
 
-    <div id="navigation-cnt">
-        <div class="navigation">
+
+  <!-- linked container to main-cnt  -->
+
+    <div id="data-cnt" id="link-cnt">
+        <div class="data-box" id="boxA"> <!--box number one -->
       <form action="">
 
-          <label id="to">Parking No.:</label>
+          <label id="prk">Parking No.:</label>
           <select id="park"  class="b-t">
               <option>Parking NO.</option>
               <option>Parking NO.1</option>
@@ -189,21 +244,27 @@
               <option>Parking NO.5</option>
               <option>Parking NO.6</option>
             </select>
-
+             <br>
             <label for="VNP">Vehicle Registration number:</label>
           <input type="text" placeholder="eg.MHXXXXXXXX" class="b-t" required maxlength="10"/>
-
-          <label for="image">Vehicle image with number plate:</label>
-          <input type="file" required />
-
+             <br>
           <label for="image">Driving licence image:</label>
-          <input type="file" required />
-
-      <button>Go</button class="b-t">
+          <input type="file" required class="b-t"/>
+          <br>
+          <label for="image">Vehicle image with number plate:</label>
+          <input type="file" required class="b-t" />
+      <button>Book Now</button class="b-t">
       </form>
     </div>
 
-    <div class="map-container">Density Map</div>
+    <div class="data-box" id="boxB">  <!--box number two --></div>
+
+    <div class="data-box" id="boxC">  <!--box number three --></div>
+
+
+    </div>
+
+    <div class="map-container">Navigation Map</div>
 
 
 
@@ -228,6 +289,8 @@
 
     <!-- javascipt program -->
 
-    <script src="main_home.js"></script>
+    <script src="main_home.js">
+
+    </script>
   </body>
 </html>
