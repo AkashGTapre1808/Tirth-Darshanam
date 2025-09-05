@@ -21,11 +21,11 @@ sendotpbtn.addEventListener("click", async (e) => {
         username: form.username.value,
         email: form.email.value,
         password: form.password.value,
-        role: "management",
+        role: "legal_officer",
         phone: form.phone.value,
         dob: form.dob.value,
         gender: form.gender.value,
-        manrole: form.manrole.value
+        subRole: form.subRole.value
     };
 
     try {
@@ -43,7 +43,7 @@ sendotpbtn.addEventListener("click", async (e) => {
     }
 });
 
-// -----------------Verify OTP --------------------
+// -------------------- Verify OTP --------------------
 verifybtn.addEventListener("click", async (e) => {
     e.preventDefault();
     const otp = document.getElementById("otpinput").value;
@@ -75,11 +75,11 @@ signupbtn.addEventListener("click", async (e) => {
     username: form.username.value,
     email:form.email.value,
     password: form.password.value,
-    role: "management",
+    role: "legal_officer",
     phone: form.phone.value,
     dob: form.dob.value,
     gender: form.gender.value,
-    manrole: form.manrole.value, 
+    subRole: form.subRole.value, 
     otp: document.getElementById("otpinput").value
     };
 

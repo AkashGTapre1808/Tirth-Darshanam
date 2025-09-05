@@ -164,49 +164,52 @@ app.post("/login/basic", async (req, res) => {
 });
 
 ////lohin advanced
+let otpstore = {};
 //login adv, send-otp
 app.post("/login/advanced" , async (req,res) => {
-    const {username,password} = req.body;
-    const user = await User.findOne({username});
+    const {email,password} = req.body;
+    const user = await User.findOne({email});
     if (!user) return res.send("User Not Found.");
 
     if (user.role !== "legal_officer" && user.role !== "management")
         return res.send("Unauthorized login page!!");
 
-    if ( password !== finalPassword)
+    if ( password !== user.password)
         return res.send("Invalid Password!");
 
     const otp = Math.floor(100000 + Math.random()*900000).toString();
 
-    otpstore[username] = {
+    otpstore[email] = {
         otp,
-        otpExpires: Date.now() + 2 *60 *1000 //2min
+        otpExpires: Date.now() + 3 *60 *1000 //2min
         };
 
     await mailer.sendMail({
         from:"Tirth Darshanam",
         to:user.email,
         subject: "Tirth-Darshanam Login OTP Code",
-        text:`Hello ${username},\n\nYour Login OTP is:${otp}\nValid for 2 Minutes.`,
+        text:`Hello ${user.username},\n\nYour Login OTP is:${otp}\nValid for 2 Minutes.`,
 
     });
 
     res.send("OTP has been sent to  your email!");
+    console.log("OTP generated for:", email, "->", otp);
+
     
 });
 
 /////login advanced verify otp
 
 app.post("/login/advanced/verify-otp" , async (req,res) => {
-    const {username,otp} = req.body;
+    const {email,otp} = req.body;
 
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ email });
 
-    const record = otpstore[username];
+    const record = otpstore[email];
     if(!record) return res.status(400).send("OTP expired, Try Again..");
 
     if(Date.now() > record.otpExpires){
-        delete otpstore[username];
+        delete otpstore[email];
         return res.status(400).send("OTP expired, Try Again..");
     }
 
@@ -215,10 +218,11 @@ app.post("/login/advanced/verify-otp" , async (req,res) => {
     if(!user) return res.status(400).send("User Not Found!");
 
     req.session.userId = user._id;
-    delete otpstore[username];
+    delete otpstore[email];
+
+    console.log("Verifying OTP for:", email, "record:", record);
 
     res.send("Login successful !");
-    res.redirect("/");
 });
 
 
@@ -254,9 +258,9 @@ app.get("/register/management", (req, res) => {
 const otpStore = {}; // temporary OTP storage
 
 // Send OTP
-app.post("/register/send-otp", upload.none(), async (req, res) => {
+app.post("/register/send-otp", async (req, res) => {
     try {
-        const { username, email, password, role, phone, dob, gender, manrole } = req.body;
+        const { username, email, password, role, phone, dob, gender, manrole,subRole } = req.body;
         if (!email || !password || !role) return res.status(400).send("Required fields missing!");
 
         // Check if user exists
@@ -269,7 +273,7 @@ app.post("/register/send-otp", upload.none(), async (req, res) => {
         // Save OTP with data
         otpStore[email] = {
             otp,
-            data: { username, email, password, role, phone, dob, gender, manrole },
+            data: { username, email, password, role, phone, dob, gender, manrole,subRole },
             otpExpires: Date.now() + 2 * 60 * 1000, // 2 minutes
             verified: false
         };
@@ -291,7 +295,7 @@ app.post("/register/send-otp", upload.none(), async (req, res) => {
 });
 
 // Verify OTP
-app.post("/register/verify-otp", upload.none(), (req, res) => {
+app.post("/register/verify-otp",(req, res) => {
     try {
         const { email, otp } = req.body;
         const record = otpStore[email];
@@ -314,7 +318,9 @@ app.post("/register/verify-otp", upload.none(), (req, res) => {
 
 // Complete Registration
 app.post("/register/complete", async (req, res) => {
+    
     try {
+        console.log("bodyreceived:",req.body);
         const { email } = req.body;
         if (!email) return res.status(400).send("Email is required!");
 
@@ -341,15 +347,7 @@ app.post("/register/complete", async (req, res) => {
             newUserData.vehregnum = data.vehregnum;
             newUserData.aadhar = data.aadhar;
         }
-
-        // Image required for management or serviceprovider
-       // if (data.role !== "user") {
-           
-          //  newUserData.imageid = {
-           //     data: req.file.buffer,
-      //          contentType: req.file.mimetype
-      //      };
-       // }
+        if(data.role === "legal_officer") newUserData.subRole = data.subRole;
 
         // Save user
         const newUser = new User(newUserData);

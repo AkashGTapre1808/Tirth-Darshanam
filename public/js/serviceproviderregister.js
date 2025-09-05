@@ -1,13 +1,10 @@
-const { json } = require("body-parser");
-
 const form = document.getElementById("registerform");
 const sendotpbtn = document.getElementById("sendotp");
 const otpsection = document.getElementById("otpsection");
 const verifybtn = document.getElementById("otp_v");
 const signupbtn = document.getElementById("signup");
-const imageInput = document.getElementById("imageid");
 
-// -------------------- Send OTP --------------------
+
 sendotpbtn.addEventListener("click", async (e) => {
     e.preventDefault();
 

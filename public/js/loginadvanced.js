@@ -4,7 +4,7 @@ const otpsection = document.getElementById("otpsection");
 const verifybtn = document.getElementById("vry-otp");
 
 
-let currentUsername = "";
+let currentEmail = "";
 
 loginbtn.addEventListener("click", async(e) => {
     e.preventDefault();
@@ -18,11 +18,11 @@ loginbtn.addEventListener("click", async(e) => {
         body: JSON.stringify(body)
     });
 
-    const msg = await res.text;
+    const msg = await res.text();
     alert(msg);
 
     if(res.ok){
-        currentUsername = body.username;
+        currentEmail = body.email;
         otpsection.style.display = "block";
     }
 });
@@ -37,7 +37,7 @@ verifybtn.addEventListener("click", async(e) => {
     const res = await fetch("/login/advanced/verify-otp", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({username: currentUsername,otp})
+        body: JSON.stringify({email: currentEmail,otp})
     });
 
     const msg = await res.text();

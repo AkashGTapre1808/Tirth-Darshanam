@@ -155,15 +155,15 @@
       <div class="form_container">
         <div id="form">
           <form  id="signin">
-            <label for="Username" name="username">User Name:</label>
-            <input type="text" placeholder="Enter your User name" required />
-            <label for="Password" name="password">Password:</label>
-            <input type="text" placeholder="Enter Password" required />
+            <label for="Email" >Email:</label>
+            <input type="text" placeholder="Enter your Email" name="email" required />
+            <label for="Password" >Password:</label>
+            <input type="text" name="password" placeholder="Enter Password" required />
             <div id="otpsection">
-            <label for="Password" id="otpinput">OTP:</label>
+            <label for="Password" id="otp">OTP:</label>
             <input
-              id="otp"
-              type="numerical"
+              id="otpinput"
+              type="number"
               required
               maxlength="6"
               placeholder="Enter OTP"
@@ -171,7 +171,7 @@
 
             <button id="vry-otp">Verify OTP</button>
             </div>
-            <button id="submit">Log in</button>
+            <button id="submit" type="button">Log in</button>
             <a href="/forgotpass" class="notlogin">Forgot Password ?</a>
             <a href="/register/management" target="_parent" class="notlogin"
               >Register Yourself</a
@@ -181,6 +181,6 @@
         </div>
       </div>
     </div>
-    <script src="loginadvanced.js"></script>
+    <script src="/js/loginadvanced.js"></script>
   </body>
 </html>
