@@ -391,7 +391,7 @@ app.get("/",isloggedin,async(req,res) =>{
     }
 });
 
-
+let forgotpassStore = {};
 ///forgot pass 
 app.get("/forgotpass", (req,res) => {
     res.render("forgotpass");
@@ -438,7 +438,7 @@ app.post("/forgotpass/reset-pass", async(req,res) => {
 
     if(!record) return res.status(400).send("OTP verification required!");
     
-    await User.findOneAndUpdate({email},{password : hashedpassword});
+    await User.findOneAndUpdate({email},{password : password});
     delete forgotpassStore[email];
 
     res.send("Password Reset successfully!");
