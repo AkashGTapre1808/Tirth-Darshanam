@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Legal & Management</title>
     <link rel="stylesheet" href="main_home.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -30,6 +31,11 @@
       justify-content: center;
       flex-direction: column;
       align-items: center;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
     }
 
     .data {
@@ -206,6 +212,7 @@
     }
 
   </style>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <body>
     <!-- Navbar -->
     <div class="navbar">
@@ -298,7 +305,7 @@
 
     <!-- map container -->
 
-    <div class="map-container">Density Map</div>
+    <div class="map-container"><div id="map">Density Map</div></div>
 
     <!-- Shuttel manege & alert send option -->
 
@@ -503,6 +510,33 @@
 
     <!-- javascipt program -->
 
-    <script src="main_home.js"></script>
+    <script src="/js/main_home.js"></script>
+    <script>
+
+      var map = L.map('map').setView([18.51643,73.85608],13);
+
+      L.tilelayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      //user density (will use data from database)
+      const densityAreas = [
+        {lat:18.540609,lng:73.886819,count:50},//high
+        {lat:18.569174831032406,lng:73.91611258867273,count:25},//mid
+        {lat:18.58722308589673,lng:73.8465929432985,count:10},//low
+      ];
+
+      densityAreas.forEach(area => {
+        L.circle([area.lat,area.lng],{
+          color: getColor(area.count),
+          fillColor: getColor(area.count),
+          fillOpacity: 0.5,
+          radius: area.count * 10    ////radius
+        }).bindPopup(`Users in area: ${area.count}`).addTo(map);
+      });
+
+
+
+    </script>
   </body>
 </html>
