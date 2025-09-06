@@ -66,5 +66,5 @@ resetpassbtn.addEventListener("click", async (e) => {
     const msg = await res.text();
     alert(msg);
 
-    if (res.ok) window.location.href = "/";
+    if (res.ok) window.location.href = "/home";
 });

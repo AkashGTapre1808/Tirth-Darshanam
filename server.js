@@ -383,9 +383,9 @@ app.get("/",isloggedin,async(req,res) =>{
         case "serviceprovider":
             return res.render("serviceDashboard",{user});
         case "legal_officer":
-            return res.render("legalDashboard",{user});
+            return res.render("planing_interface",{user});
         case "management":
-            return res.render("managementDashboard",{user});
+            return res.render("planing_interface",{user});
         default:
             return res.redirect("/home");
     }
