@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Legal & Management</title>
-    <link rel="stylesheet" href="main_home.css">
+    <link rel="stylesheet" href="main_home.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -96,6 +96,7 @@
       justify-content: center;
       flex-direction: column;
       align-items: center;
+      gap: 2%;
     }
 
     .manage {
@@ -115,27 +116,28 @@
       right: 5%;
     }
 
-    #parking-data{
+    #parking-data {
       top: 140%;
       right: 5%;
     }
 
-    span{
+    span {
       color: black;
       font-weight: 700;
-      font-family: 'Times New Roman', Times, serif;
+      font-family: "Times New Roman", Times, serif;
       margin: 0px 0px 20px 0px;
     }
 
-    label,button{
+    label,
+    button {
       color: black;
     }
 
-    .station{
+    .station {
       padding: 10px;
       border: 2px solid black;
-      border-radius:10px;
-      height:100px;
+      border-radius: 10px;
+      height: 100px;
       margin: 10px;
       display: flex;
       flex-direction: column;
@@ -143,35 +145,64 @@
       align-items: center;
     }
 
-    input{
+    input {
       color: black;
       background-color: antiquewhite;
       width: 150px;
       padding: 5px;
       border-radius: 5px;
     }
-    
-    .done{
+
+    .done {
       height: 30px;
       padding: 5px;
       border-radius: 5px;
-
     }
 
-     .inner {
+    .inner {
       flex: 1;
       overflow-y: scroll;
       border: 1px solid #ccc;
       padding: 10px;
       border-radius: 5px;
-
-      /* Hide scrollbar but allow scroll */
-      scrollbar-width:0.5px; /* Firefox */
-      -ms-overflow-style: none;  /* IE and Edge */
+      /* allow scroll */
+      scrollbar-width: 0.5px; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
     }
 
-    .inner::-webkit-scrollbar {
-      /* display:block; Chrome, Safari */
+    .alerts{
+      height: 300px;
+      width: 450px;
+      margin: 0px 0px 0px 0px;
+      border: 2px solid black;
+    
+    }
+
+    .send-alt{
+
+      height: 40px;
+      width: 100px;
+      border-radius: 10px;
+
+    }
+
+    #alt{
+      height: 250px;
+      width: 450px;
+      color: black;
+      background-color: transparent;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 700;
+      font-size: 15px;
+      /* position: fixed; */
+    }
+
+    .mng-shuttel{
+      border: 2px solid black;
+      border-radius: 10px;
+      height: 150px;
+      width: 450px;
+      margin: 10% 0px 0px 0px;
     }
 
   </style>
@@ -239,6 +270,8 @@
       </a>
     </div>
 
+    <!-- graph design -->
+
     <div class="data">
       <label class="val">Region Wise Crowd Density</label>
 
@@ -263,122 +296,213 @@
       </div>
     </div>
 
+    <!-- map container -->
+
     <div class="map-container">Density Map</div>
 
-    <div class="crowd"><span>Shuttel manage</span></div>
+    <!-- Shuttel manege & alert send option -->
+
+    <div class="crowd">
+      <span>Shuttel manage</span>
+      <div class="alerts">
+        <form action="">
+          <textarea id="alt"></textarea>
+          <button class="send-alt">send alerts</button>
+        </form>
+      </div>
+
+ <!-- deploy shuttel -->
+
+      <div class="mng-shuttel">
+        <form action="">
+          <label>From:</label>
+        <select id="from">
+          <option>area 1</option>
+          <option>area 2</option>
+          <option>area 3</option>
+          <option>area 4</option>
+          <option>area 5</option>
+          <option>Ghat 1</option>
+          <option>Ghat 2</option>
+          <option>Ghat 3</option>
+          <option>mandir</option>
+        </select>
+
+        <label>to:</label>
+        <select id="to">
+          <option>area 1</option>
+          <option>area 2</option>
+          <option>area 3</option>
+          <option>area 4</option>
+          <option>area 5</option>
+          <option>Ghat 1</option>
+          <option>Ghat 2</option>
+          <option>Ghat 3</option>
+          <option>mandir</option>
+        </select>
+
+        <button class="send-alt">Deploy</button>
+        </form>
+     
+        <!-- withdraw shuttel -->
+
+        <form action="">
+          <label>From:</label>
+        <select id="from">
+          <option>area 1</option>
+          <option>area 2</option>
+          <option>area 3</option>
+          <option>area 4</option>
+          <option>area 5</option>
+          <option>Ghat 1</option>
+          <option>Ghat 2</option>
+          <option>Ghat 3</option>
+          <option>mandir</option>
+        </select>
+
+        <label>to:</label>
+        <select id="to">
+          <option>area 1</option>
+          <option>area 2</option>
+          <option>area 3</option>
+          <option>area 4</option>
+          <option>area 5</option>
+          <option>Ghat 1</option>
+          <option>Ghat 2</option>
+          <option>Ghat 3</option>
+          <option>mandir</option>
+        </select>
+
+        <button class="send-alt">Withdraw</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- parking Management information Editing -->
 
     <div class="manage" id="team">
       <div class="inner">
-      <div class="station"><span>Parking No.1</span>
-      <form action="">
-        <label>Entries:</label>
-      <input type="number" placeholder="Entries">
-      <label>Exits:</label>
-      <input type="number" placeholder="Entries">
-      <label>gap:</label>
-      <input type="number" placeholder="Entries">
-      <button class="done">Done</button>
-      </form>
-      </div>
+        <div class="station">
+          <span>Parking No.1</span>
+          <form action="">
+            <label>Entries:</label>
+            <input type="number" placeholder="Entries" />
+            <label>Exits:</label>
+            <input type="number" placeholder="Entries" />
+            <label>gap:</label>
+            <input type="number" placeholder="Entries" />
+            <button class="done">Done</button>
+          </form>
+        </div>
 
-      <div class="station"><span>Parking No.2</span>
-      <form action="">
-        <label>Entries:</label>
-      <input type="number" placeholder="Entries">
-      <label>Exits:</label>
-      <input type="number" placeholder="Entries">
-      <label>gap:</label>
-      <input type="number" placeholder="Entries">
-      <button class="done">Done</button>
-      </form>
-      </div>
+        <div class="station">
+          <span>Parking No.2</span>
+          <form action="">
+            <label>Entries:</label>
+            <input type="number" placeholder="Entries" />
+            <label>Exits:</label>
+            <input type="number" placeholder="Entries" />
+            <label>gap:</label>
+            <input type="number" placeholder="Entries" />
+            <button class="done">Done</button>
+          </form>
+        </div>
 
-      <div class="station"><span>Parking No.3</span>
-      <form action="">
-        <label>Entries:</label>
-      <input type="number" placeholder="Entries">
-      <label>Exits:</label>
-      <input type="number" placeholder="Entries">
-      <label>gap:</label>
-      <input type="number" placeholder="Entries">
-      <button class="done">Done</button>
-      </form>
-      </div>
+        <div class="station">
+          <span>Parking No.3</span>
+          <form action="">
+            <label>Entries:</label>
+            <input type="number" placeholder="Entries" />
+            <label>Exits:</label>
+            <input type="number" placeholder="Entries" />
+            <label>gap:</label>
+            <input type="number" placeholder="Entries" />
+            <button class="done">Done</button>
+          </form>
+        </div>
 
-      <div class="station"><span>Parking No.4</span>
-      <form action="">
-        <label>Entries:</label>
-      <input type="number" placeholder="Entries">
-      <label>Exits:</label>
-      <input type="number" placeholder="Entries">
-      <label>gap:</label>
-      <input type="number" placeholder="Entries">
-      <button class="done">Done</button>
-      </form>
-      </div>
+        <div class="station">
+          <span>Parking No.4</span>
+          <form action="">
+            <label>Entries:</label>
+            <input type="number" placeholder="Entries" />
+            <label>Exits:</label>
+            <input type="number" placeholder="Entries" />
+            <label>gap:</label>
+            <input type="number" placeholder="Entries" />
+            <button class="done">Done</button>
+          </form>
+        </div>
 
-      <div class="station"><span>Parking No.5</span>
-      <form action="">
-        <label>Entries:</label>
-      <input type="number" placeholder="Entries">
-      <label>Exits:</label>
-      <input type="number" placeholder="Entries">
-      <label>gap:</label>
-      <input type="number" placeholder="Entries">
-      <button class="done">Done</button>
-      </form>
-      </div>
-
+        <div class="station">
+          <span>Parking No.5</span>
+          <form action="">
+            <label>Entries:</label>
+            <input type="number" placeholder="Entries" />
+            <label>Exits:</label>
+            <input type="number" placeholder="Entries" />
+            <label>gap:</label>
+            <input type="number" placeholder="Entries" />
+            <button class="done">Done</button>
+          </form>
+        </div>
       </div>
     </div>
-    
+
+    <!-- bus station information -->
+
     <div class="manage" id="parking-data">
-      <div class="station"><span>Bus Station</span>
-      <form action="">
-        <label>Entries:</label>
-      <input type="number" placeholder="Entries">
-      <label>Exits:</label>
-      <input type="number" placeholder="Entries">
-      <label>gap:</label>
-      <input type="number" placeholder="Entries">
-      <button class="done">Done</button>
-      </form>
+      <div class="station">
+        <span>Bus Station</span>
+        <form action="">
+          <label>Entries:</label>
+          <input type="number" placeholder="Entries" />
+          <label>Exits:</label>
+          <input type="number" placeholder="Entries" />
+          <label>gap:</label>
+          <input type="number" placeholder="Entries" />
+          <button class="done">Done</button>
+        </form>
       </div>
 
-      <div class="station"><span>Railway Station</span>
-      <form action="">
-        <label>Entries:</label>
-      <input type="number" placeholder="Entries">
-      <label>Exits:</label>
-      <input type="number" placeholder="Entries">
-      <label>gap:</label>
-      <input type="number" placeholder="Entries">
-      <button class="done">Done</button>
-      </form>
-      </div>
-    </div>    
-    
+      <!-- Railway station information -->
 
-    <!-- chatbot code -->    
+      <div class="station">
+        <span>Railway Station</span>
+        <form action="">
+          <label>Entries:</label>
+          <input type="number" placeholder="Entries" />
+          <label>Exits:</label>
+          <input type="number" placeholder="Entries" />
+          <label>gap:</label>
+          <input type="number" placeholder="Entries" />
+          <button class="done">Done</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- chatbot code -->
 
     <div id="chatbot-btn" class="chatbot-btn">
       <i class="fas fa-robot"></i>
     </div>
 
-    
     <div class="message" id="message">
-      <div class="msg-box" >
+      <div class="msg-box">
         <div class="chatbot"><p>welcome..!</p></div>
       </div>
       <div class="input"></div>
-      <input type="text" id="search" placeholder="Ask freely, I am with you on this journey...">
+      <input
+        type="text"
+        id="search"
+        placeholder="Ask freely, I am with you on this journey..."
+      />
       <button id="enter">Send</button>
     </div>
 
     <!-- javascipt program -->
 
-    <script src="main_home.js">
-      
-    </script>
+    <script src="main_home.js"></script>
   </body>
 </html>
