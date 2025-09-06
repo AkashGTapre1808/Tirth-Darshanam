@@ -8,20 +8,20 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color:aquamarine;
+  background-color: aquamarine;
 }
 
-#login-box{
+#login-box {
   width: 80%;
   height: 20%;
   margin: 15% 0px 0px 10%;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap:40px;
+  gap: 40px;
 }
 
-.box{
+.box {
   height: 80px;
   width: 250px;
   border: 2px solid rgb(8, 4, 247);
@@ -29,6 +29,7 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 50px;
+  box-shadow: 0 4px 15px #1111111a;
 }
 
 a {
@@ -37,7 +38,7 @@ a {
 }
 
 .navbar {
-  background:aquamarine; /*linear-gradient(to right, #5c6bc0, #512da8)*/
+  background: aquamarine; /*linear-gradient(to right, #5c6bc0, #512da8)*/
   height: 80px;
   width: 1530px;
   display: flex;
@@ -211,7 +212,7 @@ select option {
   font-size: 40px;
   border-radius: 50%;
   z-index: 999;
-  position:fixed;
+  position: fixed;
   margin: 90vh 0 0 95%;
   display: flex;
   align-items: center;
@@ -233,17 +234,33 @@ select option {
 }
 
 .message {
-  bottom:-600px; /* start hidden below */
-  position:fixed;
+  /*outer*/
+  bottom: -600px; /* start hidden below */
+  position: fixed;
   background-color: #f3f0f0;
   height: 550px;
   width: 450px;
   margin: 80vh 0px 0px 140vh;
   border-radius: 20px;
-  box-shadow: 5px 4px 3px rgb(96, 94, 94);
+  box-shadow: 5px 4px 5px rgb(96, 94, 94);
   opacity: 0;
   transition: all 1s ease;
 }
+
+.msg-box {/*inner box*/
+  flex: 1;
+  overflow-y: scroll;
+  padding: 10px;
+  border-radius: 5px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  height: 500px;
+  width: 450px;
+}
+
+.msg-box::-webkit-scrollbar {
+      display: none; /* Chrome, Safari */
+    }
 
 .show {
   bottom: 20px; /* moves upward */
@@ -253,7 +270,7 @@ select option {
 .chatbot {
   background-color: #333;
   width: 300px;
-  height: 50px;
+  height: 20px;
   border-radius: 40px;
   border-top-left-radius: 0px;
   margin: 20px 0px 0px 20px;
@@ -266,13 +283,14 @@ select option {
 .user-chat {
   background-color: #868585;
   width: 300px;
-  height: 50px;
+  height: 20px;
   border-radius: 40px;
   border-top-right-radius: 0px;
   margin: 20px 0px 0px 130px;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-overflow: wrap;
   box-shadow: 5px 4px 3px rgb(96, 94, 94);
 }
 
@@ -281,7 +299,7 @@ select option {
   height: 40px;
   border-radius: 50px;
   padding: 10px;
-  margin: 360px 0px 0px 20px;
+  margin: 4px 0px 0px 25px;
   outline: none;
   border: none;
   font-family: "Times New Roman", Times, serif;
@@ -292,15 +310,15 @@ select option {
 
 #enter {
   height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  background-color: #333;
+  width: 100px;
+  border-radius:20px;
+  background-color: #d3bebe;
   text-align: center;
   margin: 2px;
   padding: 2px;
   box-shadow: 1px 1px 2px 3px rgb(180, 178, 178);
 }
 
-#enter:active{
+#enter:active {
   opacity: 60%;
 }
