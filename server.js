@@ -379,7 +379,7 @@ app.get("/",isloggedin,async(req,res) =>{
     
     switch(user.role){
         case "user":
-            return res.render("userDashboard",{user});
+            return res.render("user_interface",{user});
         case "serviceprovider":
             return res.render("serviceDashboard",{user});
         case "legal_officer":
