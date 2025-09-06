@@ -31,6 +31,7 @@
         height: 30px;
         padding: 2px;
         border-radius: 5px;
+        text-align: center;
     }
 
     #to{
@@ -120,6 +121,7 @@
     span{
       color: black;
       font-family: 'Times New Roman', Times, serif;
+      font-weight: 700;
     }
 
   </style>
@@ -188,10 +190,9 @@
     <!-- option for choice mode of travelling -->
 
   <div class="container" id="main-cnt">
-    <span style="font-weight: 700;">MODE OF TRAVELLIN</span>
-    <div class="boxes" data-target="boxA"><span>Public Transport</span></div>
-    <div class="boxes" data-target="boxB"><span>Private Transport</span></div>
-    <div class="boxes" data-target="boxC"><span>Self Drive</span></div>
+    <span>Mode of Travelling</span>
+      <div class="b-t">Public Transport</div>
+      <div class="b-t">Private Transport</div>
   </div>
 
     <!-- main containt -->
@@ -232,6 +233,7 @@
 
     <div id="data-cnt" id="link-cnt">
         <div class="data-box" id="boxA"> <!--box number one -->
+          <span>Self Drive</span>
       <form action="">
 
           <label id="prk">Parking No.:</label>
@@ -256,13 +258,8 @@
       <button>Book Now</button class="b-t">
       </form>
     </div>
-
-    <div class="data-box" id="boxB">  <!--box number two --></div>
-
-    <div class="data-box" id="boxC">  <!--box number three --></div>
-
-
-    </div>
+  
+  </div>
 
     <div class="map-container">Navigation Map</div>
 
@@ -289,8 +286,6 @@
 
     <!-- javascipt program -->
 
-    <script src="main_home.js">
-
-    </script>
+    <script src="main_home.js"></script>
   </body>
 </html>

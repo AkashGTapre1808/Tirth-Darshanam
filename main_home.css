@@ -270,7 +270,7 @@ select option {
 .chatbot {
   background-color: #333;
   width: 300px;
-  height: 50px;
+  height: 20px;
   border-radius: 40px;
   border-top-left-radius: 0px;
   margin: 20px 0px 0px 20px;
@@ -283,14 +283,14 @@ select option {
 .user-chat {
   background-color: #868585;
   width: 300px;
-  height: 50px;
+  height: 20px;
   border-radius: 40px;
   border-top-right-radius: 0px;
   margin: 20px 0px 0px 130px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  text-overflow: wrap;
   box-shadow: 5px 4px 3px rgb(96, 94, 94);
 }
 

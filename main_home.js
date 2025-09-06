@@ -37,7 +37,7 @@ let prompt = document.querySelector("#search");
 
 
         setTimeout(()=>{                        //bot timing dealy and display
-          let html=``
+          let html=`${msg}`
           let botreplay = crtchatbox(html,"chatbot");
           chatcnt.appendChild(botreplay);
           chatcnt.scrollTo({top:chatcnt.scrollHeight,behavior:"smooth"});
