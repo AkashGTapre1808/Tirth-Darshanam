@@ -96,6 +96,7 @@
       justify-content: center;
       flex-direction: column;
       align-items: center;
+      gap: 2%;
     }
 
     .manage {
@@ -170,9 +171,10 @@
     }
 
     .alerts{
-      height: 100px;
+      height: 300px;
       width: 450px;
       margin: 0px 0px 0px 0px;
+      border: 2px solid black;
     
     }
 
@@ -185,15 +187,23 @@
     }
 
     #alt{
-      height: 100px;
+      height: 250px;
       width: 450px;
       color: black;
       background-color: transparent;
       font-family: 'Times New Roman', Times, serif;
       font-weight: 700;
       font-size: 15px;
+      /* position: fixed; */
     }
 
+    .mng-shuttel{
+      border: 2px solid black;
+      border-radius: 10px;
+      height: 150px;
+      width: 450px;
+      margin: 10% 0px 0px 0px;
+    }
 
   </style>
   <body>
@@ -301,6 +311,8 @@
         </form>
       </div>
 
+ <!-- deploy shuttel -->
+  
       <div class="mng-shuttel">
         <form action="">
           <label>From:</label>
@@ -329,7 +341,39 @@
           <option>mandir</option>
         </select>
 
-        <button class="send-alt">manage</button>
+        <button class="send-alt">Deploy</button>
+        </form>
+     
+        <!-- withdraw shuttel -->
+
+        <form action="">
+          <label>From:</label>
+        <select id="from">
+          <option>area 1</option>
+          <option>area 2</option>
+          <option>area 3</option>
+          <option>area 4</option>
+          <option>area 5</option>
+          <option>Ghat 1</option>
+          <option>Ghat 2</option>
+          <option>Ghat 3</option>
+          <option>mandir</option>
+        </select>
+
+        <label>to:</label>
+        <select id="to">
+          <option>area 1</option>
+          <option>area 2</option>
+          <option>area 3</option>
+          <option>area 4</option>
+          <option>area 5</option>
+          <option>Ghat 1</option>
+          <option>Ghat 2</option>
+          <option>Ghat 3</option>
+          <option>mandir</option>
+        </select>
+
+        <button class="send-alt">Deploy</button>
         </form>
       </div>
 
