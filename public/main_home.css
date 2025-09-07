@@ -1,14 +1,14 @@
 * {
   margin: 0px;
   padding: 0px;
-  color: white;
+  color: black;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
 }
 
 body {
   font-family: Arial, sans-serif;
-  background-color: aquamarine;
+  background-color: #d9e5d6;
 }
 
 #login-box {
@@ -24,21 +24,21 @@ body {
 .box {
   height: 80px;
   width: 250px;
-  border: 2px solid rgb(8, 4, 247);
+  background-color: #ff9b42;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50px;
-  box-shadow: 0 4px 15px #1111111a;
+  box-shadow: 10px 10px 15px #000000;
 }
 
 a {
   text-decoration: none;
-  color: aliceblue;
+  color: black;
 }
 
 .navbar {
-  background: aquamarine; /*linear-gradient(to right, #5c6bc0, #512da8)*/
+  background: #d9e5d6 ; /*linear-gradient(to right, #5c6bc0, #512da8)*/
   height: 80px;
   width: 1530px;
   display: flex;
@@ -84,7 +84,7 @@ li div {
 }
 
 li div:hover {
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid black;
   cursor: pointer;
 }
 
@@ -96,25 +96,8 @@ li:active {
   transition: transform 2s ease-in-out;
 }
 
-.account {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 50px;
-  gap: 0.2rem;
-  margin: 0px 0px 0px 190px;
-  border-radius: 50%;
-}
-.account i {
-  font-size: 25px;
-}
-.account:active {
-  opacity: 50%;
-}
 #mul_lang {
-  color: #ffffff;
+  color: black;
   height: 25px;
   border-radius: 5px;
   background-color: transparent;
