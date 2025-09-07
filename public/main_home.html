@@ -73,10 +73,10 @@
         <div class="slide" style="background-color:  #d9e5d6">
           <div id="login-box">
 
-            <div class="box" href="/login/user">USER LOGIN</div>
-            <div class="box" href="/login/serviceprovider">SERVICE PROVIDER</div>
-            <div class="box" href="/login/legal_officer">LEGAL ATHOURITIES</div>
-            <div class="box" href="/login/management">PLANIG & MANAGEMENT</div>
+            <div class="box" data-role="user" href="/login/user">USER LOGIN</div>
+            <div class="box" data-role="serviceprovider" href="/login/serviceprovider">SERVICE PROVIDER</div>
+            <div class="box" data-role="legal_officer" href="/login/legal_officer">LEGAL ATHOURITIES</div>
+            <div class="box" data-role="management" href="/login/management">PLANIG & MANAGEMENT</div>
 
           </div>
           <h1>Title Number 1</h1>
@@ -115,6 +115,14 @@
     <!-- javascipt program -->
       
     <script src="/js/main_home.js"></script>
+    <script>
+      document.querySelectorAll(".box").forEach(box => {
+        box.addEventListener("click",() => {
+          const role = box.getAttribute("data-role");
+          window.location.href = `/login/${role}`;
+        });
+      });
+    </script>
  
   </body>
 </html>
