@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver home</title>
+    <link rel="stylesheet" href="a2home.css" />
+    <style>
+
+      #businfo{
+        border: 2px solid black;
+        border-radius: 30px;
+        height: 500px;
+        width: 650px;
+        margin: 5% 0px 0px 0px;
+        left:2%;
+        position:fixed;
+        display:flex;
+        justify-content: center;
+        align-items:center;
+      }
+
+      .p-s{
+        border: 2px solid black;
+        border-radius:30px;
+        height: 100px;
+        width: 650px;
+        position: fixed;
+        left: 2%;
+        display:flex;
+        justify-content: center;
+        align-items:center;
+      }
+
+      #parkinginfo{
+        margin:38% 0px 2% 0px;
+      }
+
+      #sermap{
+        border: 2px solid black;
+        border-radius: 30px;
+        height:82vh;
+        width: 786px;
+        margin: 5% 0px 0px 0px;
+        right:2%;
+        position:fixed;
+        display:flex;
+        justify-content: center;
+        align-items:center;
+      }
+
+      #times{
+        width: 250px;
+        margin: 0px 110px 0px 0px;
+      }
+
+      label{
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 600;
+        font-size:17px;
+        margin: 5px;
+      }
+
+      input{
+        color: black;
+        padding: 3px;
+        height: 40px;
+        width: 390px;
+        margin: 5px;
+        border-radius: 10px;
+        margin: 0px 0px 0px 0px;
+      }
+
+      select{
+        width:200px;
+        height: 30px;
+        border-radius: 20px;
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 17px;
+        font-weight: 600;
+      }
+
+      button{
+        width: 100px;
+        height: 30px;
+        border-radius: 8px;
+        margin: 5px 0px 0px 0px;
+        color: black;
+        font-weight: 600;
+
+      }
+
+    </style>
+</head>
+<body>
+
+  <!-- navbar containt -->
+
+    <div class="navbar">
+      <div id="logo">
+        <p>logo</p>
+        <img src="" alt="" />
+      </div>
+      <div id="section">
+        <ul>
+          <li>
+            <div>
+              Home
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Announcements
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Service
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              About
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Contact
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Help
+              <div class="bar"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <select name="lang" id="mul_lang">
+        <option selected="eng">ENGLISH</option>
+        <option value="hin">HINDI</option>
+        <option value="mar">MARATHI</option>
+        <option value="guj">GUJATI</option>
+        <option value="sans">SANSKRIT</option>
+      </select>
+
+      <a class="account" href="#">
+        <i></i>
+        <p></p>
+        </a>
+    </div>
+    
+    <main>
+      <!-- alrets and update line -->
+      <div class="alerts">
+        <div id="seralerts">
+          alerts
+        </div>
+        <div id="serinfo">
+          Show alerts here
+        </div>
+      </div>
+      
+      <!-- main my bus container -->
+
+      <!-- <div id="mbusinfo"> -->
+
+        <!-- bus information container -->
+
+        <div id="businfo" >
+          <div id="shedule" class="busscheinf">
+            <div id="times">
+               <!-- stops information form -->
+              <form action="">
+              <label>Boarding Location:</label>
+              <input type=" text" placeholder="Starting" class="Location"><br>
+              <label>Intermidiate Stops:</label>
+              <input type="text" placeholder="Enter" class="Location"><br>
+            </form>
+            <form action="">
+              <label for="busshestart">Select Start time:</label>
+              <input type="time">
+              <label for="bussheend">Select End time:</label>
+              <input type="time">
+              <label>Set Prices:</label>
+              <input type="numeric" placeholder="set price" maxlength="5">
+              <label>Show Remaining Seats:</label>
+              <input type="numeric" placeholder="Enter Remaining Seats" maxlength="2">
+              <label for="">Select Destination:</label>
+              <select name="" id="endpos" aria-placeholder="select">
+                <option value="">parking1</option>
+                <option value="">parking2</option>
+                <option value="">parking3</option>
+                <option value="">parking4</option>
+                <option value="">Bustand</option>
+                <option value="">Railway satation</option>
+              </select>
+              <button>Done</button>
+            </form>
+            </div>
+          </div>
+          <div id="price">
+            
+          </div>
+        </div>
+
+        <!-- parking information -->
+
+        <div id="parkinginfo" class="p-s">
+          <div id="he">Park Your Vehicle</div>
+          <div id="options">
+            <label for="">Get Parking Spot at</label>
+            <select name="parking" id="parking">
+              <option value="parking1">Parking no 1</option>
+              <option value="parking2">Parking no 2</option>
+              <option value="parking3">Parking no 3</option>
+              <option value="parking4">Parking no 4</option>
+            </select>
+          </div><br>
+          <button>Get parking number</button><br>
+          <p>Show Parking number here</p>
+        </div>
+
+        <!-- navigaion map for driver -->
+
+        <div id="sermap"> Navigate Map </div>
+
+        
+        <!-- ask for help button -->
+
+        <div>
+          <button id="askhelp">Ask for Help</button>
+        </div>
+      <!-- </div> -->
+    </main>
+
+    
+    <!-- javascipt program -->
+    
+    <script src="a3home.js"></script>
+  </body>
+  </html>
