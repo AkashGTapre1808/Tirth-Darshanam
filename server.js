@@ -18,21 +18,6 @@ app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 
 
-//img
-const storage = multer.memoryStorage();
-const upload = multer({
-    storage, 
-    limits: {fileSize: 2*1024*1024},//max 2mb
-    fileFilter : (req,file,cb) => {
-        const allowed=["image/jpeg","image/png"];
-        if(!allowed.includes(file.mimetype)){
-            cb(new Error("Only JPEG and PNG images are allowed!"));
-        } else {
-            cb(null,true);
-        }
-    }
-});
-
 //middleware
 
 app.use(
