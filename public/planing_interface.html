@@ -40,6 +40,7 @@
       flex-direction: column;
       align-items: center;
       background-color: #EDDEA4;
+      box-shadow: 0 4px 10px #000000;
       
     }
 
@@ -47,13 +48,13 @@
       position: relative;
       width: 400px;
       height: 35px;
-      border: 2px solid black;
+      border: 2px solid rgba(0,0,0,0.3);
       margin: 25px;
       border-radius: 5px;
     }
 
     #wid {
-      background-color: blue;
+      background-color: #0fa3b1;
       height: 31.8px;
       border-radius: 5px;
       display: flex;
@@ -98,7 +99,7 @@
     }
 
     .manage {
-      box-shadow: 0 4px 15px #1111111a;
+      box-shadow: 0 10px 15px #1111111a;
       background-color: #EDDEA4;
       position: absolute;
       height: 290px;
@@ -134,7 +135,7 @@
 
     .station {
       padding: 10px;
-      border: 2px solid black;
+      box-shadow: 0 4px 10px #11111a;
       border-radius: 10px;
       height: 100px;
       margin: 10px;
@@ -142,6 +143,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      /* background-color: #f7a072; */
     }
 
     input {
@@ -150,6 +152,7 @@
       width: 150px;
       padding: 5px;
       border-radius: 5px;
+      border: none;
     }
 
     .done {
@@ -157,6 +160,8 @@
       padding: 5px;
       border-radius: 5px;
       background-color: #ff9b42;
+      border: none;
+      box-shadow: 0 4px 10px #000000;
     }
 
     .inner {
@@ -174,7 +179,7 @@
       height: 300px;
       width: 450px;
       margin: 0px 0px 0px 0px;
-      border: 2px solid black;
+      /* border: 2px solid black; */
     
     }
 
@@ -184,6 +189,8 @@
       width: 100px;
       border-radius: 10px;
       background-color: #ff9b42;
+      box-shadow: 0 4px 10px #000000;
+
 
     }
 
@@ -199,12 +206,12 @@
     }
 
     .mng-shuttel{
-      border: 2px solid black;
+      /* border: 2px solid black; */
       border-radius: 10px;
       height: 150px;
       width: 450px;
       margin: 10% 0px 0px 0px;
-      background-color: #f7a072;
+      background-color: #EDDEA4;
       padding: 20px ;
     }
 
@@ -319,7 +326,7 @@
       <div class="mng-shuttel">
         <form action="">
           <label>From:</label>
-        <select id="from">
+        <select id="from1">
           <option>area 1</option>
           <option>area 2</option>
           <option>area 3</option>
@@ -332,7 +339,7 @@
         </select>
 
         <label>to:</label>
-        <select id="to">
+        <select id="to1">
           <option>area 1</option>
           <option>area 2</option>
           <option>area 3</option>
@@ -351,7 +358,7 @@
 
         <form action="">
           <label>From:</label>
-        <select id="from">
+        <select id="from2">
           <option>area 1</option>
           <option>area 2</option>
           <option>area 3</option>
@@ -364,7 +371,7 @@
         </select>
 
         <label>to:</label>
-        <select id="to">
+        <select id="to2">
           <option>area 1</option>
           <option>area 2</option>
           <option>area 3</option>
