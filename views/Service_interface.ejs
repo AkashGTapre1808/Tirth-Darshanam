@@ -9,7 +9,8 @@
     <style>
 
       #businfo{
-        border: 2px solid black;
+        box-shadow: 0 4px 15px #1111111a;
+        background-color: #eddea4;
         border-radius: 30px;
         height: 500px;
         width: 650px;
@@ -22,24 +23,25 @@
       }
 
       .p-s{
-        border: 2px solid black;
+        box-shadow: 0 4px 15px #00000000;
+        background-color: #eddea4;
         border-radius:30px;
         height: 100px;
         width: 650px;
         position: fixed;
         left: 2%;
         display:flex;
-        justify-content: center;
+        justify-content:space-around;
         align-items:center;
       }
 
       #parkinginfo{
         margin:38% 0px 2% 0px;
+        padding: 10px 0px 0px 20px;
       }
 
       #sermap{
         border: 2px solid black;
-        border-radius: 30px;
         height:82vh;
         width: 786px;
         margin: 5% 0px 0px 0px;
@@ -69,7 +71,10 @@
       }
 
       input{
-        color: black;
+        color:black;
+        background-color:bisque;
+        box-shadow: 0 4px 15px #1111111a;
+        border: none;
         padding: 3px;
         height: 40px;
         width: 390px;
@@ -86,6 +91,7 @@
         font-family: 'Times New Roman', Times, serif;
         font-size: 17px;
         font-weight: 600;
+        background-color: bisque;
       }
 
       button{
@@ -95,7 +101,31 @@
         margin: 5px 0px 0px 0px;
         color: black;
         font-weight: 600;
+      }
 
+      #he{
+        position: absolute;
+        margin: 0px 0px 70px 0px;
+        font-weight: 600;
+      }
+
+      #p-num{
+        position:relative;
+        margin: 15px 120px 0px 0px;
+        height: 30px;
+        width: 180px;
+      }
+
+      #show-num{
+        position:relative;
+        right: 5%;
+        height: 40px;
+        width: 150px;
+        background-color: #0fa3b1;
+        border-radius: 5px;
+        text-align:center;
+        padding:2px;
+        top: 3%;
       }
 
     </style>
@@ -209,7 +239,7 @@
                 <option value="">Bustand</option>
                 <option value="">Railway satation</option>
               </select>
-              <button>Done</button>
+              <button style="background-color: #ff9b42;">Done</button>
             </form>
             </div>
           </div>
@@ -230,9 +260,9 @@
               <option value="parking3">Parking no 3</option>
               <option value="parking4">Parking no 4</option>
             </select>
-          </div><br>
-          <button>Get parking number</button><br>
-          <p>Show Parking number here</p>
+          </div>
+          <button id="p-num" style="background-color: #ff9b42;">Get parking number</button><br>
+          <div id="show-num">Show Parking number here</div>
         </div>
 
         <!-- navigaion map for driver -->

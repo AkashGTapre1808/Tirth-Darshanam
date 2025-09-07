@@ -14,8 +14,13 @@
       }
 
       .form {
-        height: 600px;
-        width: 300px;
+        height: 1140px;
+        width: 375px;
+        background-color: #eddea4;
+        margin: 25px 0px 0px 0px;
+        padding: 0px 0px 0px 50px;
+        border-radius: 30px;
+        box-shadow: 0 4px 15px #11111a;
       }
 
       label,
@@ -24,9 +29,11 @@
         margin: 10px 0px 5px 0px;
       }
       .container {
-        height: 100vh;
+        height: 1200px;
         display: flex;
         justify-content: center;
+        background-color: #d9e5d6;
+
       }
 
       input {
@@ -35,7 +42,7 @@
         padding: 10px;
         border-radius: 10px;
         border: 2px solid transparent;
-        background-color: antiquewhite;
+        background-color: #d9e5d6;
         color: indigo;
         font-weight: 550;
       }
@@ -50,6 +57,9 @@
         height: 40px;
         width: 100px;
         border-radius: 10px;
+        background-color: #ff9b42;
+        border: none;
+        box-shadow: 0 4px 15px #615454;
       }
 
       #info {
@@ -92,7 +102,7 @@
             required
           />
 
-          <button class="vry" id="sendotp">send otp</button>
+          <button class="vry" id="sendotp" style="background-color: #0fa3b1;">send otp</button>
           <div id="otpsection">
           <label for="otp" >OTP:</label>
           <input
@@ -192,7 +202,7 @@
             placeholder="Enter password"
             required
           />
-          <button id="signup" type="button">Sign Up</button>
+          <button id="signup" type="button" style="box-shadow: 0 4px 15px #11111a;">Sign Up</button>
         </form>
       </div>
     </div>

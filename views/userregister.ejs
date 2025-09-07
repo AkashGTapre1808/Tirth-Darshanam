@@ -15,15 +15,18 @@
         font-family: 'Times New Roman', Times, serif;
         font-size:16px;
         font-weight: 600;
+        background-color: #d9e5d6;
       }
       .container {
-        margin: 200px 0px 0px 0px;
-        height: 500px;
-        width: 200px;
+        margin: 25px 0px 0px 0px;
+        height: 900px;
+        width: 400px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        background-color: #Eddea4;
+        border-radius: 30px;
       }
       button {
         margin: 11px 0px 0px 0px;
@@ -32,9 +35,10 @@
         border-radius: 10px;
         font-family: "Times New Roman", Times, serif;
         font-weight: 600;
-        border: 2px solid rgb(144, 144, 5);
-        background-color: rgb(238, 253, 224);
+        border: none;
+        background-color: #ff9b42;
         cursor: pointer;
+        box-shadow: 0 4px 15px #11111a;
       }
 
       .user {
@@ -59,7 +63,7 @@
         font-family: "Times New Roman", Times, serif;
         font-size: medium;
         border: 2px solid transparent;
-        background-color:rgb(232, 189, 147);
+        background-color: #d9e5d6;
         cursor: pointer;
       }
 
@@ -83,8 +87,8 @@
         height: 25px;
         width: 75px;
         font-size: 13px;
-        border: 2px solid rgb(144, 144, 5);
-        background-color: rgb(238, 253, 224);
+        border: none;
+        background-color: #d9e5d6;
         cursor: pointer;
         outline: none;
         font-weight:550;
@@ -131,7 +135,7 @@
 
           <label>Email:</label>
           <input type="email" placeholder="Enter Email" name="email" required  />
-          <button class="otp_v" id="sendotp" type="button">Send otp</button>
+          <button class="otp_v" id="sendotp" type="button" style="background-color: #0fa3b1;">Send otp</button>
           <div id="otpsection">
           <label>OTP:</label><input
             id="otpinput"
