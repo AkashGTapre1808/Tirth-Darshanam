@@ -29,9 +29,9 @@
     }
 
     .b-t{
-        background-color: transparent;
+        background-color: #d9e5d6;
         color: black;
-        border: 2px solid black;
+        border: 2px solid rgba(0, 0, 0, 0.5);
         margin: 5px;
         width:300px;
         height: 30px;
@@ -78,13 +78,15 @@
 
     #navigation-cnt{
         margin: 5% 0px 0px 1%;
-        border: 2px solid black;
+        /* border: 2px solid black; */
         height: 26vh;
         width:82.8vh;
         display:flex;
         justify-content: center;
         align-items: center;
         border-radius: 15px;
+        background-color: #Eddea4;
+        box-shadow: 0 4px 15px #11111a;
     }
     #park{
      width: 180px;
@@ -93,13 +95,14 @@
     #data-cnt{
 
       margin: 1% 0px 0px 1%;
-      border: 2px solid black;
+      background-color: #Eddea4;
       height: 58vh;
       width: 40%;
       display:flex;
       justify-content: center;
       align-items: center;
       border-radius: 15px;
+      box-shadow: 0 4px 15px #11111a;
 
     }
 
@@ -109,6 +112,7 @@
       width: 570px;
       padding: 20px;
       position:absolute;
+      /* background-color: #11111a; */
     }
 
     #to{
@@ -221,7 +225,7 @@
 
       <label>Date:</label>
       <input type="date" class="b-t" id="date">
-      <button id="routeBtn" type="button">Go</button class="b-t">
+      <button id="routeBtn" type="button" style="background-color: #ff9b42; border: none; box-shadow: 0 4px 15px #11111a;">Go</button class="b-t">
       </form>
     </div>
     </div>
@@ -253,7 +257,7 @@
           <br>
           <label for="image">Vehicle image with number plate:</label>
           <input type="file" required class="b-t" />
-      <button>Navigate</button class="b-t">
+      <button style="background-color: #ff9b42; border: none; box-shadow: 0 4px 15px #11111a;">Navigate</button class="b-t">
       </form>
     </div>
   
