@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driver home</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="main_home.css" />
     <style>
 
@@ -47,6 +48,11 @@
         display:flex;
         justify-content: center;
         align-items:center;
+      }
+
+      #map {
+        height: 100%;
+        width: 100%;
       }
 
       #times{
@@ -231,7 +237,7 @@
 
         <!-- navigaion map for driver -->
 
-        <div id="sermap"> Navigate Map </div>
+        <div id="sermap"><div id="map"> Navigate Map</div> </div>
 
         
         <!-- ask for help button -->
@@ -244,7 +250,34 @@
 
     
     <!-- javascipt program -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      const map = L.map('map').setView([0,0],13);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+
+            map.setView([lat,lng],15);
+
+            L.marker([lat,lng]).addTo(map)
+              .bindPopup("You are here!")
+              .openPopup();
+          },
+          (error) => {
+            alert("Could not get your Location.Error:"+ error.message);
+          }
+        );
+      } else {
+        alert("Geollocation is not supported by this browser.");
+      }
+    </script>
     
-    <script src="a3home.js"></script>
   </body>
   </html>

@@ -7,8 +7,6 @@ const path = require("path");
 const nodemailer = require("nodemailer");
 const { type } = require("os");
 const { send } = require("process");
-const multer = require("multer");
-const fs = require("fs");
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
@@ -16,6 +14,11 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
+
+const http = require("http");
+const {Server} = require("socket.io");
+const server = http.createServer(app);
+const io = new Server(server);
 
 
 //middleware
@@ -34,12 +37,13 @@ mongoose.connect("mongodb://localhost:27017/tirthdarshanam")
 .then(()=> console.log("mongodb connected"))
 .catch((err) => console.error(err));
 
-//user schema
-const imageSchema = new mongoose.Schema({
-  data: { type: Buffer, required: true },
-  contentType: { type: String, required: true }
+const annoncementschema = new mongoose.Schema({
+    message:{type:String,required:true},
+    createdAt:{type:Date,default:Date.now},
+    author:{type:String,default:"legal_officer"}
 });
 
+const Announcement = mongoose.models.Announcement || mongoose.model("Announcement",annoncementschema);
 
 const userSchema = new mongoose.Schema({
     username:{type:String},
@@ -63,8 +67,6 @@ const userSchema = new mongoose.Schema({
     manrole : {type:String},
     
     phone:{type:String, required: true},
-    
-    imageid :{type:imageSchema},
 
     vehnum : {type:String},
 
@@ -366,7 +368,7 @@ app.get("/",isloggedin,async(req,res) =>{
         case "user":
             return res.render("user_interface",{user});
         case "serviceprovider":
-            return res.render("serviceDashboard",{user});
+            return res.render("Service_interface",{user});
         case "legal_officer":
             return res.render("planing_interface",{user});
         case "management":
@@ -431,11 +433,29 @@ app.post("/forgotpass/reset-pass", async(req,res) => {
     
 });
 
+io.on("connection", (socket) => {
+    console.log("A user connected:",socket.id);
+
+    ///alerts listeniing
+    socket.on("newAlert" , async (message) => {
+        if(!message) return;
+
+        const announcement = await Announcement.create({ message });
+
+        io.emit("alertReceived", announcement);
+    });
+
+    socket.on("disconnect", () => {
+        console.log("User Disconnected:", socket.id);
+    });
+    
+});
+
 app.get("/logout" , (req,res) => {
     req.session.destroy(() => res.redirect("/home"));
 });
 
-app.listen(3000,() => {
+server.listen(3000,() => {
     console.log("server listening on port 3000");
 });
 

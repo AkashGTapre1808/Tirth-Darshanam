@@ -7,11 +7,15 @@
 <<<<<<<< HEAD:views/user_interface.ejs
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+
+
     <link rel="stylesheet" href="/main_home.css">
 ========
-    <link rel="stylesheet" href="main_home.css" />
 >>>>>>>> ab3470bdd25e2b9a4f989305457b049eb5038aa8:public/user_interface.html
     <link
       rel="stylesheet"
@@ -215,24 +219,11 @@
       <form action="">
 
         <label>From:</label>
-        <input type="text" placeholder="from" id="frominput"  class="b-t" />
+        <input type="text" placeholder="From" id="frominput"  class="b-t" />
 
-      <label id="to">To:</label>
-      <select id="b-t"  class="b-t">
-        <option>area1</option>
-        <option>area2</option>
-        <option>area3</option>
-        <option>area4</option>
-        <option>area5</option>
-        <option>area6</option>
-        <option>area7</option>
-        <option>area8</option>
-        <option>area9</option>
-        <option>area10</option>
-        <option>area11</option>
-        <option>area12</option>
-        <option>area13</option>
-      </select>
+      <label >To:</label>
+      <input type="text" id="to" placeholder="Destination" class="b-t">
+      
 
       <label>Date:</label>
       <input type="date" class="b-t" id="date">
@@ -274,7 +265,7 @@
   
   </div>
 
-    <div class="map-container"><div id="map">Navigation Map</div></div>
+    <div class="map-container"><div id="map"></div></div> 
 
 
 
@@ -300,68 +291,68 @@
     <!-- javascipt program -->
 
     <script src="/js/main_home.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script>
-      var map = L.map('map').setView([0,0],13);
+    let map = L.map('map').setView([20.5937, 78.9629], 5);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-        attribution: '&copy; OpenStreetmap contributors',
-        maxZoom: 18
-      }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    maxZoom: 18
+    }).addTo(map);
 
-      let userLatLng, userMarker, routeControl;
+  let routingControl, userLatLng, userMarker;
 
-      //live location 
+  // Live location
+    navigator.geolocation.getCurrentPosition(function(pos){
+    userLatLng = [pos.coords.latitude, pos.coords.longitude];
+    userMarker = L.marker(userLatLng).addTo(map).bindPopup("Your Location");
+    map.setView(userLatLng, 13);
+  });
 
-      navigator.geolocation.getCurrentPosition(function(pos){
-        userLatLng = [pos.coords.latitude,pos.coords.longitude];
-        userMarker = L.marker(userLatLng).addTo(map).bindPopup("Your Location");
-        map.setView(userLatLng,13);
+  document.getElementById("routeBtn").addEventListener("click", function(e){
+    e.preventDefault();
+
+    const fromInput = document.getElementById("frominput").value.trim();
+    const toInput = document.getElementById("to").value.trim();
+
+    if(!toInput) return alert("Enter destination");
+
+    const geocoder = L.Control.Geocoder.nominatim();
+    
+    let fromLatLng;
+
+   function route(fromLatLng){
+      geocoder.geocode(toInput, function(toResults){
+        if(toResults.length === 0) return alert("Destination not found");
+        const toLatLng = toResults[0].center;
+
+        if(routingControl) map.removeControl(routingControl);
+
+        routingControl = L.Routing.control({
+          waypoints: [
+            fromLatLng,
+            L.latLng(toLatLng.lat, toLatLng.lng)
+         ],
+          routeWhileDragging: true,
+          lineOptions: {styles: [{color :'blue',opacity:0.8,weight:5}]}
+        }).addTo(map);
       });
+    }
 
-      document.getElementById("routeBtn").addEventListener("click",function(){
-        const fromin = document.getElementById("frominput").value.trim();
-        const fromto = document.getElementById("to").value;
-
-        if(!fromto) return alert("Please enter a Destination.");
-
-        const geocoder = L.Control.Geocoder.nominatim();
-
-        function geocodeInputs(callback) {
-          if (fromin) {
-            geocoder.geocode(fromin,function(results){
-              if(results.length === 0) return alert("From location not found");
-              const fromLatLng = results[0].center;
-              geocoder.geocode(fromto,function(results2){
-                if (results2.length === 0) return alert("To location not found");
-                const toLatLng = results2[0].center;
-                callback(fromLatLng,toLatLng);
-              });
-            });
-          }else {
-            if (!userLatLng) return alert("Current location not available yet.");
-            geocoder.geocode(fromto,function(results2){
-              if (results2.length === 0) return alert("To Location not found.");
-              const toLatLng = results2[0].center;
-              callback(userLatLng,toLatLng);
-            });
-          }
-        }
-
-        geocodeInputs(function(fromLatLng,toLatLng){
-          if(routeControl) map.removeControl(routeControl);
-
-          routeControl = L.Routing.control({
-            waypoints:[L.latLng(fromLatLng),L.latLng(toLatLng)],
-            routeWhileDragging: true
-          }).addTo(map);
-
-          map.fitBounds([fromLatLng,toLatLng]);
-        });
+    // Determine starting point
+    if(!fromInput && userLatLng){
+      fromLatLng = L.latLng(userLatLng[0],userLatLng[1]);
+      route(fromLatLng);
+    } else {
+      geocoder.geocode(fromInput, function(fromResults){
+        if(fromResults.length === 0) return alert("From location not found");
+        fromLatLng = L.latLng(fromResults[0].center.lat,fromResults[0].center.lng);
+        route(fromLatLng);
       });
-      //Enter press
-      document.getElementById("fromInput").addEventListener("keypress",e => {if (e.key === "Enter") document.getElementById("routeBtn").click();});
-      document.getElementById("to").addEventListener("keypress", e => {if (e.key === "Enter") document.getElementById("routeBtn").click();});
-
-    </script>
+    }
+  });
+  console.log("UserLocation:",userLatLng);
+  console.log("To:",toLatLng);
+</script>
   </body>
 </html>
