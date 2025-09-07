@@ -13,10 +13,7 @@
 ========
     <link rel="stylesheet" href="main_home.css" />
 >>>>>>>> ab3470bdd25e2b9a4f989305457b049eb5038aa8:public/user_interface.html
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
   </head>
   <style>
     label{
@@ -111,8 +108,6 @@
       height: 250px;
       width: 570px;
       padding: 20px;
-      position:absolute;
-      /* background-color: #11111a; */
     }
 
     #to{
@@ -133,6 +128,30 @@
       font-family: 'Times New Roman', Times, serif;
       font-weight: 700;
     }
+
+    #inner {
+      flex: 1;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      /* allow scroll */
+      scrollbar-width: 0.5px; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+      height: 410px;
+    }
+
+.trp{
+  background-color: #f7a072;
+  height: 100px;
+  width: 570px;
+  margin: 4% 0px 0px 0px;
+  text-align: center;
+  font-weight: 600;
+  font-family: 'Times New Roman', Times, serif;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px #111111;
+}
 
   </style>
   <body>
@@ -183,15 +202,9 @@
         </ul>
       </div>
 
-      <select name="lang" id="mul_lang">
-        <option selected="eng">ENGLISH</option>
-        <option value="hin">HINDI</option>
-        <option value="mar">MARATHI</option>
-        <option value="guj">GUJATI</option>
-        <option value="sans">SANSKRIT</option>
-      </select>
+      <div id="google_translate_element" class="multi_lang"></div>
 
-      <div class="account" href="#">
+      <div class="account">
         <i></i>
         <p></p>
     </div>
@@ -219,7 +232,9 @@
 
   <!-- linked container to main-cnt  -->
 
-    <div id="data-cnt" id="link-cnt">
+    <div id="data-cnt" class="manage">
+      <div id="inner">
+      <div class="trp">Public</div>     <!-- public transport -->
         <div class="data-box" id="boxA"> <!--box number one -->
           <span>Self Drive</span>
       <form action="">
@@ -246,7 +261,17 @@
       <button style="background-color: #ff9b42; border: none; box-shadow: 0 4px 15px #11111a;">Navigate</button class="b-t">
       </form>
     </div>
+
+    <div class="trp">Private Transport 1</div>
+    <div class="trp">Private Transport 2</div>
+    <div class="trp">Private Transport 3</div>
+    <div class="trp">Private Transport 4</div>
+    <div class="trp">Private Transport 5</div>
+    <div class="trp">Private Transport 6</div>
+    <div class="trp">Private Transport 7</div>
+    <div class="trp">Private Transport 8</div>
   
+  </div>
   </div>
 
     <div class="map-container"><div id="map">Navigation Map</div></div>
@@ -337,6 +362,19 @@
       document.getElementById("fromInput").addEventListener("keypress",e => {if (e.key === "Enter") document.getElementById("routeBtn").click();});
       document.getElementById("to").addEventListener("keypress", e => {if (e.key === "Enter") document.getElementById("routeBtn").click();});
 
+      // script for goole api translate 
+
     </script>
+   <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        {pageLanguage: 'en'},
+        'google_translate_element'
+      );
+    }
+  </script>
+  <script type="text/javascript" 
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+  </script>
   </body>
 </html>
