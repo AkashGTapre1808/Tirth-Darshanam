@@ -17,6 +17,7 @@ app.set("views",path.join(__dirname,"views"));
 
 const http = require("http");
 const {Server} = require("socket.io");
+const { stringify } = require("querystring");
 const server = http.createServer(app);
 const io = new Server(server);
 
@@ -45,6 +46,18 @@ const annoncementschema = new mongoose.Schema({
 
 const Announcement = mongoose.models.Announcement || mongoose.model("Announcement",annoncementschema);
 
+
+
+
+const busSchema = new mongoose.Schema({
+    providerId: {type: mongoose.Schema.Types.ObjectId, ref : "User", required: true},
+    from : String,
+    to : String,
+    startTime : string,
+    price : Number,
+    SeatsAvailable : Number,
+    createdAt : { type: Date ,},
+});
 const userSchema = new mongoose.Schema({
     username:{type:String},
     
