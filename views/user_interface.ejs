@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Interface</title>
+<<<<<<<< HEAD:views/user_interface.ejs
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="/main_home.css">
+========
+    <link rel="stylesheet" href="main_home.css" />
+>>>>>>>> ab3470bdd25e2b9a4f989305457b049eb5038aa8:public/user_interface.html
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  </head>
+  <style>
+    label{
+        color: black;
+    }
+
+    .navigation{
+        height: 150px;
+        width: 380px;
+    }
+
+    .b-t{
+        background-color: #d9e5d6;
+        color: black;
+        border: 2px solid rgba(0, 0, 0, 0.5);
+        margin: 5px;
+        width:300px;
+        height: 30px;
+        padding: 2px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    #tb-t{
+        margin: 0px 0px 0px 12.8px;
+    }
+    #date{
+        margin: 5px 0px 0px 8.8px;
+
+    }
+
+    button{
+        height: 30px;
+        width: 150px;
+        border-radius:5px;
+        margin:10px 0px 0px 25%;
+        background-color: bisque;
+        color: black;
+    }
+
+    .map-container {
+      border: 2px solid black;
+      position: absolute;
+      height: 630px;
+      width: 870px;
+      top:13%;
+      right: 1%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      
+    }
+
+    #navigation-cnt{
+        margin: 5% 0px 0px 1%;
+        /* border: 2px solid black; */
+        height: 26vh;
+        width:82.8vh;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px;
+        background-color: #Eddea4;
+        box-shadow: 0 4px 15px #11111a;
+    }
+    #park{
+     width: 180px;
+    }
+
+    #data-cnt{
+
+      margin: 1% 0px 0px 1%;
+      background-color: #Eddea4;
+      height: 58vh;
+      width: 40%;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px #11111a;
+
+    }
+
+    .data-box{
+      border-radius: 10px;
+      height: 250px;
+      width: 570px;
+      padding: 20px;
+    }
+
+    #to{
+      margin: 0px 0px 0px 18px;
+    }
+    .boxes{
+      border: 2px solid black;
+      border-radius: 5px;
+      margin: 3px;
+      height:45px;
+      width: 230px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    span{
+      color: black;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 700;
+    }
+
+    #inner {
+      flex: 1;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      /* allow scroll */
+      scrollbar-width: 0.5px; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+      height: 410px;
+    }
+
+.trp{
+  background-color: #f7a072;
+  height: 100px;
+  width: 570px;
+  margin: 4% 0px 0px 0px;
+  text-align: center;
+  font-weight: 600;
+  font-family: 'Times New Roman', Times, serif;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px #111111;
+}
+
+  </style>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+      <div id="logo">
+        <p>logo</p>
+        <img src="" alt="" />
+      </div>
+      <div id="section">
+        <ul>
+          <li>
+            <div>
+              <a href="/home">Home</a>
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Announcements
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Service
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              About
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Contact
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Help
+              <div class="bar"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div id="google_translate_element" class="multi_lang"></div>
+
+      <div class="account">
+        <i></i>
+        <p></p>
+    </div>
+    </div>
+
+    <!-- main containt -->
+
+    <div id="navigation-cnt">
+        <div class="navigation">
+      <form action="">
+
+        <label>From:</label>
+        <input type="text" placeholder="from" id="frominput"  class="b-t" />
+
+      <label id="to">To:</label>
+      <input type="text" placeholder="To" id="b-t"  class="b-t">
+
+      <label>Date:</label>
+      <input type="date" class="b-t" id="date">
+      <button id="routeBtn" type="button" style="background-color: #ff9b42; border: none; box-shadow: 0 4px 15px #11111a;">Go</button class="b-t">
+      </form>
+    </div>
+    </div>
+
+
+  <!-- linked container to main-cnt  -->
+
+    <div id="data-cnt" class="manage">
+      <div id="inner">
+      <div class="trp">Public</div>     <!-- public transport -->
+        <div class="data-box" id="boxA"> <!--box number one -->
+          <span>Self Drive</span>
+      <form action="">
+
+          <label id="prk">Parking No.:</label>
+          <select id="park"  class="b-t">
+              <option>Parking NO.</option>
+              <option>Parking NO.1</option>
+              <option>Parking NO.2</option>
+              <option>Parking NO.3</option>
+              <option>Parking NO.4</option>
+              <option>Parking NO.5</option>
+              <option>Parking NO.6</option>
+            </select>
+             <br>
+            <label for="VNP">Vehicle Registration number:</label>
+          <input type="text" placeholder="eg.MHXXXXXXXX" class="b-t" required maxlength="10"/>
+             <br>
+          <label for="image">Driving licence image:</label>
+          <input type="file" required class="b-t"/>
+          <br>
+          <label for="image">Vehicle image with number plate:</label>
+          <input type="file" required class="b-t" />
+      <button style="background-color: #ff9b42; border: none; box-shadow: 0 4px 15px #11111a;">Navigate</button class="b-t">
+      </form>
+    </div>
+
+    <div class="trp">Private Transport 1</div>
+    <div class="trp">Private Transport 2</div>
+    <div class="trp">Private Transport 3</div>
+    <div class="trp">Private Transport 4</div>
+    <div class="trp">Private Transport 5</div>
+    <div class="trp">Private Transport 6</div>
+    <div class="trp">Private Transport 7</div>
+    <div class="trp">Private Transport 8</div>
+  
+  </div>
+  </div>
+
+    <div class="map-container"><div id="map">Navigation Map</div></div>
+
+
+
+    <!-- chatbot code -->
+
+    <div id="chatbot-btn" class="chatbot-btn">
+      <i class="fas fa-robot"></i>
+    </div>
+
+    <div class="message" id="message">
+      <div class="msg-box">
+        <div class="chatbot"><p>welcome..!</p></div>
+      </div>
+      <div class="input"></div>
+      <input
+        type="text"
+        id="search"
+        placeholder="Ask freely, I am with you on this journey..."
+      />
+      <button id="enter">Send</button>
+    </div>
+
+    <!-- javascipt program -->
+
+    <script src="/js/main_home.js"></script>
+    <script>
+      var map = L.map('map').setView([0,0],13);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+        attribution: '&copy; OpenStreetmap contributors',
+        maxZoom: 18
+      }).addTo(map);
+
+      let userLatLng, userMarker, routeControl;
+
+      //live location 
+
+      navigator.geolocation.getCurrentPosition(function(pos){
+        userLatLng = [pos.coords.latitude,pos.coords.longitude];
+        userMarker = L.marker(userLatLng).addTo(map).bindPopup("Your Location");
+        map.setView(userLatLng,13);
+      });
+
+      document.getElementById("routeBtn").addEventListener("click",function(){
+        const fromin = document.getElementById("frominput").value.trim();
+        const fromto = document.getElementById("to").value;
+
+        if(!fromto) return alert("Please enter a Destination.");
+
+        const geocoder = L.Control.Geocoder.nominatim();
+
+        function geocodeInputs(callback) {
+          if (fromin) {
+            geocoder.geocode(fromin,function(results){
+              if(results.length === 0) return alert("From location not found");
+              const fromLatLng = results[0].center;
+              geocoder.geocode(fromto,function(results2){
+                if (results2.length === 0) return alert("To location not found");
+                const toLatLng = results2[0].center;
+                callback(fromLatLng,toLatLng);
+              });
+            });
+          }else {
+            if (!userLatLng) return alert("Current location not available yet.");
+            geocoder.geocode(fromto,function(results2){
+              if (results2.length === 0) return alert("To Location not found.");
+              const toLatLng = results2[0].center;
+              callback(userLatLng,toLatLng);
+            });
+          }
+        }
+
+        geocodeInputs(function(fromLatLng,toLatLng){
+          if(routeControl) map.removeControl(routeControl);
+
+          routeControl = L.Routing.control({
+            waypoints:[L.latLng(fromLatLng),L.latLng(toLatLng)],
+            routeWhileDragging: true
+          }).addTo(map);
+
+          map.fitBounds([fromLatLng,toLatLng]);
+        });
+      });
+      //Enter press
+      document.getElementById("fromInput").addEventListener("keypress",e => {if (e.key === "Enter") document.getElementById("routeBtn").click();});
+      document.getElementById("to").addEventListener("keypress", e => {if (e.key === "Enter") document.getElementById("routeBtn").click();});
+
+      // script for goole api translate 
+
+    </script>
+   <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        {pageLanguage: 'en'},
+        'google_translate_element'
+      );
+    }
+  </script>
+  <script type="text/javascript" 
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+  </script>
+  </body>
+</html>
