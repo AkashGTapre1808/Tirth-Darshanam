@@ -104,20 +104,17 @@ li:active {
   transition: transform 2s ease-in-out;
 }
 
-.multi_lang{
-margin: 2% 1% 0px 0px;
-
-}
-
-select{
-  border-radius: 10px;
+#mul_lang {
+  color: black;
   height: 25px;
-  width: 122px;
+  border-radius: 5px;
   background-color: transparent;
   border: 2px solid transparent;
   outline: none;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: 600;
+  font-size: small;
+  font-weight: 700;
+  margin: 16px 0 0 22px;
+  cursor: pointer;
 }
 
 select option {
