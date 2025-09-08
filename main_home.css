@@ -1,14 +1,14 @@
 * {
   margin: 0px;
   padding: 0px;
-  color: white;
+  color: black;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
 }
 
 body {
   font-family: Arial, sans-serif;
-  background-color: aquamarine;
+  background-color: #d9e5d6;
 }
 
 #login-box {
@@ -24,21 +24,29 @@ body {
 .box {
   height: 80px;
   width: 250px;
-  border: 2px solid rgb(8, 4, 247);
+  background-color: #ff9b42;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50px;
-  box-shadow: 0 4px 15px #1111111a;
+  box-shadow: 10px 10px 15px #000000;
+}
+
+.box:hover{
+  background-color: rgba(255,155,66, 0.6);  
+}
+
+.box:active{
+  background-color: transparent;
 }
 
 a {
   text-decoration: none;
-  color: aliceblue;
+  color: black;
 }
 
 .navbar {
-  background: aquamarine; /*linear-gradient(to right, #5c6bc0, #512da8)*/
+  background: #d9e5d6 ; /*linear-gradient(to right, #5c6bc0, #512da8)*/
   height: 80px;
   width: 1530px;
   display: flex;
@@ -84,7 +92,7 @@ li div {
 }
 
 li div:hover {
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid black;
   cursor: pointer;
 }
 
@@ -96,34 +104,20 @@ li:active {
   transition: transform 2s ease-in-out;
 }
 
-.account {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 50px;
-  gap: 0.2rem;
-  margin: 0px 0px 0px 190px;
-  border-radius: 50%;
+.multi_lang{
+margin: 2% 1% 0px 0px;
+
 }
-.account i {
-  font-size: 25px;
-}
-.account:active {
-  opacity: 50%;
-}
-#mul_lang {
-  color: #ffffff;
+
+select{
+  border-radius: 10px;
   height: 25px;
-  border-radius: 5px;
+  width: 122px;
   background-color: transparent;
   border: 2px solid transparent;
   outline: none;
-  font-size: small;
-  font-weight: 700;
-  margin: 16px 0 0 22px;
-  cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 600;
 }
 
 select option {
@@ -223,6 +217,7 @@ select option {
 
 #chatbot-btn i {
   color: #100f0f;
+  z-index:999;
 }
 
 #chatbot-btn:active {
@@ -270,28 +265,37 @@ select option {
 .chatbot {
   background-color: #333;
   width: 300px;
-  height: 20px;
   border-radius: 40px;
   border-top-left-radius: 0px;
-  margin: 20px 0px 0px 20px;
+  margin: 10px 0px 0px 20px;
   display: flex;
   justify-content: center;
+  text-overflow: wrap;
   align-items: center;
   box-shadow: 5px 4px 3px rgb(96, 94, 94);
+  color: aliceblue;
+  padding:10px;
+  word-wrap: break-word;   /* old standard */
+  overflow-wrap: anywhere; /* modern standard */
+  white-space: normal;     /* allow multi-line text */
 }
 
 .user-chat {
   background-color: #868585;
   width: 300px;
-  height: 20px;
   border-radius: 40px;
   border-top-right-radius: 0px;
-  margin: 20px 0px 0px 130px;
+  margin: 10px 0px 0px 110px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-overflow: wrap;
   box-shadow: 5px 4px 3px rgb(96, 94, 94);
+  color:aliceblue;
+  padding:10px;
+  word-wrap: break-word;   /* old standard */
+  overflow-wrap: anywhere; /* modern standard */
+  white-space: normal;     /* allow multi-line text */
 }
 
 #search {
@@ -312,11 +316,13 @@ select option {
   height: 40px;
   width: 100px;
   border-radius:20px;
-  background-color: #333;
+  background-color: #d3bebe;
   text-align: center;
   margin: 2px;
   padding: 2px;
   box-shadow: 1px 1px 2px 3px rgb(180, 178, 178);
+  outline: none;
+  border: 2px solid transparent;
 }
 
 #enter:active {
