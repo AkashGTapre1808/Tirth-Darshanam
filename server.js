@@ -51,7 +51,7 @@ const BusSchema = new mongoose.Schema({
     providerId: {type: mongoose.Schema.Types.ObjectId, ref : "User", required: true},
     from : String,
     to : String,
-    startTime : string,
+    startTime : String,
     price : Number,
     SeatsAvailable : Number,
     createdAt : { type: Date ,default: Date.now},
@@ -263,7 +263,6 @@ const otpStore = {}; // temporary OTP storage
 app.post("/register/send-otp", async (req, res) => {
     try {
         const { username, email, password, role, phone, dob, gender, manrole,subRole } = req.body;
-        if (!email || !password || !role) return res.status(400).send("Required fields missing!");
 
         // Check if user exists
         const existingUser = await User.findOne({ email });
@@ -361,7 +360,7 @@ app.post("/register/complete", async (req, res) => {
         res.send("Registered Successfully!");
     } catch (err) {
         console.error("Registration error:", err);
-        res.status(500).send("Registration failed: " + err.message);
+        res.status(500).send("Registration failed: Fill all the Fields!");
     }
 });
 
@@ -479,7 +478,8 @@ app.post("/serviceprovider/addbus",isloggedin, async(req,res) => {
 });
 
 app.post("/book/:busId",isloggedin, async(req,res) => {
-    const bus = await bus.findById(req.params.busId);
+    console.log("route hit");
+    const bus = await Bus.findById(req.params.busId);
     if (!bus || bus.SeatsAvailable <= 0) return res.send("Bus is full or not found");
 
     bus.SeatsAvailable -= 1;

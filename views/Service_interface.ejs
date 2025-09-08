@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driver home</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="/public/main_home.css" />
+    <link rel="stylesheet" href="/main_home.css" />
     <style>
 
       #businfo{
@@ -50,6 +50,11 @@
         display:flex;
         justify-content: center;
         align-items:center;
+      }
+
+      #map {
+        height: 100%;
+        width: 100%;
       }
 
       #times{
@@ -204,24 +209,23 @@
           <div id="shedule" class="busscheinf">
             <div id="times">
                <!-- stops information form -->
-              <form action="">
+              <form id="addBusForm" method="POST" action="/serviceprovider/addbus">
               <label>Boarding Location:</label>
-              <input type=" text" placeholder="Starting" class="Location"><br>
+              <input type="text" name="from"  placeholder="Starting" class="Location"><br>
               <label>Intermidiate Stops:</label>
               <input type="text" placeholder="Enter" class="Location"><br>
-            </form>
-            <form method="POST" action="/serviceprovider/addbus">
+            
               <label for="busshestart">Select Start time:</label>
-              <input type="time" required>
+              <input type="time" name="startTime" required>
               <label for="bussheend">Select End time:</label>
               <input type="time">
               <label>Set Prices:</label>
-              <input type="numeric" placeholder="set price" maxlength="5" required>
+              <input type="number" name="price" placeholder="set price" maxlength="5" required>
               <label>Show Remaining Seats:</label>
-              <input type="numeric" placeholder="Enter Remaining Seats" maxlength="2">
+              <input type="number" name="SeatsAvailable"  placeholder="Enter Remaining Seats" maxlength="2">
               <label for="">Select Destination:</label>
-              <input type="text" required>
-              <button style="background-color: #ff9b42;">Done</button>
+              <input type="text" name="to" required>
+              <button style="background-color: #ff9b42;" type="submit">Done</button>
             </form>
             </div>
           </div>
@@ -300,7 +304,6 @@
   </script>
   <script type="text/javascript" 
           src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-  </script>
-    
-  </body>
-  </html>
+  </script>    
+</body>
+</html>
