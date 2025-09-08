@@ -4,13 +4,71 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reset Password</title>
+    <style>
+
+      *{
+        padding:0px;
+        margin: 0px;
+      }
+
+      body{
+        display: flex;
+        justify-content: center;
+        background: #d9e5d6
+      }
+
+      #reset{
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        flex-direction: column;
+        width: 400px;
+        height: 350px;
+        margin: 10% 0px 0px 0px;
+        border-radius:20px ;
+        gap: 2%;
+      }
+
+      #text{
+        margin: 80px 0px 0px 0px;
+      }
+
+      input{
+        height:30px;
+        width: 150px;
+        padding: 3px;
+        border-radius: 10px;
+        outline: none;
+        border:2px solid transparent;
+        background-color: #e3d2d2;
+
+      }
+
+      button{
+        height: 40px;
+        width: 70px;
+        border-radius:10px;
+        outline: none;
+        border: 2px solid transparent;
+      }
+
+      button:active{
+        background-color: black;
+        color: aliceblue;
+      }
+
+      label{
+        font-weight: 700;
+
+
+      }
+
+    </style>
   </head>
   <body>
-    <div>
-      <nav id="f_Home">Home</nav>
-    </div>
-    <div>
-      <p>Choose Method to Reset Password</p>
+    
+    <div id="reset">
+      <label id="text"> Method to Reset Password</label>
       <!--action to send it to admin to be added later-->
       <form id="forgotpassform">
         <label for="Email">Email:</label>
@@ -37,6 +95,7 @@
         </div>
       </form>
     </div>
+    
     <script src="/js/forgotpass.js"></script>
   </body>
 </html>
