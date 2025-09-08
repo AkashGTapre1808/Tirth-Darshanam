@@ -210,24 +210,17 @@
               <label>Intermidiate Stops:</label>
               <input type="text" placeholder="Enter" class="Location"><br>
             </form>
-            <form action="">
+            <form method="POST" action="/serviceprovider/addbus">
               <label for="busshestart">Select Start time:</label>
-              <input type="time">
+              <input type="time" required>
               <label for="bussheend">Select End time:</label>
               <input type="time">
               <label>Set Prices:</label>
-              <input type="numeric" placeholder="set price" maxlength="5">
+              <input type="numeric" placeholder="set price" maxlength="5" required>
               <label>Show Remaining Seats:</label>
               <input type="numeric" placeholder="Enter Remaining Seats" maxlength="2">
               <label for="">Select Destination:</label>
-              <select name="" id="endpos" aria-placeholder="select">
-                <option value="">parking1</option>
-                <option value="">parking2</option>
-                <option value="">parking3</option>
-                <option value="">parking4</option>
-                <option value="">Bustand</option>
-                <option value="">Railway satation</option>
-              </select>
+              <input type="text" required>
               <button style="background-color: #ff9b42;">Done</button>
             </form>
             </div>
