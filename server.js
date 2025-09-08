@@ -47,17 +47,19 @@ const annoncementschema = new mongoose.Schema({
 const Announcement = mongoose.models.Announcement || mongoose.model("Announcement",annoncementschema);
 
 
-
-
-const busSchema = new mongoose.Schema({
+const BusSchema = new mongoose.Schema({
     providerId: {type: mongoose.Schema.Types.ObjectId, ref : "User", required: true},
     from : String,
     to : String,
     startTime : string,
     price : Number,
     SeatsAvailable : Number,
-    createdAt : { type: Date ,},
+    createdAt : { type: Date ,default: Date.now},
 });
+
+const Bus = mongoose.model("Bus",BusSchema);
+
+
 const userSchema = new mongoose.Schema({
     username:{type:String},
     
@@ -370,6 +372,7 @@ app.post("/register/complete", async (req, res) => {
 app.get("/",isloggedin,async(req,res) =>{
      
     const user = await User.findById(req.session.userId);
+    const buses = await Bus.find();
     
     if (!user){
         req.session.destroy();
@@ -379,9 +382,9 @@ app.get("/",isloggedin,async(req,res) =>{
     
     switch(user.role){
         case "user":
-            return res.render("user_interface",{user});
+            return res.render("user_interface",{user,buses});
         case "serviceprovider":
-            return res.render("Service_interface",{user});
+            return res.render("Service_interface",{user,buses});
         case "legal_officer":
             return res.render("planing_interface",{user});
         case "management":
@@ -462,6 +465,36 @@ io.on("connection", (socket) => {
         console.log("User Disconnected:", socket.id);
     });
     
+});
+
+//bus-----
+
+app.post("/serviceprovider/addbus",isloggedin, async(req,res) => {
+    const {from,to,startTime,price,SeatsAvailable} = req.body;
+    if(!from || !to || !startTime || !price || !SeatsAvailable){
+        return res.status(400).send("All Fields are required!");
+    }
+    await Bus.create({from,to,startTime,SeatsAvailable,price,providerId:req.session.userId});
+    res.render("Service_interface");
+});
+
+app.post("/book/:busId",isloggedin, async(req,res) => {
+    const bus = await bus.findById(req.params.busId);
+    if (!bus || bus.SeatsAvailable <= 0) return res.send("Bus is full or not found");
+
+    bus.SeatsAvailable -= 1;
+    await bus.save();
+
+    const user = await User.findById(req.session.userId);
+
+    await mailer.sendMail({
+        from: "Tirth Darshanam",
+        to: user.email,
+        subject: "Bus Booking confirmed!",
+        text: `You have booked a bus from ${bus.from} to ${bus.to} at ${bus.startTime}.`
+
+    });
+    res.send("Bus has been booked!, Check your email.");
 });
 
 app.get("/logout" , (req,res) => {
