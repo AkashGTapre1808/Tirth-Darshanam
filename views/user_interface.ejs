@@ -55,13 +55,14 @@
       border: 2px solid black;
       position: absolute;
       height: 630px;
-      width: 870px;
+      width: 860px;
       top:10%;
       right: 1%;
       display: flex;
       justify-content: center;
       flex-direction: column;
       align-items: center;
+      margin: 0px 0px 0px 0px;
     }
 
     #map {
@@ -102,9 +103,14 @@
 
     .data-box{
       border-radius: 10px;
-      height: 250px;
-      width: 570px;
+      height: 289px;
+      width: 560px;
       padding: 20px;
+      margin: 10px;
+      /* border: 2px solid black; */
+      margin: 10px 0px 0px 1%;
+      background-color: #EBEBEB;
+      box-shadow: 0px 4px 15px #11111a;
     }
 
     #to{
@@ -139,8 +145,8 @@
     }
 
 .trp{
-  background-color: #f7a072;
-  height: 100px;
+  background-color: #EBEBEB;
+  height: 145px;
   width: 570px;
   margin: 4% 0px 0px 0px;
   text-align: center;
@@ -148,7 +154,49 @@
   font-family: 'Times New Roman', Times, serif;
   border-radius: 10px;
   box-shadow: 0px 4px 10px #111111;
+  padding: 10px;
 }
+.t1{
+  background-color: #EBEBEB;
+  height: 85px;
+  width: 500px;
+  margin: 15px 0px 0px 25px;
+  padding: 5px;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content:center;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+.boardings{
+  width: 240px;
+  height: 20px;
+  /* border: 2px solid black; */
+  display: flex;
+  align-items: flex-start;
+  margin: 0px 0px 0px 10px;
+}
+.arrivals{
+  /* border: 2px solid black; */
+  display: flex;
+  align-items: flex-start;
+  margin: 0px 0px ;
+  width: 240px;
+  height: 20px;
+}
+#b1{
+  width: 20px;
+}
+.tprice{
+  margin: 0px 0px 0px 10px;
+}
+.bookbtn{
+  margin: 0px 10px;
+  background-color: #ff9b42;
+  border: none;
+  box-shadow: 0px 4px 10px #111111;
+}
+
 
   </style>
   <body>
@@ -231,7 +279,28 @@
 
     <div id="data-cnt" class="manage">
       <div id="inner">
-      <div class="trp">Public</div>     <!-- public transport -->
+      <!-- <div class="trp">Government Transports
+        <div class="t1" aria-placeholder="Boarding">
+        <div class="boardings">
+          <p>Boarding From: <span id="b1"></span></p>
+        </div>
+        <div class="arrivals">
+          <p>Arrival To: <span id="a1"></span></p>
+        </div>
+        <div class="boardings">At: 
+          <span id="b1t"></span> 
+        </div>
+        <div class="arrivals">At: 
+          <span id="a1t"></span>
+        </div>
+        <div class="tprice">Price: 
+          <span id="t1p"></span>
+        </div>
+        <div>
+          <button class="bookbtn">Book Ticket</button>
+        </div>
+      </div>
+      </div>     public transport -->
         <div class="data-box" id="boxA"> <!--box number one -->
           <span>Self Drive</span>
       <form action="">
@@ -259,14 +328,182 @@
       </form>
     </div>
 
-    <div class="trp">Private Transport 1</div>
-    <div class="trp">Private Transport 2</div>
-    <div class="trp">Private Transport 3</div>
-    <div class="trp">Private Transport 4</div>
-    <div class="trp">Private Transport 5</div>
-    <div class="trp">Private Transport 6</div>
-    <div class="trp">Private Transport 7</div>
-    <div class="trp">Private Transport 8</div>
+    <div class="trp">Private Transport 1
+      <div class="t1" aria-placeholder="Boarding">
+        <div class="boardings">
+          <p>Boarding From: <span id="b1"></span></p>
+        </div>
+        <div class="arrivals">
+          <p>Arrival To: <span id="a1"></span></p>
+        </div>
+        <div class="boardings">At: 
+          <span id="b1t"></span> 
+        </div>
+        <div class="arrivals">At: 
+          <span id="a1t"></span>
+        </div>
+        <div class="tprice">Price: 
+          <span id="t1p"></span>
+        </div>
+        <div>
+          <button class="bookbtn">Book Ticket</button>
+        </div>
+      </div>
+    </div>
+    <div class="trp">Private Transport 2
+      <div class="t1" aria-placeholder="Boarding">
+        <div class="boardings">
+          <p>Boarding From: <span id="b1"></span></p>
+        </div>
+        <div class="arrivals">
+          <p>Arrival To: <span id="a1"></span></p>
+        </div>
+        <div class="boardings">At: 
+          <span id="b1t"></span> 
+        </div>
+        <div class="arrivals">At: 
+          <span id="a1t"></span>
+        </div>
+        <div class="tprice">Price: 
+          <span id="t1p"></span>
+        </div>
+        <div>
+          <button class="bookbtn">Book Ticket</button>
+        </div>
+      </div>
+    </div>
+    <div class="trp">Private Transport 3
+      <div class="t1" aria-placeholder="Boarding">
+        <div class="boardings">
+          <p>Boarding From: <span id="b1"></span></p>
+        </div>
+        <div class="arrivals">
+          <p>Arrival To: <span id="a1"></span></p>
+        </div>
+        <div class="boardings">At: 
+          <span id="b1t"></span> 
+        </div>
+        <div class="arrivals">At: 
+          <span id="a1t"></span>
+        </div>
+        <div class="tprice">Price: 
+          <span id="t1p"></span>
+        </div>
+        <div>
+          <button class="bookbtn">Book Ticket</button>
+        </div>
+      </div>
+    </div>
+    <div class="trp">Private Transport 4
+      <div class="t1" aria-placeholder="Boarding">
+        <div class="boardings">
+          <p>Boarding From: <span id="b1"></span></p>
+        </div>
+        <div class="arrivals">
+          <p>Arrival To: <span id="a1"></span></p>
+        </div>
+        <div class="boardings">At: 
+          <span id="b1t"></span> 
+        </div>
+        <div class="arrivals">At: 
+          <span id="a1t"></span>
+        </div>
+        <div class="tprice">Price: 
+          <span id="t1p"></span>
+        </div>
+        <div>
+          <button class="bookbtn">Book Ticket</button>
+        </div>
+      </div>
+    </div>
+    <div class="trp">Private Transport 5
+      <div class="t1" aria-placeholder="Boarding">
+        <div class="boardings">
+          <p>Boarding From: <span id="b1"></span></p>
+        </div>
+        <div class="arrivals">
+          <p>Arrival To: <span id="a1"></span></p>
+        </div>
+        <div class="boardings">At: 
+          <span id="b1t"></span> 
+        </div>
+        <div class="arrivals">At: 
+          <span id="a1t"></span>
+        </div>
+        <div class="tprice">Price: 
+          <span id="t1p"></span>
+        </div>
+        <div>
+          <button class="bookbtn">Book Ticket</button>
+        </div>
+      </div>
+    </div>
+    <div class="trp">Private Transport 6
+      <div class="t1" aria-placeholder="Boarding">
+        <div class="boardings">
+          <p>Boarding From: <span id="b1"></span></p>
+        </div>
+        <div class="arrivals">
+          <p>Arrival To: <span id="a1"></span></p>
+        </div>
+        <div class="boardings">At: 
+          <span id="b1t"></span> 
+        </div>
+        <div class="arrivals">At: 
+          <span id="a1t"></span>
+        </div>
+        <div class="tprice">Price: 
+          <span id="t1p"></span>
+        </div>
+        <div>
+          <button class="bookbtn">Book Ticket</button>
+        </div>
+      </div>
+    </div>
+    <div class="trp">Private Transport 7
+      <div class="t1" aria-placeholder="Boarding">
+        <div class="boardings">
+          <p>Boarding From: <span id="b1"></span></p>
+        </div>
+        <div class="arrivals">
+          <p>Arrival To: <span id="a1"></span></p>
+        </div>
+        <div class="boardings">At: 
+          <span id="b1t"></span> 
+        </div>
+        <div class="arrivals">At: 
+          <span id="a1t"></span>
+        </div>
+        <div class="tprice">Price: 
+          <span id="t1p"></span>
+        </div>
+        <div>
+          <button class="bookbtn">Book Ticket</button>
+        </div>
+      </div>
+    </div>
+    <div class="trp">Private Transport 8
+      <div class="t1" aria-placeholder="Boarding">
+        <div class="boardings">
+          <p>Boarding From: <span id="b1"></span></p>
+        </div>
+        <div class="arrivals">
+          <p>Arrival To: <span id="a1"></span></p>
+        </div>
+        <div class="boardings">At: 
+          <span id="b1t"></span> 
+        </div>
+        <div class="arrivals">At: 
+          <span id="a1t"></span>
+        </div>
+        <div class="tprice">Price: 
+          <span id="t1p"></span>
+        </div>
+        <div>
+          <button class="bookbtn">Book Ticket</button>
+        </div>
+      </div>
+    </div>
   
   </div>
   </div>
