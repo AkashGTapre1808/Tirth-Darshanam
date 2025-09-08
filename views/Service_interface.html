@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driver home</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="main_home.css" />
+    <link rel="stylesheet" href="/public/main_home.css" />
     <style>
 
       #businfo{
@@ -52,11 +52,6 @@
         align-items:center;
       }
 
-      #map {
-        height: 100%;
-        width: 100%;
-      }
-
       #times{
         width: 250px;
         margin: 0px 110px 0px 0px;
@@ -83,7 +78,7 @@
         margin: 0px 0px 0px 0px;
       }
 
-      select{
+       #endpos,#parking{
         width:200px;
         height: 30px;
         border-radius: 20px;
@@ -180,13 +175,7 @@
         </ul>
       </div>
 
-      <select name="lang" id="mul_lang">
-        <option selected="eng">ENGLISH</option>
-        <option value="hin">HINDI</option>
-        <option value="mar">MARATHI</option>
-        <option value="guj">GUJATI</option>
-        <option value="sans">SANSKRIT</option>
-      </select>
+      <div id="google_translate_element" class="multi_lang"></div>
 
       <a class="account" href="#">
         <i></i>
@@ -308,6 +297,17 @@
         alert("Geollocation is not supported by this browser.");
       }
     </script>
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        {pageLanguage: 'en'},
+        'google_translate_element'
+      );
+    }
+  </script>
+  <script type="text/javascript" 
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+  </script>
     
   </body>
   </html>
