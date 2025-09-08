@@ -9,7 +9,7 @@
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <link rel="stylesheet" href="/main_home.css">
-    <link rel="stylesheet" href="/main_home.css" />
+    <link rel="stylesheet" href="/public/main_home.css" />
   </head>
   <style>
     label{
@@ -182,32 +182,18 @@
   margin: 0px 0px ;
   width: 240px;
   height: 20px;
-  border-radius: 5px;
 }
 #b1{
   width: 20px;
 }
 .tprice{
-  margin: 0px 0px 0px 0px;
-  /* border: solid black 2px; */
-  width: 150px;
-  display: flex;
-  align-items: flex-start;
-  margin: 0px 0px 0px 50px;
-  background-color: #ccc;
-  border-radius: 5px;
-  padding: 10px ;
-
+  margin: 0px 0px 0px 10px;
 }
 .bookbtn{
+  margin: 0px 10px;
   background-color: #ff9b42;
   border: none;
-  width: 100px;
   box-shadow: 0px 4px 10px #111111;
-}
-.avaseats{
-  /* border: solid black 2px; */
-  margin: 0px 0px 0px 1%;
 }
 
 
@@ -342,6 +328,33 @@
     </div>
 
     <div class="trp">Private Transport 1
+
+      <div class="t1" aria-placeholder="Boarding">
+        <div class="boardings">
+          <p>Boarding From:<span id="b1"></span></p>
+        </div>
+        <div class="arrivals">
+          <p>Arrival To:<span id="a1"> </span></p>
+        </div>
+        <div class="boardings">At:
+          <span id="b1t"></span> 
+        </div>
+        <div class="arrivals">At: 
+          <span id="a1t"></span>
+        </div>
+        <div class="arrivals">
+          <P>Available Seats: <span id="aseat1"></span></P>
+        </div>
+        <div class="tprice">Price:
+          <span id="t1p"></span>
+        </div>
+        <div>
+          <button class="bookbtn">Book Ticket</button>
+        </div>
+      </div>
+
+    </div>
+    <div class="trp">Private Transport 2
       <div class="t1" aria-placeholder="Boarding">
         <div class="boardings">
           <p>Boarding From: <span id="b1"></span></p>
@@ -355,7 +368,7 @@
         <div class="arrivals">At: 
           <span id="a1t"></span>
         </div>
-        <div class="avaseats">
+        <div class="arrivals">
           <P>Available Seats: <span id="aseat1"></span></P>
         </div>
         <div class="tprice">Price: 
@@ -366,50 +379,25 @@
         </div>
       </div>
     </div>
-    <div class="trp">Private Transport 2
-      <div class="t1" aria-placeholder="Boarding">
-        <div class="boardings">
-          <p>Boarding From: <span id="b2"></span></p>
-        </div>
-        <div class="arrivals">
-          <p>Arrival To: <span id="a2"></span></p>
-        </div>
-        <div class="boardings">At: 
-          <span id="b2t"></span> 
-        </div>
-        <div class="arrivals">At: 
-          <span id="a2t"></span>
-        </div>
-        <div class="avaseats">
-          <P>Available Seats: <span id="aseat2"></span></P>
-        </div>
-        <div class="tprice">Price: 
-          <span id="t2p"></span>
-        </div>
-        <div>
-          <button class="bookbtn">Book Ticket</button>
-        </div>
-      </div>
-    </div>
     <div class="trp">Private Transport 3
       <div class="t1" aria-placeholder="Boarding">
         <div class="boardings">
-          <p>Boarding From: <span id="b3"></span></p>
+          <p>Boarding From: <span id="b1"></span></p>
         </div>
         <div class="arrivals">
-          <p>Arrival To: <span id="a3"></span></p>
+          <p>Arrival To: <span id="a1"></span></p>
         </div>
         <div class="boardings">At: 
-          <span id="b3t"></span> 
+          <span id="b1t"></span> 
         </div>
         <div class="arrivals">At: 
-          <span id="a3t"></span>
+          <span id="a1t"></span>
         </div>
-        <div class="avaseats">
-          <P>Available Seats: <span id="aseat3"></span></P>
+        <div class="arrivals">
+          <P>Available Seats: <span id="aseat1"></span></P>
         </div>
         <div class="tprice">Price: 
-          <span id="t3p"></span>
+          <span id="t1p"></span>
         </div>
         <div>
           <button class="bookbtn">Book Ticket</button>
@@ -419,22 +407,22 @@
     <div class="trp">Private Transport 4
       <div class="t1" aria-placeholder="Boarding">
         <div class="boardings">
-          <p>Boarding From: <span id="b4"></span></p>
+          <p>Boarding From: <span id="b1"></span></p>
         </div>
         <div class="arrivals">
-          <p>Arrival To: <span id="a4"></span></p>
+          <p>Arrival To: <span id="a1"></span></p>
         </div>
         <div class="boardings">At: 
-          <span id="b4t"></span> 
+          <span id="b1t"></span> 
         </div>
         <div class="arrivals">At: 
-          <span id="a4t"></span>
+          <span id="a1t"></span>
         </div>
-        <div class="avaseats">
-          <P>Available Seats: <span id="aseat4"></span></P>
+        <div class="arrivals">
+          <P>Available Seats: <span id="aseat1"></span></P>
         </div>
         <div class="tprice">Price: 
-          <span id="t4p"></span>
+          <span id="t1p"></span>
         </div>
         <div>
           <button class="bookbtn">Book Ticket</button>
@@ -444,22 +432,22 @@
     <div class="trp">Private Transport 5
       <div class="t1" aria-placeholder="Boarding">
         <div class="boardings">
-          <p>Boarding From: <span id="b5"></span></p>
+          <p>Boarding From: <span id="b1"></span></p>
         </div>
         <div class="arrivals">
-          <p>Arrival To: <span id="a5"></span></p>
+          <p>Arrival To: <span id="a1"></span></p>
         </div>
         <div class="boardings">At: 
-          <span id="b5t"></span> 
+          <span id="b1t"></span> 
         </div>
         <div class="arrivals">At: 
-          <span id="a5t"></span>
+          <span id="a1t"></span>
         </div>
-        <div class="avaseats">
+        <div class="arrivals">
           <P>Available Seats: <span id="aseat1"></span></P>
         </div>
         <div class="tprice">Price: 
-          <span id="t5p"></span>
+          <span id="t1p"></span>
         </div>
         <div>
           <button class="bookbtn">Book Ticket</button>
@@ -469,22 +457,22 @@
     <div class="trp">Private Transport 6
       <div class="t1" aria-placeholder="Boarding">
         <div class="boardings">
-          <p>Boarding From: <span id="b6"></span></p>
+          <p>Boarding From: <span id="b1"></span></p>
         </div>
         <div class="arrivals">
-          <p>Arrival To: <span id="a6"></span></p>
+          <p>Arrival To: <span id="a1"></span></p>
         </div>
         <div class="boardings">At: 
-          <span id="b6t"></span> 
+          <span id="b1t"></span> 
         </div>
         <div class="arrivals">At: 
-          <span id="a6t"></span>
+          <span id="a1t"></span>
         </div>
-         <div class="avaseats">
-          <P>Available Seats: <span id="aseat6"></span></P>
+         <div class="arrivals">
+          <P>Available Seats: <span id="aseat1"></span></P>
         </div>
         <div class="tprice">Price: 
-          <span id="t6p"></span>
+          <span id="t1p"></span>
         </div>
         <div>
           <button class="bookbtn">Book Ticket</button>
@@ -494,22 +482,22 @@
     <div class="trp">Private Transport 7
       <div class="t1" aria-placeholder="Boarding">
         <div class="boardings">
-          <p>Boarding From: <span id="b7"></span></p>
+          <p>Boarding From: <span id="b1"></span></p>
         </div>
         <div class="arrivals">
-          <p>Arrival To: <span id="a7"></span></p>
+          <p>Arrival To: <span id="a1"></span></p>
         </div>
         <div class="boardings">At: 
-          <span id="b7t"></span> 
+          <span id="b1t"></span> 
         </div>
         <div class="arrivals">At: 
-          <span id="a7t"></span>
+          <span id="a1t"></span>
         </div>
-        <div class="avaseats">
+        <div class="arrivals">
           <P>Available Seats: <span id="aseat1"></span></P>
         </div>
         <div class="tprice">Price: 
-          <span id="t7p"></span>
+          <span id="t1p"></span>
         </div>
         <div>
           <button class="bookbtn">Book Ticket</button>
@@ -519,22 +507,22 @@
     <div class="trp">Private Transport 8
       <div class="t1" aria-placeholder="Boarding">
         <div class="boardings">
-          <p>Boarding From: <span id="b8"></span></p>
+          <p>Boarding From: <span id="b1"></span></p>
         </div>
         <div class="arrivals">
-          <p>Arrival To: <span id="a8"></span></p>
+          <p>Arrival To: <span id="a1"></span></p>
         </div>
         <div class="boardings">At: 
-          <span id="b8t"></span> 
+          <span id="b1t"></span> 
         </div>
         <div class="arrivals">At: 
-          <span id="a8t"></span>
+          <span id="a1t"></span>
         </div>
-         <div class="avaseats">
+         <div class="arrivals">
           <P>Available Seats: <span id="aseat1"></span></P>
         </div>
         <div class="tprice">Price: 
-          <span id="t8p"></span>
+          <span id="t1p"></span>
         </div>
         <div>
           <button class="bookbtn">Book Ticket</button>
