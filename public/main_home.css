@@ -60,7 +60,6 @@ a {
 }
 
 #logo {
-  background-color: red;
   border-radius: 50%;
   height: 55px;
   width: 55px;
@@ -69,6 +68,7 @@ a {
   align-items: center;
   flex-shrink: 0;
   cursor: pointer;
+  margin:2.5% 0px 0px 2%;
 }
 
 #section ul {
