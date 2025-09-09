@@ -365,7 +365,18 @@ app.post("/register/complete", async (req, res) => {
 });
 
 
-
+app.get("/announce", isloggedin, async (req, res) => {
+    try {
+        console.log("Fetching announcements...");
+        const announcements = await Announcement.find()
+        .maxTimeMS(5000);
+        console.log("Announcements fetched:", announcements);
+        res.render("announcements", { announcements });
+    } catch (err) {
+        console.error("Error fetching announcements:", err);
+        res.render("announcements", { announcements: [] }); 
+    }
+});
 
 
 app.get("/",isloggedin,async(req,res) =>{

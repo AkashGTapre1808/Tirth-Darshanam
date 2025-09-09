@@ -1,5 +1,13 @@
+<style>
+    
+</style>
+
 <div id="alertsContainer">
+  <% if (announcements && announcements.length) { %>
     <% announcements.forEach(a => { %>
-    <div><%= a.author %> : <%= a.message %></div>
-<% }) %>
+      <div><%= a.author %> : <%= a.message %></div>
+    <% }) %>
+  <% } else { %>
+    <div>No announcements yet.</div>
+  <% } %>
 </div>
