@@ -48,9 +48,9 @@ let prompt = document.querySelector("#search");
       let optionsDiv = document.createElement("div");
       optionsDiv.classList.add("options");
       optionsDiv.innerHTML = `
-        <button class="chatbot" onclick="choose('How to register?')">How to register?</button>
-        <button class="chatbot" onclick="choose('How to login?')">How to login?</button>
-        <button class="chatbot" onclick="choose('Forgot password?')">Forgot password?</button>
+        <button class="chatbot" onclick="choose('How to book a ticket?')">How to book a ticket?</button>
+        <button class="chatbot" onclick="choose('How to navigat route?')">How to navigate route?</button>
+        <button class="chatbot" onclick="choose('How to get Alerts and Notifications?')">How to get Alerts and Notifications?</button>
         <button class="chatbot" onclick="choose('Contact support')">Contact support</button>
         <button class="chatbot" onclick="choose('Exit chat')">Exit chat</button>
       `;
@@ -64,17 +64,17 @@ let prompt = document.querySelector("#search");
 
       let botMsg = "";
       switch (option) {
-        case "How to register?":
-          botMsg = "👉 Go to the Register page, fill in your details, and click Submit.";
+        case "How to book a ticket?":
+          botMsg = "👉 Login using your email id and password, fill your journey details, choose appropriate vehicles and click on Book!";
           break;
-        case "How to login?":
-          botMsg = "👉 Enter your email and password on the Login page.";
+        case "How to navigate route?":
+          botMsg = "👉 Login using your email-id and password, fill your journey details and you will see route on navigation map aside.";
           break;
-        case "Forgot password?":
-          botMsg = "👉 Click on 'Forgot Password' and follow the steps.";
+        case "How to get Alerts and Notifications?":
+          botMsg = "👉 To get Alerts and Notifications, open the announcement page and refresh it.";
           break;
         case "Contact support":
-          botMsg = "👉 You can email us at support@example.com 📧";
+          botMsg = "👉 You can email us at tirth-darshanam@gmail.com 📧";
           break;
         case "Exit chat":
           botMsg = "👋 Thank you! Have a great day!";
