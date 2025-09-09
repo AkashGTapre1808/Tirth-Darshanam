@@ -51,6 +51,8 @@ let prompt = document.querySelector("#search");
         <button class="chatbot" onclick="choose('How to book a ticket?')">How to book a ticket?</button>
         <button class="chatbot" onclick="choose('How to navigat route?')">How to navigate route?</button>
         <button class="chatbot" onclick="choose('How to get Alerts and Notifications?')">How to get Alerts and Notifications?</button>
+        <button class="chatbot" onclick="choose('How to get my Parking spot?')">How to get my Parking spot?</button>
+        <button class="chatbot" onclick="choose('When Should I request for Parking spot?')">When Should I request for Parking spot?</button>
         <button class="chatbot" onclick="choose('Contact support')">Contact support</button>
         <button class="chatbot" onclick="choose('Exit chat')">Exit chat</button>
       `;
@@ -73,6 +75,9 @@ let prompt = document.querySelector("#search");
         case "How to get Alerts and Notifications?":
           botMsg = "👉 To get Alerts and Notifications, open the announcement page and refresh it.";
           break;
+        case "How to get my Parking spot?":
+          botMsg = "👉 Go to park your vehicle section, select the nearest parking location to you and then click on `get parking spot.`";
+        break;
         case "Contact support":
           botMsg = "👉 You can email us at tirth-darshanam@gmail.com 📧";
           break;
