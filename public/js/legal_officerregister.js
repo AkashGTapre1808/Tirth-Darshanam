@@ -83,7 +83,8 @@ signupbtn.addEventListener("click", async (e) => {
     otp: document.getElementById("otpinput").value
     };
 
-    
+    console.log("Phone from form:", form.phone.value);
+
 
     try {
         const res = await fetch("/register/complete", {

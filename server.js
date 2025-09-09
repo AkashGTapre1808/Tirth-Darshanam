@@ -81,7 +81,7 @@ const userSchema = new mongoose.Schema({
 
     manrole : {type:String},
     
-    phone:{type:String, required: true},
+    phone:{type:String},
 
     vehnum : {type:String},
 
@@ -274,7 +274,7 @@ app.post("/register/send-otp", async (req, res) => {
         // Save OTP with data
         otpStore[email] = {
             otp,
-            data: { username, email, password, role, phone, dob, gender, manrole,subRole },
+            data: { username, email, password,phone, role,dob, gender, manrole,subRole },
             otpExpires: Date.now() + 2 * 60 * 1000, // 2 minutes
             verified: false
         };
@@ -333,12 +333,12 @@ app.post("/register/complete", async (req, res) => {
         // Build user object
         const newUserData = {
             username: data.username,
-            email: data.email,
-            password: data.password,
+            email: data.email || req.body.email,
+            password: data.password || req.body.password,
             role: data.role,
-            phone: data.phone,
-            dob: data.dob,
-            gender: data.gender,
+            phone: data.phone || req.body.phone,
+            dob: data.dob || req.body.dob,
+            gender: data.gender || req.body.gender,
         };
 
         // Role fields
@@ -360,7 +360,7 @@ app.post("/register/complete", async (req, res) => {
         res.send("Registered Successfully!");
     } catch (err) {
         console.error("Registration error:", err);
-        res.status(500).send("Registration failed: Fill all the Fields!");
+        res.status(500).send("Registration failed:" + err);
     }
 });
 

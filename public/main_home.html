@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Transport & Slider</title>
     <link rel="stylesheet" href="main_home.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+
   </head>
   <body>
     <!-- Navbar -->
@@ -54,16 +59,12 @@
         </ul>
       </div>
 
-      <select name="lang" id="mul_lang">
-        <option selected="eng">ENGLISH</option>
-        <option value="hin">HINDI</option>
-        <option value="mar">MARATHI</option>
-        <option value="guj">GUJATI</option>
-        <option value="sans">SANSKRIT</option>
-      </select>
-      <a class="account" href="#">
+      <div id="google_translate_element" class="multi_lang"></div>
+
+      <div class="account">
         <i></i>
         <p></p>
+    </div>
 
     </div>
 
@@ -97,19 +98,20 @@
           </p>
         </div>
         
+<!-- chatbot code -->
 
-    <div id="chatbot-btn" class="chatbot-btn">
+     <div id="chatbot-btn" class="chatbot-btn">
       <i class="fas fa-robot"></i>
     </div>
 
     
     <div class="message" id="message">
-      <div class="chatbot"><p>Lorem ipsum dolor sit amet.</p></div>
-      <div class="user-chat"><p>Lorem ipsum dolor sit amet.</p></div>
+      <div class="msg-box" >
+        <div class="chatbot">Hello! Type something to start the chat.</div>
+      </div>
       <div class="input"></div>
       <input type="text" id="search" placeholder="Ask freely, I am with you on this journey...">
-      <button id="enter">^</button>
-      <button id="enter">+</button>
+      <button id="enter">Send</button>
     </div>
 
     <!-- javascipt program -->
@@ -123,6 +125,17 @@
         });
       });
     </script>
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        {pageLanguage: 'en'},
+        'google_translate_element'
+      );
+    }
+  </script>
+  <script type="text/javascript" 
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+  </script>
  
   </body>
 </html>
