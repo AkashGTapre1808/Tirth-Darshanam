@@ -1,8 +1,17 @@
-<style>
-    
+<style> 
+.annou{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background-color: bisque;
+  border-radius: 50px;
+  font-size: larger;
+  flex-wrap: wrap;
+} 
 </style>
 
-<div id="alertsContainer">
+<div class="annou" id="alertsContainer">
   <% if (announcements && announcements.length) { %>
     <% announcements.forEach(a => { %>
       <div><%= a.author %> : <%= a.message %></div>

@@ -328,3 +328,10 @@ select option {
 #enter:active {
   opacity: 60%;
 }
+.slogan{
+  display: flex;
+  justify-content: center;
+  margin: 40px;
+  width: 100vw;
+  /* border: solid black 2px; */
+}
