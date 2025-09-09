@@ -54,7 +54,7 @@
       position: absolute;
       height: 630px;
       width: 860px;
-      top:10%;
+      top:1%;
       right: 1%;
       display: flex;
       justify-content: center;
@@ -143,15 +143,12 @@
     }
 
 .trp{
-  background-color: #EBEBEB;
   height: 145px;
   width: 570px;
   margin: 4% 0px 0px 0px;
   text-align: center;
   font-weight: 600;
   font-family: 'Times New Roman', Times, serif;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px #111111;
   padding: 10px;
 }
 .t1{
@@ -192,7 +189,11 @@
   margin: 0px 10px;
   background-color: #ff9b42;
   border: none;
+  width: 100px;
   box-shadow: 0px 4px 10px #111111;
+}
+.avaseats{
+  margin: 0px 0px 0px 10px;
 }
 
 
@@ -343,7 +344,7 @@
         <div class="arrivals">At: 
           <span id="a1t"></span>
         </div>
-        <div class="arrivals">
+        <div class="avaseats">
           <P>Available Seats: <span id="aseat1"><%= bus.SeatsAvailable %></span></P>
         </div>
         <div class="tprice">Price:
