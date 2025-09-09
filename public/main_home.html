@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transport & Slider</title>
+    <link rel="stylesheet" href="main_home.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+      <div id="logo">
+        <p>logo</p>
+        <img src="" alt="" />
+      </div>
+      <div id="section">
+        <ul>
+          <li>
+            <div>
+             <a href="/home"> Home </a>
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Announcements
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Service
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              About
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Contact
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Help
+              <div class="bar"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div id="google_translate_element" class="multi_lang"></div>
+
+      <div class="account">
+        <i></i>
+        <p></p>
+    </div>
+
+    </div>
+
+    <!--  hero section slider slides -->
+    <div class="slider-container">
+      <div class="slider" id="slider">
+        <div class="slide" style="background-color:  #d9e5d6">
+          <div id="login-box">
+
+            <div class="box" data-role="user" href="/login/user">USER LOGIN</div>
+            <div class="box" data-role="serviceprovider" href="/login/serviceprovider">SERVICE PROVIDER</div>
+            <div class="box" data-role="legal_officer" href="/login/legal_officer">LEGAL ATHOURITIES</div>
+            <div class="box" data-role="management" href="/login/management">PLANIG & MANAGEMENT</div>
+
+          </div>
+          <h1>Title Number 1</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem labore
+            maxime quibusdam fuga consequatur culpa earum reiciendis eos?
+            Quisquam necessitatibus commodi corporis? Assumenda quas et animi
+            doloremque eos est odio. Nemo soluta eos assumenda, veritatis nihil,
+            debitis aut ipsum officia reprehenderit facilis est unde, ab totam.
+            Quod repellat amet, modi, beatae iusto sit quia itaque, eligendi
+            nostrum officiis laborum quas. Suscipit, quod reiciendis? Odio,
+            possimus? Distinctio, ex! Nihil quisquam possimus exercitationem
+            officia sint tempora minus, dolorum aspernatur dolores, unde ea
+            commodi esse eaque qui harum maiores nam, voluptatum cupiditate
+            dolore! Ducimus error illo est ex vitae incidunt repellat. Fugiat
+            libero ratione cupiditate facere quaerat dolorum voluptatum,
+            temporibus fugit odit ut beatae earum, commodi nulla omnis dicta
+          </p>
+        </div>
+        
+<!-- chatbot code -->
+
+     <div id="chatbot-btn" class="chatbot-btn">
+      <i class="fas fa-robot"></i>
+    </div>
+
+    
+    <div class="message" id="message">
+      <div class="msg-box" >
+        <div class="chatbot">Hello! Type something to start the chat.</div>
+      </div>
+      <div class="input"></div>
+      <input type="text" id="search" placeholder="Ask freely, I am with you on this journey...">
+      <button id="enter">Send</button>
+    </div>
+
+    <!-- javascipt program -->
+      
+    <script src="/js/main_home.js"></script>
+    <script>
+      document.querySelectorAll(".box").forEach(box => {
+        box.addEventListener("click",() => {
+          const role = box.getAttribute("data-role");
+          window.location.href = `/login/${role}`;
+        });
+      });
+    </script>
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        {pageLanguage: 'en'},
+        'google_translate_element'
+      );
+    }
+  </script>
+  <script type="text/javascript" 
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+  </script>
+ 
+  </body>
+</html>

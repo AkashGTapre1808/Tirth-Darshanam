@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Legal & Management</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="/main_home.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  </head>
+  <style>
+    .val {
+      font-weight: 800;
+      font-size: larger;
+      color: black;
+      font-family: "Times New Roman", Times, serif;
+    }
+
+    .map-container {
+      border: 2px solid black;
+      position: absolute;
+      height: 500px;
+      width: 800px;
+      /* border-radius: 50px; */
+      top: 20%;
+      right: 5%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+
+    .data {
+      position: absolute;
+      height: 500px;
+      width: 500px;
+      border-radius: 50px;
+      top: 20%;
+      left: 5%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      background-color: #EDDEA4;
+      box-shadow: 0 4px 10px #1111111a;
+      
+    }
+
+    .graph {
+      position: relative;
+      width: 400px;
+      height: 35px;
+      border: 2px solid rgba(0,0,0,0.3);
+      margin: 25px;
+      border-radius: 5px;
+    }
+
+    #wid {
+      background-color: #0fa3b1;
+      height: 31.8px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .bk-color-1 {
+      width: 330px;
+    }
+
+    .bk-color-2 {
+      width: 150px;
+    }
+
+    .bk-color-3 {
+      width: 100px;
+    }
+
+    .bk-color-4 {
+      width: 250px;
+    }
+
+    .bk-color-5 {
+      width: 300px;
+    }
+
+    .crowd {
+      box-shadow: 0 4px 15px #1111111a;
+      background-color: #EDDEA4;
+      position: absolute;
+      height: 600px;
+      width: 500px;
+      border-radius: 50px;
+      top: 100%;
+      left: 5%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 2%;
+    }
+
+    .manage {
+      box-shadow: 0 10px 15px #1111111a;
+      background-color: #EDDEA4;
+      position: absolute;
+      height: 290px;
+      width: 800px;
+      border-radius: 50px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #team {
+      top: 100%;
+      right: 5%;
+    }
+
+    #parking-data {
+      top: 140%;
+      right: 5%;
+    }
+
+    span {
+      color: black;
+      font-weight: 700;
+      font-family: "Times New Roman", Times, serif;
+      margin: 0px 0px 20px 0px;
+    }
+
+    label,
+    button {
+      color: black;
+    }
+
+    .station {
+      padding: 10px;
+      box-shadow: 0 4px 10px #11111a;
+      border-radius: 10px;
+      height: 100px;
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #f7a072;
+    }
+
+    input {
+      color: black;
+      background-color: antiquewhite;
+      width: 150px;
+      padding: 5px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .done {
+      height: 30px;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: #ff9b42;
+      border: none;
+      box-shadow: 0 4px 10px #000000;
+    }
+
+    .inner {
+      flex: 1;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      /* allow scroll */
+      scrollbar-width: 0.5px; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+    }
+
+    .alerts{
+      height: 300px;
+      width: 450px;
+      margin: 0px 0px 0px 0px;
+      /* border: 2px solid black; */
+    
+    }
+
+    .send-alt{
+
+      height: 40px;
+      width: 100px;
+      border-radius: 10px;
+      background-color: #ff9b42;
+      box-shadow: 0 4px 10px #000000;
+
+
+    }
+
+    #alt{
+      height: 250px;
+      width: 450px;
+      color: black;
+      background-color: transparent;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 700;
+      font-size: 15px;
+      /* position: fixed; */
+    }
+
+    .mng-shuttel{
+      /* border: 2px solid black; */
+      border-radius: 10px;
+      height: 150px;
+      width: 450px;
+      margin: 10% 0px 0px 0px;
+      background-color: #EDDEA4;
+      padding: 20px ;
+    }
+
+  </style>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+      <div id="logo">
+        <p>logo</p>
+        <img src="" alt="" />
+      </div>
+      <div id="section">
+        <ul>
+          <li>
+            <div>
+              <a href="/home">Home</a>
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Announcements
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Service
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              About
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Contact
+              <div class="bar"></div>
+            </div>
+          </li>
+          <li>
+            <div>
+              Help
+              <div class="bar"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <select name="lang" id="mul_lang">
+        <option selected="eng">ENGLISH</option>
+        <option value="hin">HINDI</option>
+        <option value="mar">MARATHI</option>
+        <option value="guj">GUJATI</option>
+        <option value="sans">SANSKRIT</option>
+      </select>
+
+      <a class="account" href="#">
+        <i></i>
+        <p></p>
+
+        <!-- main containt -->
+      </a>
+    </div>
+
+    <!-- graph design -->
+
+    <div class="data">
+      <label class="val">Region Wise Crowd Density</label>
+
+      <div class="graph">
+        <div id="wid" class="bk-color-1"><span>Ghat No.1</span></div>
+      </div>
+
+      <div class="graph">
+        <div id="wid" class="bk-color-2"><span>Ghat No.2</span></div>
+      </div>
+
+      <div class="graph">
+        <div id="wid" class="bk-color-3"><span>Ghat No.3</span></div>
+      </div>
+
+      <div class="graph">
+        <div id="wid" class="bk-color-4"><span>Ghat No.4</span></div>
+      </div>
+
+      <div class="graph">
+        <div id="wid" class="bk-color-5"><span>Ghat No.5</span></div>
+      </div>
+    </div>
+
+    <!-- map container -->
+
+    <div class="map-container"><div id="map">Density Map</div></div>
+
+    <!-- Shuttel manege & alert send option -->
+
+    <div class="crowd">
+      <span>Shuttel manage</span>
+      <div class="alerts">
+        <form id="announcementForm">
+          <textarea id="alt"></textarea>
+          <button type="submit" class="send-alt" id="sendAlertBtn"  type="button"  style="background-color: #d0342c;">send alerts</button>
+        </form>
+      </div>
+
+ <!-- deploy shuttel -->
+
+      <div class="mng-shuttel">
+        <form action="">
+          <label>From:</label>
+        <select id="from1">
+          <option>area 1</option>
+          <option>area 2</option>
+          <option>area 3</option>
+          <option>area 4</option>
+          <option>area 5</option>
+          <option>Ghat 1</option>
+          <option>Ghat 2</option>
+          <option>Ghat 3</option>
+          <option>mandir</option>
+        </select>
+
+        <label>to:</label>
+        <select id="to1">
+          <option>area 1</option>
+          <option>area 2</option>
+          <option>area 3</option>
+          <option>area 4</option>
+          <option>area 5</option>
+          <option>Ghat 1</option>
+          <option>Ghat 2</option>
+          <option>Ghat 3</option>
+          <option>mandir</option>
+        </select>
+
+        <button class="send-alt">Deploy</button>
+        </form>
+     
+        <!-- withdraw shuttel -->
+
+        <form action="">
+          <label>From:</label>
+        <select id="from2">
+          <option>area 1</option>
+          <option>area 2</option>
+          <option>area 3</option>
+          <option>area 4</option>
+          <option>area 5</option>
+          <option>Ghat 1</option>
+          <option>Ghat 2</option>
+          <option>Ghat 3</option>
+          <option>mandir</option>
+        </select>
+
+        <label>to:</label>
+        <select id="to2">
+          <option>area 1</option>
+          <option>area 2</option>
+          <option>area 3</option>
+          <option>area 4</option>
+          <option>area 5</option>
+          <option>Ghat 1</option>
+          <option>Ghat 2</option>
+          <option>Ghat 3</option>
+          <option>mandir</option>
+        </select>
+
+        <button class="send-alt" style="background-color: #0fa3b1;">Withdraw</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- parking Management information Editing -->
+
+    <div class="manage" id="team">
+      <div class="inner">
+        <div class="station">
+          <span>Parking No.1</span>
+          <form action="">
+            <label>Entries:</label>
+            <input type="number" placeholder="Entries" />
+            <label>Exits:</label>
+            <input type="number" placeholder="Entries" />
+            <label>gap:</label>
+            <input type="number" placeholder="Entries" />
+            <button class="done" >Done</button>
+          </form>
+        </div>
+
+        <div class="station">
+          <span>Parking No.2</span>
+          <form action="">
+            <label>Entries:</label>
+            <input type="number" placeholder="Entries" />
+            <label>Exits:</label>
+            <input type="number" placeholder="Entries" />
+            <label>gap:</label>
+            <input type="number" placeholder="Entries" />
+            <button class="done">Done</button>
+          </form>
+        </div>
+
+        <div class="station">
+          <span>Parking No.3</span>
+          <form action="">
+            <label>Entries:</label>
+            <input type="number" placeholder="Entries" />
+            <label>Exits:</label>
+            <input type="number" placeholder="Entries" />
+            <label>gap:</label>
+            <input type="number" placeholder="Entries" />
+            <button class="done">Done</button>
+          </form>
+        </div>
+
+        <div class="station">
+          <span>Parking No.4</span>
+          <form action="">
+            <label>Entries:</label>
+            <input type="number" placeholder="Entries" />
+            <label>Exits:</label>
+            <input type="number" placeholder="Entries" />
+            <label>gap:</label>
+            <input type="number" placeholder="Entries" />
+            <button class="done">Done</button>
+          </form>
+        </div>
+
+        <div class="station">
+          <span>Parking No.5</span>
+          <form action="">
+            <label>Entries:</label>
+            <input type="number" placeholder="Entries" />
+            <label>Exits:</label>
+            <input type="number" placeholder="Entries" />
+            <label>gap:</label>
+            <input type="number" placeholder="Entries" />
+            <button class="done">Done</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- bus station information -->
+
+    <div class="manage" id="parking-data">
+      <div class="station">
+        <span>Bus Station</span>
+        <form action="">
+          <label>Entries:</label>
+          <input type="number" placeholder="Entries" />
+          <label>Exits:</label>
+          <input type="number" placeholder="Entries" />
+          <label>gap:</label>
+          <input type="number" placeholder="Entries" />
+          <button class="done">Done</button>
+        </form>
+      </div>
+
+      <!-- Railway station information -->
+
+      <div class="station">
+        <span>Railway Station</span>
+        <form action="">
+          <label>Entries:</label>
+          <input type="number" placeholder="Entries" />
+          <label>Exits:</label>
+          <input type="number" placeholder="Entries" />
+          <label>gap:</label>
+          <input type="number" placeholder="Entries" />
+          <button class="done">Done</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- chatbot code -->
+
+    <div id="chatbot-btn" class="chatbot-btn">
+      <i class="fas fa-robot"></i>
+    </div>
+
+    <div class="message" id="message">
+      <div class="msg-box">
+        <div class="chatbot"><p>welcome..!</p></div>
+      </div>
+      <div class="input"></div>
+      <input
+        type="text"
+        id="search"
+        placeholder="Ask freely, I am with you on this journey..."
+      />
+      <button id="enter">Send</button>
+    </div>
+
+    <!-- javascipt program -->
+
+    <script src="/js/main_home.js"></script>
+
+    <script>
+      var map = L.map('map').setView([18.516257718658125, 73.85599533541716], 13);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+        attribution : '&copy;OpenStreetMap contributors'
+      }).addTo(map);
+
+      //density example(count will take from database)
+      const densityAreas = [
+        {lat:18.49501425248075,lng:73.83428017095935,count:50},
+        {lat:18.540753613420964,lng:73.82715622372615,count:25},
+        {lat:18.490578597198798,lng:73.80548234848072,count:10},
+      ];
+
+      function getStyle(count) {
+        if(count > 40) return {color:'red',fillColor:'red',opacity:0.9 , fillOpacity:0.6};
+        if(count > 20) return {color:'orange',fillColor:'orange',opacity:0.8 , fillOpacity:0.5};
+        return {color:'green',fillColor:'green',opacity:0.6 , fillOpacity:0.4};
+      }
+
+      //add circles
+
+      densityAreas.forEach(area => {
+        const style = getStyle(area.count);
+        L.circle([area.lat,area.lng], {
+          ...style,
+          radius: area.count * 60 //proportionate to population
+        }).bindPopup('Users in area: ${area.count}').addTo(map);
+      });
+    </script>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+
+      
+      document.addEventListener("DOMContentLoaded", () =>{
+          const socket = io();
+      
+
+        document.getElementById("sendAlertBtn").addEventListener("click" , (e) => {
+          e.preventDefault();
+
+          const message = document.getElementById("alt").value.trim();
+          if(!message) return alert("Enter an Alert!");
+          socket.emit("newAlert", message);
+
+          alert("Alert sent successfully!");
+
+          document.getElementById("alt").value = "";
+      });
+
+      socket.on("alertReceived", (announcement) => {
+        const container = document.getElementById("alertsContainer");
+        if(!container) return;
+        const div = document.createElement("div");
+        div.textContent = `${announcement.author}: ${announcement.message}`;
+        container.prepend(div);
+      });
+    });
+      
+    </script>
+
+  </body>
+</html>
