@@ -27,3 +27,4 @@
 10. create a database named Tirth Darshanam in it(if it doesn't makes one on its own).
 11. Start the server using "node server.js"
 12. Copy the generated URL(localhost:3000), paste it into your browser (e.g., Chrome), and explore the Tirth-Darshanam web application.
+(registration is necessary for viewing the dashboards)
