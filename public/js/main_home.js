@@ -53,7 +53,6 @@ let prompt = document.querySelector("#search");
         <button class="chatbot" onclick="choose('How to get Alerts and Notifications?')">How to get Alerts and Notifications?</button>
         <button class="chatbot" onclick="choose('How to get my Parking spot?')">How to get my Parking spot?</button>
         <button class="chatbot" onclick="choose('When Should I request for Parking spot?')">When Should I request for Parking spot?</button>
-        <button class="chatbot" onclick="choose('Contact support')">Contact support</button>
         <button class="chatbot" onclick="choose('Exit chat')">Exit chat</button>
       `;
       chatcnt.appendChild(optionsDiv);
@@ -69,18 +68,18 @@ let prompt = document.querySelector("#search");
         case "How to book a ticket?":
           botMsg = "👉 Login using your email id and password, fill your journey details, choose appropriate vehicles and click on Book!";
           break;
-        case "How to navigate route?":
-          botMsg = "👉 Login using your email-id and password, fill your journey details and you will see route on navigation map aside.";
-          break;
         case "How to get Alerts and Notifications?":
           botMsg = "👉 To get Alerts and Notifications, open the announcement page and refresh it.";
           break;
         case "How to get my Parking spot?":
           botMsg = "👉 Go to park your vehicle section, select the nearest parking location to you and then click on `get parking spot.`";
         break;
-        case "Contact support":
-          botMsg = "👉 You can email us at tirth-darshanam@gmail.com 📧";
+        case "How to navigat route?":
+          botMsg =  "👉 Login using your email-id and password, fill your journey details and you will see route on navigation map aside.";
           break;
+        case "When Should I request for Parking spot?":
+          botMsg = "👉 You should book your parking when you are in 10 km radius of the destination.";
+        break;
         case "Exit chat":
           botMsg = "👋 Thank you! Have a great day!";
           break;
