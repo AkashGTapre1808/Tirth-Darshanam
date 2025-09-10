@@ -15,6 +15,12 @@
         color: black;
     }
 
+    #routeBtn:active{
+      background-color: black;
+      color: #ccc;
+
+    }
+
     .navigation{
         height: 150px;
         width: 380px;
@@ -272,7 +278,7 @@
 
       <label>Date:</label>
       <input type="date" class="b-t" id="date">
-      <button id="routeBtn" type="button" style="background-color: #ff9b42; border: none; box-shadow: 0 4px 15px #11111a;">Go</button class="b-t">
+      <button id="routeBtn" type="button" border: none; box-shadow: 0 4px 15px #11111a;">Go</button class="b-t">
       </form>
     </div>
     </div>
@@ -282,28 +288,7 @@
 
     <div id="data-cnt" class="manage">
       <div id="inner">
-      <!-- <div class="trp">Government Transports
-        <div class="t1" aria-placeholder="Boarding">
-        <div class="boardings">
-          <p>Boarding From: <span id="b1"></span></p>
-        </div>
-        <div class="arrivals">
-          <p>Arrival To: <span id="a1"></span></p>
-        </div>
-        <div class="boardings">At: 
-          <span id="b1t"></span> 
-        </div>
-        <div class="arrivals">At: 
-          <span id="a1t"></span>
-        </div>
-        <div class="tprice">Price: 
-          <span id="t1p"></span>
-        </div>
-        <div>
-          <button class="bookbtn">Book Ticket</button>
-        </div>
-      </div>
-      </div>     public transport -->
+      
         <div class="data-box" id="boxA"> <!--box number one -->
           <span>Self Drive</span>
       <form action="">
@@ -405,9 +390,9 @@
 
       //live location 
 
-      navigator.geolocation.getCurrentPosition(function(pos){
+      navigator.geolocation.watchPosition(function(pos){
         userLatLng = [pos.coords.latitude,pos.coords.longitude];
-        userMarker = L.marker(userLatLng).addTo(map).bindPopup("Your Location");
+        userMarker = L.marker(userLatLng).addTo(map).bindPopup("Your Location").openPopup();
         map.setView(userLatLng,13);
       });
 
@@ -440,7 +425,7 @@
 
               const resultsTo = await geocode(fromto);
               if(resultsTo.length === 0) return alert("To Location not found");
-              toLatLng = [resultsTo[0],resultsTo[0].lon];
+              toLatLng = [resultsTo[0].lat,resultsTo[0].lon];
             }
             callback(fromLatLng,toLatLng);
           } catch (err) {
