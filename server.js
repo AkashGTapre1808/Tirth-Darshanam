@@ -7,6 +7,9 @@ const path = require("path");
 const nodemailer = require("nodemailer");
 const { type } = require("os");
 const { send } = require("process");
+const fetch = (...args) =>
+    import("node-fetch").then(({ default: fetch }) => fetch(...args));
+
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
@@ -510,6 +513,32 @@ app.post("/book/:busId",isloggedin, async(req,res) => {
 
 app.get("/logout" , (req,res) => {
     req.session.destroy(() => res.redirect("/home"));
+});
+
+app.get("/geocode", async(req,res) =>{
+    const { q } = req.query;
+    console.log("received query",q);
+    if (!q) return res.status(400).send("Missing parameter q");
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&limit=5&format=json&addressdetails=1`;
+
+    try{
+        console.log("Fetching URL:", url); 
+        const response = await fetch(url,{
+            headers:{
+                "User-Agent" : "TirthDarshanamApp/1.0(tirth.darshanam09@gmail.com)"
+            }
+        });
+        console.log("Response status:", response.status);
+        if(!response.ok){
+            return res.status(response.status).send("Error fetching from Nominatim");
+        }
+        const data = await response.json();
+        console.log("Data received:", data);
+        res.json(data);
+    }catch (err) {
+        console.error("Geocoding error:", err); 
+        res.status(500).json({error: err.message});
+    }
 });
 
 server.listen(3000,() => {
