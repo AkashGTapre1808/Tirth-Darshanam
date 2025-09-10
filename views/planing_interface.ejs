@@ -275,13 +275,13 @@
         </ul>
       </div>
 
-      <select name="lang" id="mul_lang">
-        <option selected="eng">ENGLISH</option>
-        <option value="hin">HINDI</option>
-        <option value="mar">MARATHI</option>
-        <option value="guj">GUJATI</option>
-        <option value="sans">SANSKRIT</option>
-      </select>
+      <div id="google_translate_element" class="multi_lang"></div>
+
+      <a class="account" href="#">
+        <i></i>
+        <p></p>
+        </a>
+    </div>
 
       <a class="account" href="#">
         <i></i>
@@ -588,6 +588,16 @@
     });
       
     </script>
-
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        {pageLanguage: 'en'},
+        'google_translate_element'
+      );
+    }
+  </script>
+  <script type="text/javascript" 
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+  </script> 
   </body>
 </html>
